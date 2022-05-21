@@ -3,8 +3,7 @@ using ArtSite.Enums;
 
 namespace ArtSite.Database.Models; 
 
-public class AddCharacterModel {
-    public string Name { get; set; }
+public class AddCharacterNameModel : BaseNameModel {
     public byte Age { get; set; }
     public Sexuality Sexuality { get; set; }
     public Gender Gender { get; set; }

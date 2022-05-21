@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
-
-namespace ArtSite.Database.Entities; 
+﻿namespace ArtSite.Database.Entities; 
 
 public class Artwork : BaseEntity{
     public byte[] Description { get; set; }

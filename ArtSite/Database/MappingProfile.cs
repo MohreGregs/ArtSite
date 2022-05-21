@@ -6,6 +6,7 @@ namespace ArtSite.Database;
 
 public class MappingProfile : Profile{
     public MappingProfile() {
-        CreateMap<AddCharacterModel, Character>();
+        CreateMap<AddCharacterNameModel, Character>();
+        CreateMap<BaseNameModel, Trait>();
     }
 }

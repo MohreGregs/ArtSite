@@ -15,5 +15,14 @@ public static class ModelBuilderExtensions {
                 Name = "White"
             }
         });
+
+        builder.Entity<Trait>().HasData(new List<Trait>
+        {
+            new Trait
+            {
+                Id = 1,
+                Name = "Helpful"
+            }
+        });
     }
 }
