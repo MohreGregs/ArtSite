@@ -10,11 +10,4 @@ public class ArtworkController : BaseController<ArtworkController, Artwork>
     public ArtworkController(ILogger<ArtworkController> logger, IMapper mapper, DatabaseContext context) : base(logger, mapper, context)
     {
     }
-
-    public override async Task<ActionResult<Artwork>> Edit(Artwork? model)
-    {
-        //Custom Edit Logic
-
-        return Ok(new Artwork());
-    }
 }
