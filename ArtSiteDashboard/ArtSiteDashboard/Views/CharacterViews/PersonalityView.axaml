@@ -1,0 +1,64 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:characterViews="clr-namespace:ArtSiteDashboard.Views.CharacterViews"
+             xmlns:valueConverter="clr-namespace:ArtSiteDashboard.Views.ValueConverter"
+             xmlns:avalonia="clr-namespace:Markdown.Avalonia;assembly=Markdown.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ArtSiteDashboard.Views.CharacterViews.PersonalityView">
+    <Design.DataContext>
+        <characterViews:PersonalityViewModel/>
+    </Design.DataContext>
+    <UserControl.Resources>
+        <valueConverter:BytesToTextConverter x:Key="GeneralInfoValueConverter"/>
+        <valueConverter:ListValueConverter x:Key="ListValueConverter"/>
+    </UserControl.Resources>
+    <Grid ColumnDefinitions="*, Auto" Margin="20">
+        <Grid Column="0" RowDefinitions="Auto, Auto">
+            <StackPanel Grid.Row="0" Spacing="5" Margin="0, 0, 0, 10">
+                <TextBlock Text="Personality" FontSize="20"/>
+                <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Personality.PersonalityInfo, Converter={StaticResource GeneralInfoValueConverter}}"/>
+            </StackPanel>
+            <Grid Row="1" ColumnDefinitions="50*, 50*">
+                <StackPanel Grid.Column="0" Spacing="5">
+                    <TextBlock Text="Traits" FontSize="20"/>
+                    <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Personality.Traits, Converter={StaticResource ListValueConverter}}"/>
+                </StackPanel>
+                <StackPanel Grid.Column="1" Spacing="5">
+                    <TextBlock Text="Flaws" FontSize="20" />
+                    <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Personality.Flaws, Converter={StaticResource ListValueConverter}}"/>
+                </StackPanel>
+            </Grid>
+        </Grid>
+        <Grid Column="1">
+            <StackPanel Spacing="5">
+                <Grid ColumnDefinitions="20, Auto, 20">
+                    <TextBlock Grid.Column="0" Text="I" TextAlignment="Center"/>
+                    <ProgressBar Grid.Column="1" Value="{Binding CurrentCharacter.Personality.Introverted}" MaxWidth="200" Height="10"/>
+                    <TextBlock Grid.Column="2" Text="E" TextAlignment="Center"/>
+                </Grid>
+                <Grid ColumnDefinitions="20, Auto, 20">
+                    <TextBlock Grid.Column="0" Text="I" TextAlignment="Center"/>
+                    <ProgressBar Grid.Column="1" Value="{Binding CurrentCharacter.Personality.Intuitiv}" MaxWidth="200" Height="10"/>
+                    <TextBlock Grid.Column="2" Text="O" TextAlignment="Center"/>
+                </Grid>
+                <Grid ColumnDefinitions="20, Auto, 20">
+                    <TextBlock Grid.Column="0" Text="T" TextAlignment="Center"/>
+                    <ProgressBar Grid.Column="1" Value="{Binding CurrentCharacter.Personality.Thinking}" MaxWidth="200" Height="10"/>
+                    <TextBlock Grid.Column="2" Text="F" TextAlignment="Center"/>
+                </Grid>
+                <Grid ColumnDefinitions="20, Auto, 20">
+                    <TextBlock Grid.Column="0" Text="J" TextAlignment="Center"/>
+                    <ProgressBar Grid.Column="1" Value="{Binding CurrentCharacter.Personality.Judging}" MaxWidth="200" Height="10"/>
+                    <TextBlock Grid.Column="2" Text="P" TextAlignment="Center"/>
+                </Grid>
+                <Grid ColumnDefinitions="20, Auto, 20">
+                    <TextBlock Grid.Column="0" Text="A" TextAlignment="Center"/>
+                    <ProgressBar Grid.Column="1" Value="{Binding CurrentCharacter.Personality.Assertive}" MaxWidth="200" Height="10"/>
+                    <TextBlock Grid.Column="2" Text="T" TextAlignment="Center"/>
+                </Grid>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

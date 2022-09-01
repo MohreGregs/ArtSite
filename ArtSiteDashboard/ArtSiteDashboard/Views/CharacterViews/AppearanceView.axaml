@@ -1,0 +1,48 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:characterViews="clr-namespace:ArtSiteDashboard.Views.CharacterViews"
+             xmlns:valueConverter="clr-namespace:ArtSiteDashboard.Views.ValueConverter"
+             xmlns:avalonia="clr-namespace:Markdown.Avalonia;assembly=Markdown.Avalonia"
+             xmlns:models="clr-namespace:ArtSite.Data.Models;assembly=ArtSite.Data"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ArtSiteDashboard.Views.CharacterViews.AppearanceView">
+    <Design.DataContext>
+        <characterViews:AppearanceViewModel/>
+    </Design.DataContext>
+    <UserControl.Resources>
+        <valueConverter:BytesToTextConverter x:Key="GeneralInfoValueConverter"/>
+        <valueConverter:ColorConverter x:Key="ColorConverter"/>
+    </UserControl.Resources>
+    <Grid ColumnDefinitions="*, Auto" Margin="20">
+        <Grid Column="0" RowDefinitions="Auto, Auto">
+            <StackPanel Grid.Row="0">
+                <TextBlock Text="Appearance" FontSize="20"/>
+                <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Appearance.AppearanceInfo, Converter={StaticResource GeneralInfoValueConverter}}"/>
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+                <TextBlock Text="Design Notes" FontSize="20"/>
+                <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Appearance.DesignNotes, Converter={StaticResource GeneralInfoValueConverter}}"/>
+            </StackPanel>
+        </Grid>
+        <Grid Column="1" RowDefinitions="Auto, Auto">
+            <TextBlock Text="Colors" FontSize="20" Grid.Row="0" Margin="0, 0 ,0 10"/>
+            <ItemsRepeater Grid.Row="1" Items="{Binding CurrentCharacter.Appearance.Colors}">
+                <ItemsRepeater.ItemTemplate >
+                    <DataTemplate DataType="models:ColorModel">
+                        <Grid RowDefinitions="Auto, Auto" Width="200" Margin="0, 0 ,0 ,5">
+                            <Grid Row="0" ColumnDefinitions="50* , 50*">
+                                <TextBlock Grid.Column="0" Text="{Binding Name}" HorizontalAlignment="Left"/>
+                                <TextBlock Grid.Column="1" Text="{Binding ColorCode}" HorizontalAlignment="Right"/>
+                            </Grid>
+                            <Border Grid.Row="1" CornerRadius="50" Height="20" Background="{Binding ColorCode, Converter={StaticResource ColorConverter}}">
+                               
+                            </Border>
+                        </Grid>
+                    </DataTemplate>
+                </ItemsRepeater.ItemTemplate>
+            </ItemsRepeater>
+        </Grid>
+    </Grid>
+</UserControl>

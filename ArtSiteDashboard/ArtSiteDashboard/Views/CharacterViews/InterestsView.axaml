@@ -1,0 +1,26 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:valueConverter="clr-namespace:ArtSiteDashboard.Views.ValueConverter"
+             xmlns:characterViews="clr-namespace:ArtSiteDashboard.Views.CharacterViews"
+             xmlns:avalonia="clr-namespace:Markdown.Avalonia;assembly=Markdown.Avalonia"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ArtSiteDashboard.Views.CharacterViews.InterestsView">
+    <Design.DataContext>
+        <characterViews:InterestsViewModel/>
+    </Design.DataContext>
+    <UserControl.Resources>
+        <valueConverter:ListValueConverter x:Key="ListValueConverter"/>
+    </UserControl.Resources>
+    <Grid ColumnDefinitions="50*, 50*" Margin="20">
+        <StackPanel Grid.Column="0" Spacing="5">
+            <TextBlock Text="Hobbies" FontSize="20"/>
+            <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Interests.Hobbies, Converter={StaticResource ListValueConverter}}"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Spacing="5">
+            <TextBlock Text="Music" FontSize="20"/>
+            <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Interests.Music, Converter={StaticResource ListValueConverter}}"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

@@ -1,0 +1,44 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:characterViews="clr-namespace:ArtSiteDashboard.Views.CharacterViews"
+             xmlns:valueConverter="clr-namespace:ArtSiteDashboard.Views.ValueConverter"
+             xmlns:models="clr-namespace:ArtSite.Data.Models;assembly=ArtSite.Data"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             x:Class="ArtSiteDashboard.Views.CharacterViews.ReferenceView">
+    <Design.DataContext>
+        <characterViews:ReferenceViewModel/>
+    </Design.DataContext>
+    <UserControl.Resources>
+        <valueConverter:BytesToImageConverter x:Key="BytesToImageConverter"/>
+    </UserControl.Resources>
+    <ScrollViewer HorizontalScrollBarVisibility="Auto">
+        <ItemsRepeater Items="{Binding CurrentCharacter.References}" Margin="20">
+            <ItemsRepeater.Layout>
+                <UniformGridLayout MinItemWidth="200"
+                                   MinColumnSpacing="28"
+                                   ItemsJustification="SpaceAround"/>
+            </ItemsRepeater.Layout>
+            <ItemsRepeater.ItemTemplate >
+                <DataTemplate DataType="models:ReferenceModel">
+                    <Grid RowDefinitions="Auto, Auto, Auto" Margin="0, 0 ,0 ,5" >
+                        <Grid Row="0" >
+                            <TextBlock Grid.Column="0" Text="{Binding Name}" FontSize="20" HorizontalAlignment="Center"/>
+                        </Grid>
+                        
+                        <Image Grid.Row="1" MaxWidth="1000" HorizontalAlignment="Center" Source="{Binding Artwork.File, Converter={StaticResource BytesToImageConverter}}" RenderOptions.BitmapInterpolationMode="HighQuality" />
+                        
+                        <ListBox Grid.Row="2" Items="{Binding Artwork.Artists}">
+                            <ListBox.ItemTemplate>
+                                <DataTemplate DataType="models:ArtistModel">
+                                    <TextBlock Text="{Binding Name}" Tapped="ArtistButton_OnTapped"/>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </Grid>
+                </DataTemplate>
+            </ItemsRepeater.ItemTemplate>
+        </ItemsRepeater>
+    </ScrollViewer>
+</UserControl>

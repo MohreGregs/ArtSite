@@ -1,0 +1,44 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:windows="clr-namespace:ArtSiteDashboard.Windows"
+        mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="200"
+        Width="250" Height="350"
+        x:Class="ArtSiteDashboard.Windows.AddArtistWindow"
+        Title="Add Artist"
+        TransparencyLevelHint="AcrylicBlur"
+        ExtendClientAreaToDecorationsHint="true"
+        ExtendClientAreaChromeHints="PreferSystemChrome"
+        WindowStartupLocation="CenterScreen">
+    <Design.DataContext>
+        <windows:AddArtistViewModel/>
+    </Design.DataContext>
+    <Grid RowDefinitions="30,*,*">
+        <Panel Grid.Row="0" Grid.RowSpan="3">
+            <ExperimentalAcrylicBorder IsHitTestVisible="False">
+                <ExperimentalAcrylicBorder.Material>
+                    <ExperimentalAcrylicMaterial
+                        BackgroundSource="Digger"
+                        TintColor="Black"
+                        TintOpacity="1"
+                        MaterialOpacity="0.25" />
+                </ExperimentalAcrylicBorder.Material>
+            </ExperimentalAcrylicBorder>
+        </Panel>
+        <TextBlock Grid.Row="0" Text="Add Artist" FontSize="15" Margin="10"/>
+        <StackPanel Grid.Row="1" Spacing="5" Margin="10">
+            <TextBox  Watermark="Name" Text="{Binding Artist.Name}"/>
+            <TextBlock Text="Links:" />
+            <TextBox Watermark="Website" Text="{Binding Artist.Website}"/>
+            <TextBox Watermark="Furaffinity" Text="{Binding Artist.Furaffinity}"/>
+            <TextBox Watermark="ToyHouse" Text="{Binding Artist.ToyHouse}"/>
+            <TextBox Watermark="Twitter" Text="{Binding Artist.Twitter}"/>
+            <TextBox Watermark="ArtFight" Text="{Binding Artist.Artfight}"/>
+        </StackPanel>
+        <Grid Row="2" ColumnDefinitions="*,*" Margin="10" VerticalAlignment="Bottom">
+            <Button Grid.Column="0" Click="Button_OnCancel"> <TextBlock Text="Cancel"/></Button>
+            <Button Grid.Column="1" HorizontalAlignment="Right" Click="Button_OnAdd"> <TextBlock Text="Add"/></Button>
+        </Grid>
+    </Grid>
+</Window>

@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtSiteDashboard", "ArtSiteDashboard\ArtSiteDashboard.csproj", "{143D3A07-7B51-4BEC-A0C3-C1975181CAD2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtSiteDashboard.Extensions", "ArtSiteDashboard.Extensions\ArtSiteDashboard.Extensions.csproj", "{05F49217-3B76-489F-8FEA-EF8E90FACB7B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtSite.Data", "..\ArtSite\ArtSite.Data\ArtSite.Data.csproj", "{E711E3C0-FC48-4A0B-8815-80BC103500A5}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{143D3A07-7B51-4BEC-A0C3-C1975181CAD2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{143D3A07-7B51-4BEC-A0C3-C1975181CAD2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{143D3A07-7B51-4BEC-A0C3-C1975181CAD2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{143D3A07-7B51-4BEC-A0C3-C1975181CAD2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{05F49217-3B76-489F-8FEA-EF8E90FACB7B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{05F49217-3B76-489F-8FEA-EF8E90FACB7B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{05F49217-3B76-489F-8FEA-EF8E90FACB7B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{05F49217-3B76-489F-8FEA-EF8E90FACB7B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E711E3C0-FC48-4A0B-8815-80BC103500A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E711E3C0-FC48-4A0B-8815-80BC103500A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E711E3C0-FC48-4A0B-8815-80BC103500A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E711E3C0-FC48-4A0B-8815-80BC103500A5}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

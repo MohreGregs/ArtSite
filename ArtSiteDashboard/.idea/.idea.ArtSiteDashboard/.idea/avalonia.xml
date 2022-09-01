@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AvaloniaProject">
+    <option name="projectPerEditor">
+      <map>
+        <entry key="ArtSiteDashboard/App.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/CharactersView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/MainWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/MessageBox.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/NoCharactersView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/Views/AddNewCharacterView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/Views/CharacterViews/AppearanceView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/Views/CharacterViews/GeneralInfoView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/Views/CharacterViews/InterestsView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/Views/CharacterViews/PersonalityView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/Views/CharacterViews/ReferenceView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/Views/CharactersView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/Views/HomeView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/Views/NoCharactersView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/Windows/AddArtistWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/Windows/AddNewCharacterWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+      </map>
+    </option>
+  </component>
+</project>
