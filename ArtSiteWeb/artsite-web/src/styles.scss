@@ -38,6 +38,6 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 a {
-  color: mat.get-color-from-palette($artsite-web-primary, 500);
+  color: mat.get-color-from-palette($artsite-web-primary, 300);
   text-decoration: none;
 }

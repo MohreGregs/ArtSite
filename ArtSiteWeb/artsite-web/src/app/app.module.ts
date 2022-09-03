@@ -12,13 +12,18 @@ import {MatButtonModule} from '@angular/material/button';
 import { HomeViewComponent } from './views/home-view/home-view.component';
 import { CharactersViewComponent } from './views/characters-view/characters-view.component';
 import { PageNotFoundComponent } from './views/page-not-found/page-not-found.component';
+import { SearchBarComponent } from './controls/search-bar/search-bar.component';
+import {MatInputModule} from '@angular/material/input';
+import { CharacterListItemComponent } from './controls/character-list-item/character-list-item.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeViewComponent,
     CharactersViewComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    SearchBarComponent,
+    CharacterListItemComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +32,8 @@ import { PageNotFoundComponent } from './views/page-not-found/page-not-found.com
     MatSidenavModule,
     MatToolbarModule,
     MatIconModule,
-    MatButtonModule
+    MatButtonModule,
+    MatInputModule
   ],
   providers: [],
   bootstrap: [AppComponent]
