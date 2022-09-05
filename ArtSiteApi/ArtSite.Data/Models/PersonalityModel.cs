@@ -1,7 +1,7 @@
 ﻿namespace ArtSite.Data.Models; 
 
 public class PersonalityModel: BaseModel {
-    public byte[] PersonalityInfo { get; set; }
+    public byte[]? PersonalityInfo { get; set; }
     public byte Introverted { get; set; }
     public byte Intuitiv { get; set; }
     public byte Thinking { get; set; }

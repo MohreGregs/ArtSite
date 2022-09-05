@@ -11,16 +11,28 @@ public class CharacterController : BaseEntityController<CharacterController, Cha
     public CharacterController(ILogger<CharacterController> logger, IMapper mapper, DatabaseContext context) : base(
         logger, mapper, context) {
     }
-    
+
+    [HttpGet]
+    [Route("getIcon")]
+    public async Task<ActionResult> GetIcon(int? iconId) {
+        if (iconId == null || iconId == 0) {
+            return File(System.IO.File.ReadAllBytes("Resources\\placeholderIcon.png"), "image/png");
+        }
+
+        var icon = await _context.Artworks.FirstOrDefaultAsync(x => x.Id == iconId);
+
+        return File(icon.File, "image/png");
+    }
+
     [HttpPost]
     [Route("add")]
     public override async Task<ActionResult> Add([FromBody] AddCharacterModel? model) {
         if (model == null)
             return BadRequest();
 
-        var species = await _context.Species.FirstOrDefaultAsync(x => x.Id == model.Species.Id);
+        var species = await _context.Species.FirstOrDefaultAsync(x => x.Id == model.SpeciesId);
 
-        var originalDesigner = await _context.Artists.FirstOrDefaultAsync(x => x.Id == model.OriginalDesigner.Id);
+        var originalDesigner = await _context.Artists.FirstOrDefaultAsync(x => x.Id == model.OriginalDesignerId);
         
         var character = new Character {
             Name = model.Name,
@@ -35,8 +47,8 @@ public class CharacterController : BaseEntityController<CharacterController, Cha
             Interests = new Interests()
         };
 
-        foreach (var tagModel in model.Tags) {
-            var tag = await _context.Tags.FirstOrDefaultAsync(x => x.Id == tagModel.Id);
+        foreach (var tagid in model.TagIds) {
+            var tag = await _context.Tags.FirstOrDefaultAsync(x => x.Id == tagid);
             if (tag != default) character.Tags.Add(tag);
         }
 

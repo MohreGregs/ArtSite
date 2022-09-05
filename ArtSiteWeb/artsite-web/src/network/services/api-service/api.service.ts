@@ -11,7 +11,7 @@ export class ApiService {
 
   constructor(private http: HttpClient) { }
 
-  get<T>(url: String){
+  get<T>(url: String): Observable<T>{
     return this.http.get<T>(this.baseUrl + url);
   }
 

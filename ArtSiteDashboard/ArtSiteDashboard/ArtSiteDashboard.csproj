@@ -72,6 +72,7 @@
       </Compile>
     </ItemGroup>
     <ItemGroup>
+      <ProjectReference Include="..\..\ArtSiteApi\ArtSite.Data\ArtSite.Data.csproj" />
       <ProjectReference Include="..\..\ArtSite\ArtSite.Data\ArtSite.Data.csproj" />
       <ProjectReference Include="..\ArtSiteDashboard.Extensions\ArtSiteDashboard.Extensions.csproj" />
     </ItemGroup>

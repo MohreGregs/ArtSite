@@ -1,18 +1,20 @@
-<mat-toolbar>
-  <button mat-icon-button aria-label="Drawer" (click)="drawer.toggle()">
-    <mat-icon>menu</mat-icon>
-  </button>
-  <span>ArtSide</span>
-</mat-toolbar>
+<div class="content">
+  <mat-toolbar>
+    <button mat-icon-button aria-label="Drawer" (click)="drawer.toggle()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span>ArtSide</span>
+  </mat-toolbar>
 
-<mat-drawer-container class="drawer-container" autosize>
-  <mat-drawer #drawer class="sidenav" mode="side" opened>
-    <nav>
-      <a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a><br>
-      <a routerLink="/characters" routerLinkActive="active" ariaCurrentWhenActive="page">Characters</a>
-    </nav>
-  </mat-drawer>
-  <div class="sidenav-content">
-    <router-outlet></router-outlet>
-  </div>
-</mat-drawer-container>
+  <mat-drawer-container class="drawer-container" autosize>
+    <mat-drawer #drawer class="sidenav" mode="side" opened>
+      <nav>
+        <a routerLink="/home" routerLinkActive="active" ariaCurrentWhenActive="page">Home</a><br>
+        <a routerLink="/characters" routerLinkActive="active" ariaCurrentWhenActive="page">Characters</a>
+      </nav>
+    </mat-drawer>
+    <div class="sidenav-content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-drawer-container>
+</div>

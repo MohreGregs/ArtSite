@@ -1,4 +1,10 @@
-<app-search-bar></app-search-bar>
+<div class="searchbar-box">
+  <app-search-bar></app-search-bar>
+</div>
 
-<app-character-list-item></app-character-list-item>
+<div class="characters-list">
+  <div *ngFor="let char of chars">
+    <app-character-list-item [character]="char"></app-character-list-item>
+  </div>
+</div>
 

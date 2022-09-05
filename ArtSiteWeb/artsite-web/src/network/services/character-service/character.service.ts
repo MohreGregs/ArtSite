@@ -7,12 +7,13 @@ import { ApiService } from '../api-service/api.service';
 })
 export class CharacterService {
 
-  private characters: CharacterModel[] = [];
-
   constructor(private api: ApiService) { }
 
   getCharacters(){
-    this.api.get<Array<CharacterModel>>("character").subscribe((data: CharacterModel[]) => this.characters = data);
-    return this.characters;
+    return this.api.get<CharacterModel[]>("character");
+  }
+
+  getCharacter(id: number){
+    return this.api.get<CharacterModel>(`character/getbyid?id=${id}`)
   }
 }
