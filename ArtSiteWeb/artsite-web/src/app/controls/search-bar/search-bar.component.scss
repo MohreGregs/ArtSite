@@ -2,12 +2,16 @@
 @import '../../../styles.scss';
 
 .search-bar{
+  margin-left: 0.5%;
+  margin-right: 0.5%;
+  margin-top: 0.5%;
+  width:99%;
   background-color: mat.get-color-from-palette(mat.$gray-palette, 900);
   border-radius: 50px;
-  padding-left: 10px;
 
   .search-input{
     width: 75%;
     border-radius: 5px;
+    margin-left: 2rem;
   }
 }
