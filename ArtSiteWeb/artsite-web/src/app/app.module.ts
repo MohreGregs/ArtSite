@@ -16,6 +16,7 @@ import { PageNotFoundComponent } from './views/page-not-found/page-not-found.com
 import { SearchBarComponent } from './controls/search-bar/search-bar.component';
 import { MatInputModule } from '@angular/material/input';
 import { CharacterListItemComponent } from './controls/character-list-item/character-list-item.component';
+import { CharacterViewComponent } from './views/character-view/character-view.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CharacterListItemComponent } from './controls/character-list-item/chara
     CharactersViewComponent,
     PageNotFoundComponent,
     SearchBarComponent,
-    CharacterListItemComponent
+    CharacterListItemComponent,
+    CharacterViewComponent
   ],
   imports: [
     BrowserModule,

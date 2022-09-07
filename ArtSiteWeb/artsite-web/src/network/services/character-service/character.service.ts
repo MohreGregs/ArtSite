@@ -13,7 +13,7 @@ export class CharacterService {
     return this.api.get<CharacterModel[]>("character");
   }
 
-  getCharacter(id: number){
+  getCharacter(id: number | string){
     return this.api.get<CharacterModel>(`character/getbyid?id=${id}`)
   }
 }

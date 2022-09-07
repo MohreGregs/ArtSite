@@ -2,3 +2,13 @@
   width: 100%;
   margin:0;
 }
+
+.character-list{
+  width: 100%;
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.char-item{
+  display: inline-block;
+}

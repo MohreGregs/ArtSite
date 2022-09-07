@@ -1,4 +1,4 @@
-<div class="char-box">
+<div class="char-box" [routerLink]="['/character', character.id]">
   <div class="char-box-content">
     <img src="https://localhost:7095/character/getIcon?iconid={{character.iconId}}">
     <p>{{character.name}}</p>

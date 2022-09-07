@@ -10,8 +10,16 @@
   padding-top: 10px;
   background-color: mat.get-color-from-palette(mat.$gray-palette, 700);
 
+  &:hover{
+    background-color: mat.get-color-from-palette(mat.$gray-palette, 800);
+    img, p{
+      opacity: 50%;
+    }
+
+    cursor: pointer;
+  }
+
   .char-box-content{
-    width: 100%;
     text-align: center;
 
     img{

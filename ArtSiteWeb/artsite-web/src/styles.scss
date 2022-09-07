@@ -34,10 +34,54 @@ $artsite-web-theme: mat.define-dark-theme((
 
 /* You can add global styles to this file, and also import other style files */
 
+//Bootstrap
+
+$body-bg: mat.get-color-from-palette(mat.$gray-palette, 600);
+$body-color: mat.get-color-from-palette(mat.$gray-palette, 100);
+
+$theme-colors: (
+  "primary": mat.get-color-from-palette($artsite-web-primary, 500),
+  "danger": mat.get-color-from-palette($artsite-web-warn, 500),
+  "secondary": mat.get-color-from-palette($artsite-web-accent, 500),
+  "success": mat.get-color-from-palette($artsite-web-accent, 100),
+  "info": mat.get-color-from-palette($artsite-web-accent, 300),
+  "warning":mat.get-color-from-palette($artsite-web-warn, 600),
+  "light": mat.get-color-from-palette(mat.$gray-palette, 100),
+  "dark": mat.get-color-from-palette(mat.$gray-palette, 900)
+);
+
+@import "node_modules/bootstrap/scss/bootstrap";
+
 html, body { height: 100%; margin: 0; padding: 0; }
 body { font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 a {
   color: mat.get-color-from-palette($artsite-web-primary, 300);
   text-decoration: none;
+
+  &:hover{
+    color: mat.get-color-from-palette($artsite-web-primary, 500);
+  }
+}
+
+/* Scroll bar stylings */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: mat.get-color-from-palette(mat.$gray-palette, 900);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: mat.get-color-from-palette(mat.$gray-palette, 600);
+  border-radius: 5px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: mat.get-color-from-palette(mat.$gray-palette, 700);
 }
