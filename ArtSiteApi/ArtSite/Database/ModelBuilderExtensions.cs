@@ -30,7 +30,7 @@ public static class ModelBuilderExtensions {
             Id = 1,
             Extension = ".png",
             Description = Encoding.UTF8.GetBytes("An Artwork!"),
-            File = File.ReadAllBytes(@"D:\Projects\Artside\test.png")
+            File = File.ReadAllBytes(@"./test.png")
         };
 
         var species = new Species {
