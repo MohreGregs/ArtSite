@@ -1,9 +1,8 @@
-<div class="container" id="hi">
-  <div class="border-primary bg-faded">
-    <div class="border m-3 p-4">
+<div class="container border-primary" id="hi">
+    <div class="border rounded m-3 p-4">
       <div class="row">
         <div class="col text-center">
-           <img src="https://f2.toyhou.se/file/f2-toyhou-se/images/44041546_MgdIF2v033TzjPr.png" class="img-thumbnail rounded-circle">
+           <img src="https://localhost:7095/character/getIcon?iconid={{character.iconId}}" class="img-thumbnail rounded-circle">
             <a href="https://www.furaffinity.net/user/gorezing/"><i class="fa fa-paint-brush"></i> Gorezing</a>
         </div>
         <div class="col-5">
@@ -20,13 +19,10 @@
           </div>
           <div class="bg-primary mb-2" style="height:2px; width:100%;"></div>
           <p class="text-justify">
-            Teddy is my fursona and fully based on me. She is a very quiet, introverted person. Her hobbies are playing a lot of video games (especially Shooter/Survival), drawing and writing stories.<br>
-            She needs time to adjust to new people. When meeting new people she will first stay in the background, observe and later (can be hours or even days) will join the conversation. On the internet this behaviour can also be seen, but she can adjust much quicker and thus has the opportunity to talk to people she normally may not.<br>
-            She grew up in a small village in the house of her parents. They always had pets (some cat equivalent in my story, to be made). As a child she spend a lot of time in the forests around the village.
-          </p>
+            Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.           </p>
         </div>
         <div class="col">
-          <a class="btn btn-primary btn-block" data-toggle="collapse" href="#general" role="button" aria-expanded="false" aria-controls="general">
+          <a class="btn btn-primary btn-block" (click)="isCollapsed = !isCollapsed" role="button" [attr.aria-expanded]="isCollapsed" aria-controls="general">
               General
           </a>
           <a class="btn btn-primary btn-block mt-2" data-toggle="collapse" href="#personality" role="button" aria-expanded="false" aria-controls="personality">
@@ -47,5 +43,10 @@
         </div>
       </div>
     </div>
+</div>
+
+<div class="collapse" id="general">
+  <div class="card card-body">
+    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
   </div>
 </div>

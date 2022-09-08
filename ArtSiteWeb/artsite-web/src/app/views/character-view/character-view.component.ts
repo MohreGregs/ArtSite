@@ -11,7 +11,8 @@ import { CharacterService } from 'src/network/services/character-service/charact
 })
 export class CharacterViewComponent implements OnInit {
 
-  character!: Observable<CharacterModel>;
+  character!: CharacterModel;
+  isCollapsed = false;
 
   constructor(
     private route: ActivatedRoute,
@@ -20,11 +21,13 @@ export class CharacterViewComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.character = this.route.paramMap.pipe(
+     this.route.paramMap.pipe(
       switchMap((params: ParamMap) =>
       this.service.getCharacter(params.get('id')?? 0 )
       )
-    );
+    ).subscribe(((data: CharacterModel) =>
+      this.character = data
+      ));
   }
 
 }
