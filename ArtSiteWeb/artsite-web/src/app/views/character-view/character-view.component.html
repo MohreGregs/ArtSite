@@ -1,11 +1,11 @@
-<div class="container border-primary" id="hi">
+<div class="container" id="hi">
     <div class="border rounded m-3 p-4">
       <div class="row">
-        <div class="col text-center">
+        <div class="col-3 text-center">
            <img src="https://localhost:7095/character/getIcon?iconid={{character.iconId}}" class="img-thumbnail rounded-circle">
             <a href="https://www.furaffinity.net/user/gorezing/"><i class="fa fa-paint-brush"></i> Gorezing</a>
         </div>
-        <div class="col-5">
+        <div class="col-6">
           <div class="row">
             <div class="col font-weight-bold">
               <h1 class="text-primary">Teddy</h1>
@@ -21,32 +21,71 @@
           <p class="text-justify">
             Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.           </p>
         </div>
-        <div class="col">
-          <a class="btn btn-primary btn-block" (click)="isCollapsed = !isCollapsed" role="button" [attr.aria-expanded]="isCollapsed" aria-controls="general">
-              General
-          </a>
-          <a class="btn btn-primary btn-block mt-2" data-toggle="collapse" href="#personality" role="button" aria-expanded="false" aria-controls="personality">
-              Personality
-          </a>
-          <a class="btn btn-primary btn-block mt-2" data-toggle="collapse" href="#interests" role="button" aria-expanded="false" aria-controls="interests">
-              Interests
-          </a>
-          <a class="btn btn-primary btn-block mt-2" data-toggle="collapse" href="#appearance" role="button" aria-expanded="false" aria-controls="appearance">
-              Appearance
-          </a>
-          <a class="btn btn-primary btn-block mt-2" data-toggle="collapse" href="#reference" role="button" aria-expanded="false" aria-controls="reference">
-              Reference
-          </a>
-          <a class="btn btn-primary btn-block mt-2" data-toggle="collapse" href="#feral-reference" role="button" aria-expanded="false" aria-controls="feral-reference">
-              Feral Reference
-          </a>
+        <div class="col d-grid gap-2">
+          <button  class="btn btn-primary" (click)="activeComponent = 'general'" >
+            General
+          </button>
+          <button class="btn btn-primary" (click)="activeComponent = 'personality'">
+            Personality
+          </button>
+          <button class="btn btn-primary" (click)="activeComponent = 'interests'">
+            Interests
+          </button>
+          <button class="btn btn-primary" (click)="activeComponent = 'appearance'">
+            Appearance
+          </button>
+          <button class="btn btn-primary" (click)="activeComponent = 'references'">
+            References
+          </button>
+          <button class="btn btn-primary" (click)="activeComponent = 'artwork'">
+            Artwork
+          </button>
+          <button class="btn btn-primary" (click)="activeComponent = 'documents'">
+            Documents
+          </button>
         </div>
       </div>
     </div>
 </div>
 
-<div class="collapse" id="general">
-  <div class="card card-body">
-    Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident.
+<div class="container" *ngIf="activeComponent == 'general'">
+  <div class="border rounded m-3 p-4">
+    <app-general-info></app-general-info>
+  </div>
+</div>
+
+<div class="container" *ngIf="activeComponent == 'personality'">
+  <div class="border rounded m-3 p-4">
+    <app-personality></app-personality>
+  </div>
+</div>
+
+<div class="container" *ngIf="activeComponent == 'interests'">
+  <div class="border rounded m-3 p-4">
+    <app-interests></app-interests>
+  </div>
+</div>
+
+<div class="container" *ngIf="activeComponent == 'appearance'">
+  <div class="border rounded m-3 p-4">
+    <app-appearance></app-appearance>
+  </div>
+</div>
+
+<div class="container" *ngIf="activeComponent == 'references'">
+  <div class="border rounded m-3 p-4">
+    <app-references></app-references>
+  </div>
+</div>
+
+<div class="container" *ngIf="activeComponent == 'artwork'">
+  <div class="border rounded m-3 p-4">
+    <app-artwork-preview></app-artwork-preview>
+  </div>
+</div>
+
+<div class="container" *ngIf="activeComponent == 'documents'">
+  <div class="border rounded m-3 p-4">
+    <app-document-preview></app-document-preview>
   </div>
 </div>

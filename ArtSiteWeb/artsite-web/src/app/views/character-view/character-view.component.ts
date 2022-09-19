@@ -12,7 +12,7 @@ import { CharacterService } from 'src/network/services/character-service/charact
 export class CharacterViewComponent implements OnInit {
 
   character!: CharacterModel;
-  isCollapsed = false;
+  activeComponent = "general";
 
   constructor(
     private route: ActivatedRoute,

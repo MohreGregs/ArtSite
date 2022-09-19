@@ -18,6 +18,13 @@ import { SearchBarComponent } from './controls/search-bar/search-bar.component';
 import { MatInputModule } from '@angular/material/input';
 import { CharacterListItemComponent } from './controls/character-list-item/character-list-item.component';
 import { CharacterViewComponent } from './views/character-view/character-view.component';
+import { GeneralInfoComponent } from './controls/character-controls/general-info/general-info.component';
+import { PersonalityComponent } from './controls/character-controls/personality/personality.component';
+import { InterestsComponent } from './controls/character-controls/interests/interests.component';
+import { AppearanceComponent } from './controls/character-controls/appearance/appearance.component';
+import { ReferencesComponent } from './controls/character-controls/references/references.component';
+import { ArtworkPreviewComponent } from './controls/character-controls/artwork-preview/artwork-preview.component';
+import { DocumentPreviewComponent } from './controls/character-controls/document-preview/document-preview.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +34,14 @@ import { CharacterViewComponent } from './views/character-view/character-view.co
     PageNotFoundComponent,
     SearchBarComponent,
     CharacterListItemComponent,
-    CharacterViewComponent
+    CharacterViewComponent,
+    GeneralInfoComponent,
+    PersonalityComponent,
+    InterestsComponent,
+    AppearanceComponent,
+    ReferencesComponent,
+    ArtworkPreviewComponent,
+    DocumentPreviewComponent
   ],
   imports: [
     BrowserModule,
