@@ -22,13 +22,6 @@ public class DebugController : BaseController<DebugController> {
             var color = await _context.Colors.FirstOrDefaultAsync();
             var reference = await _context.References.FirstOrDefaultAsync();
 
-            var generalInfo = await _context.GeneralInfos.FirstOrDefaultAsync();
-            var like1 = await _context.Likes.FirstOrDefaultAsync();
-
-            var personality = await _context.Personalities.FirstOrDefaultAsync();
-            var trait = await _context.Traits.FirstOrDefaultAsync();
-            var flaw = await _context.Flaws.FirstOrDefaultAsync();
-
             var interests = await _context.InterestsSet.FirstOrDefaultAsync();
             var hobby = await _context.Hobbies.FirstOrDefaultAsync();
             var song = await _context.Songs.FirstOrDefaultAsync();
@@ -42,12 +35,6 @@ public class DebugController : BaseController<DebugController> {
 
             species.Characters.Add(character);
             character.Tags.Add(tag);
-
-            character.GeneralInfo.Likes.Add(like1);
-            character.GeneralInfo.Dislikes.Add(like1);
-
-            personality.Traits.Add(trait);
-            personality.Flaws.Add(flaw);
 
             interests.Hobbies.Add(hobby);
             interests.Music.Add(song);

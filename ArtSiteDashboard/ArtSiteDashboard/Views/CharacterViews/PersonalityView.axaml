@@ -11,23 +11,22 @@
         <characterViews:PersonalityViewModel/>
     </Design.DataContext>
     <UserControl.Resources>
-        <valueConverter:BytesToTextConverter x:Key="GeneralInfoValueConverter"/>
-        <valueConverter:ListValueConverter x:Key="ListValueConverter"/>
+        <valueConverter:BytesToTextConverter x:Key="BytesToTextConverter"/>
     </UserControl.Resources>
     <Grid ColumnDefinitions="*, Auto" Margin="20">
         <Grid Column="0" RowDefinitions="Auto, Auto">
             <StackPanel Grid.Row="0" Spacing="5" Margin="0, 0, 0, 10">
                 <TextBlock Text="Personality" FontSize="20"/>
-                <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Personality.PersonalityInfo, Converter={StaticResource GeneralInfoValueConverter}}"/>
+                <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Personality.PersonalityInfo, Converter={StaticResource BytesToTextConverter}}"/>
             </StackPanel>
             <Grid Row="1" ColumnDefinitions="50*, 50*">
                 <StackPanel Grid.Column="0" Spacing="5">
                     <TextBlock Text="Traits" FontSize="20"/>
-                    <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Personality.Traits, Converter={StaticResource ListValueConverter}}"/>
+                    <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Personality.Traits, Converter={StaticResource BytesToTextConverter}}"/>
                 </StackPanel>
                 <StackPanel Grid.Column="1" Spacing="5">
                     <TextBlock Text="Flaws" FontSize="20" />
-                    <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Personality.Flaws, Converter={StaticResource ListValueConverter}}"/>
+                    <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Personality.Flaws, Converter={StaticResource BytesToTextConverter}}"/>
                 </StackPanel>
             </Grid>
         </Grid>
@@ -40,7 +39,7 @@
                 </Grid>
                 <Grid ColumnDefinitions="20, Auto, 20">
                     <TextBlock Grid.Column="0" Text="I" TextAlignment="Center"/>
-                    <ProgressBar Grid.Column="1" Value="{Binding CurrentCharacter.Personality.Intuitiv}" MaxWidth="200" Height="10"/>
+                    <ProgressBar Grid.Column="1" Value="{Binding CurrentCharacter.Personality.Intuitive}" MaxWidth="200" Height="10"/>
                     <TextBlock Grid.Column="2" Text="O" TextAlignment="Center"/>
                 </Grid>
                 <Grid ColumnDefinitions="20, Auto, 20">

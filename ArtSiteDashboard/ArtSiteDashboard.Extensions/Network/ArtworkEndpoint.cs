@@ -10,4 +10,8 @@ public static partial class Api {
     public static async Task<ArtworkModel?> GetArtworkById(int id) {
         return await GetRequest<ArtworkModel>("artwork", $"getById?id={id}");
     }
+    
+    public static async Task<ArtworkModel?> AddArtwork(object artwork) {
+        return await PostRequest<ArtworkModel>("artwork", "add", artwork);
+    }
 }

@@ -1,5 +1,7 @@
-﻿namespace ArtSite.Data.Models;
+﻿using ReactiveUI;
 
-public class BaseModel {
+namespace ArtSite.Data.Models;
+
+public class BaseModel : ReactiveObject{
     public int? Id { get; set; }
 };

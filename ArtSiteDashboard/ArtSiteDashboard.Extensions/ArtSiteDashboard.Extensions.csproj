@@ -12,7 +12,6 @@
 
     <ItemGroup>
       <ProjectReference Include="..\..\ArtSiteApi\ArtSite.Data\ArtSite.Data.csproj" />
-      <ProjectReference Include="..\..\ArtSite\ArtSite.Data\ArtSite.Data.csproj" />
     </ItemGroup>
 
 </Project>

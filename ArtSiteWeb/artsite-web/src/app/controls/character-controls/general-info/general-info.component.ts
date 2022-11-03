@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { GeneralInfoModel } from 'src/network/models/generalInfoModel';
 
 @Component({
   selector: 'app-general-info',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./general-info.component.scss']
 })
 export class GeneralInfoComponent implements OnInit {
+
+  @Input()
+  generalInfo! : GeneralInfoModel;
 
   constructor() { }
 

@@ -70,10 +70,14 @@
       <Compile Update="Windows\AddNewCharacterViewModel.cs">
         <DependentUpon>AddNewCharacterWindow.axaml</DependentUpon>
       </Compile>
+      <Compile Update="Windows\AddColorViewModel.cs">
+        <DependentUpon>AddColorWindow.axaml</DependentUpon>
+      </Compile>
+      <Compile Update="Windows\AddArtworkViewModel.cs">
+        <DependentUpon>AddArtworkWindow.axaml</DependentUpon>
+      </Compile>
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\..\ArtSiteApi\ArtSite.Data\ArtSite.Data.csproj" />
-      <ProjectReference Include="..\..\ArtSite\ArtSite.Data\ArtSite.Data.csproj" />
       <ProjectReference Include="..\ArtSiteDashboard.Extensions\ArtSiteDashboard.Extensions.csproj" />
     </ItemGroup>
     <ItemGroup>

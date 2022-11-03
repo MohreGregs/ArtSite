@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ReferenceModel } from 'src/network/models/referenceModel';
 
 @Component({
   selector: 'app-references',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./references.component.scss']
 })
 export class ReferencesComponent implements OnInit {
+
+  @Input()
+  references!: ReferenceModel[];
 
   constructor() { }
 

@@ -8,6 +8,8 @@
         <StackPanel>
             <Button Click="Button_OnAddCharacter"><TextBlock Text="Add Character"/></Button>
             <Button Click="Button_OnAddArtist"><TextBlock Text="Add Artist"/></Button>
+            <Button Click="Button_OnAddColor"><TextBlock Text="Add Color"/></Button>
+            <Button Click="Button_OnAddArtwork"><TextBlock Text="Add Artwork"/></Button>
         </StackPanel>
     </Grid>
 </UserControl>

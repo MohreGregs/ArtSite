@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { AppearanceModel } from 'src/network/models/appearanceModel';
 
 @Component({
   selector: 'app-appearance',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./appearance.component.scss']
 })
 export class AppearanceComponent implements OnInit {
+
+  @Input()
+  appearance!: AppearanceModel;
 
   constructor() { }
 

@@ -7,11 +7,11 @@ public static partial class Api {
         return await GetRequest<List<ArtistModel>>("artist");
     }
     
-    public static async Task<ArtistModel?> GetArtisById(int id) {
+    public static async Task<ArtistModel?> GetArtistById(int id) {
         return await GetRequest<ArtistModel>("artist", $"getById?id={id}");
     }
 
-    public static async Task<ArtistModel?> AddArtist(ArtistModel artist) {
+    public static async Task<ArtistModel?> AddArtist(object artist) {
         return await PostRequest<ArtistModel>("artist", "add", artist);
     }
 }

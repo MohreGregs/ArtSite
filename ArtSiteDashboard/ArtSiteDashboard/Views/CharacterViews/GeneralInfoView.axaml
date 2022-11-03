@@ -12,28 +12,27 @@
         <characterViews:GeneralInfoViewModel/>
     </Design.DataContext>
     <UserControl.Resources>
-        <valueConverter:BytesToTextConverter x:Key="GeneralInfoValueConverter"/>
-        <valueConverter:ListValueConverter x:Key="ListValueConverter"/>
+        <valueConverter:BytesToTextConverter x:Key="BytesToTextConverter"/>
     </UserControl.Resources>
     <Grid ColumnDefinitions="*,300" Margin="20">
         <Grid Column="0" RowDefinitions="Auto, Auto">
             <StackPanel Grid.Row="0" Spacing="10" Margin="0, 0, 0, 10">
                 <TextBlock Text="General" FontSize="20"/>
-                <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.GeneralInfo.Info, Converter={StaticResource GeneralInfoValueConverter}}"/>
+                <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.GeneralInfo.Info, Converter={StaticResource BytesToTextConverter}}"/>
             </StackPanel>
             <StackPanel Grid.Row="1" Spacing="5">
                 <TextBlock Text="Trivia" FontSize="20"/>
-                <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.GeneralInfo.Trivia, Converter={StaticResource GeneralInfoValueConverter}}"/>
+                <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.GeneralInfo.Trivia, Converter={StaticResource BytesToTextConverter}}"/>
             </StackPanel>
         </Grid>
         <Grid Column="1" RowDefinitions="Auto, Auto">
             <StackPanel Grid.Row="0" Spacing="5">
                 <TextBlock Text="Likes" FontSize="20"/>
-                <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.GeneralInfo.Likes, Converter={StaticResource ListValueConverter}}"/>
+                <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.GeneralInfo.Likes, Converter={StaticResource BytesToTextConverter}}"/>
             </StackPanel>
             <StackPanel Grid.Row="1" Spacing="5">
                 <TextBlock Text="Dislikes" FontSize="20"/>
-                <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.GeneralInfo.Dislikes, Converter={StaticResource ListValueConverter}}"/>
+                <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.GeneralInfo.Dislikes, Converter={StaticResource BytesToTextConverter}}"/>
             </StackPanel>
         </Grid>
     </Grid>

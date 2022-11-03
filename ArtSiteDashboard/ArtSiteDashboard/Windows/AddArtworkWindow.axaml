@@ -1,0 +1,67 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:windows="clr-namespace:ArtSiteDashboard.Windows"
+        xmlns:valueConverter="clr-namespace:ArtSiteDashboard.Views.ValueConverter"
+        mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="200"
+        Width="500" Height="500"
+        x:Class="ArtSiteDashboard.Windows.AddArtworkWindow"
+        Title="AddArtworkWindow"
+        TransparencyLevelHint="AcrylicBlur"
+        ExtendClientAreaToDecorationsHint="true"
+        ExtendClientAreaChromeHints="PreferSystemChrome"
+        WindowStartupLocation="CenterScreen">
+    <Design.DataContext>
+        <windows:AddArtworkViewModel/>
+    </Design.DataContext>
+    <Window.Resources>
+        <valueConverter:BytesToImageConverter x:Key="BytesToImageConverter"></valueConverter:BytesToImageConverter>
+    </Window.Resources>
+    <Grid RowDefinitions="30,*,*">
+        <Panel Grid.Row="0" Grid.RowSpan="3">
+            <ExperimentalAcrylicBorder IsHitTestVisible="False">
+                <ExperimentalAcrylicBorder.Material>
+                    <ExperimentalAcrylicMaterial
+                        BackgroundSource="Digger"
+                        TintColor="Black"
+                        TintOpacity="1"
+                        MaterialOpacity="0.25" />
+                </ExperimentalAcrylicBorder.Material>
+            </ExperimentalAcrylicBorder>
+        </Panel>
+        <TextBlock Grid.Row="0" Text="Add Artwork" FontSize="15" Margin="10"/>
+        <Grid Row="1" ColumnDefinitions="*,*">
+            <Grid Column="0" RowDefinitions="*,*" Margin="10">
+                <StackPanel Grid.Row="0">
+                    <TextBox Watermark="Description" Text="{Binding Artwork.Description}" AcceptsReturn="True"/>
+                    <Grid ColumnDefinitions="*,*">
+                        <TextBlock Text="Rating: " Grid.Column="0"/>
+                        <ComboBox SelectedIndex="0" Grid.Column="1">
+                            <ComboBoxItem>General</ComboBoxItem>
+                            <ComboBoxItem>Mature</ComboBoxItem>
+                            <ComboBoxItem>Adult</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+                </StackPanel>
+                <Grid Grid.Row="1">
+                    <AutoCompleteBox FilterMode="Contains" SelectionChanged="AutoCompleteBox_OnSelectionChanged" Items="{Binding Artwork.Artists}">
+                    </AutoCompleteBox>
+                </Grid>
+            </Grid>
+            <Grid Column="1" RowDefinitions="*,*">
+                <Button Grid.Row="0" Click="Button_OnOpenFileExplorer"><TextBlock Text="Choose File.."/></Button>
+                <Border Grid.Row="1" BorderThickness="5" BorderBrush="White" VerticalAlignment="Center"
+                        HorizontalAlignment="Left" CornerRadius="5" Height="240" Width="240" Margin="10">
+                    <Border.Background>
+                        <ImageBrush Source="{Binding Artwork.FileData, Converter={StaticResource BytesToImageConverter}}" RenderOptions.BitmapInterpolationMode="HighQuality"/>
+                    </Border.Background>
+                </Border>
+            </Grid>
+        </Grid>
+        <Grid Row="2" ColumnDefinitions="*,*" Margin="10" VerticalAlignment="Bottom">
+            <Button Grid.Column="0" Click="Button_OnCancel"> <TextBlock Text="Cancel"/></Button>
+            <Button Grid.Column="1" HorizontalAlignment="Right" Click="Button_OnAdd"> <TextBlock Text="Add"/></Button>
+        </Grid>
+    </Grid>
+</Window>

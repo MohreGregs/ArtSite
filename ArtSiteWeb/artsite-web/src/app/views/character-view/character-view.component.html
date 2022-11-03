@@ -8,13 +8,13 @@
         <div class="col-6">
           <div class="row">
             <div class="col font-weight-bold">
-              <h1 class="text-primary">Teddy</h1>
+              <h1 class="text-primary">{{character.name}}</h1>
             </div>
             <div class="col text-center">
-              <h1 class="text-primary">20</h1>
+              <h1 class="text-primary">{{character.age}}</h1>
             </div>
             <div class="col text-right">
-              <h1 class="text-primary">Female</h1>
+              <h1 class="text-primary">{{character.gender}}</h1>
             </div>
           </div>
           <div class="bg-primary mb-2" style="height:2px; width:100%;"></div>
@@ -50,31 +50,31 @@
 
 <div class="container" *ngIf="activeComponent == 'general'">
   <div class="border rounded m-3 p-4">
-    <app-general-info></app-general-info>
+    <app-general-info [generalInfo]="character.generalInfo"></app-general-info>
   </div>
 </div>
 
 <div class="container" *ngIf="activeComponent == 'personality'">
   <div class="border rounded m-3 p-4">
-    <app-personality></app-personality>
+    <app-personality [personality]="character.personality"></app-personality>
   </div>
 </div>
 
 <div class="container" *ngIf="activeComponent == 'interests'">
   <div class="border rounded m-3 p-4">
-    <app-interests></app-interests>
+    <app-interests [interests]="character.interests"></app-interests>
   </div>
 </div>
 
 <div class="container" *ngIf="activeComponent == 'appearance'">
   <div class="border rounded m-3 p-4">
-    <app-appearance></app-appearance>
+    <app-appearance [appearance]="character.appearance"></app-appearance>
   </div>
 </div>
 
 <div class="container" *ngIf="activeComponent == 'references'">
   <div class="border rounded m-3 p-4">
-    <app-references></app-references>
+    <app-references [references]="character.references"></app-references>
   </div>
 </div>
 

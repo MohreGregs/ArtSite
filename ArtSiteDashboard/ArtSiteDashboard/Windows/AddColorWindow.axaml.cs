@@ -7,11 +7,11 @@ using Avalonia.Markup.Xaml;
 
 namespace ArtSiteDashboard.Windows; 
 
-public partial class AddArtistWindow : ReactiveWindow<AddArtistViewModel> {
-    public AddArtistWindow() {
+public partial class AddColorWindow : ReactiveWindow<AddColorViewModel> {
+    public AddColorWindow() {
         InitializeComponent();
-        
-        ViewModel = new AddArtistViewModel();
+
+        ViewModel = new AddColorViewModel();
         
 #if DEBUG
         this.AttachDevTools();
@@ -21,26 +21,22 @@ public partial class AddArtistWindow : ReactiveWindow<AddArtistViewModel> {
     private void InitializeComponent() {
         AvaloniaXamlLoader.Load(this);
     }
-
+    
     private void Button_OnCancel(object? sender, RoutedEventArgs e) {
         Close();
     }
 
     private async void Button_OnAdd(object? sender, RoutedEventArgs e) {
-        if (string.IsNullOrWhiteSpace(ViewModel.Artist.Name)) {
+        if (string.IsNullOrWhiteSpace(ViewModel.Color.Name) || string.IsNullOrWhiteSpace(ViewModel.Color.ColorCode)) {
             return;
         }
         
-        var artistToAdd = new {
-            Name = ViewModel.Artist.Name,
-            Website = ViewModel.Artist.Website,
-            Furaffinity = ViewModel.Artist.Furaffinity,
-            Artfight = ViewModel.Artist.Artfight,
-            ToyHouse = ViewModel.Artist.ToyHouse,
-            Twitter = ViewModel.Artist.Twitter
+        var colorToAdd = new {
+            Name = ViewModel.Color.Name,
+            ColorCode = ViewModel.Color.ColorCode,
         };
         
-        var x =await Api.AddArtist(artistToAdd);
+        var x =await Api.AddColor(colorToAdd);
         
         Close();
     }

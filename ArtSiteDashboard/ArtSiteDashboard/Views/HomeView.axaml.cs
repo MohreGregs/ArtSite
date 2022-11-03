@@ -25,4 +25,16 @@ public partial class HomeView : ReactiveControl<HomeViewModel> {
         
         await artistWindow.ShowDialog(ViewModel.MainWindow);
     }
+
+    private async void Button_OnAddColor(object? sender, RoutedEventArgs e) {
+        var colorWindow = new AddColorWindow();
+
+        await colorWindow.ShowDialog(ViewModel.MainWindow);
+    }
+
+    private async void Button_OnAddArtwork(object? sender, RoutedEventArgs e) {
+        var artworkWindow = new AddArtworkWindow();
+
+        await artworkWindow.ShowDialog(ViewModel.MainWindow);
+    }
 }

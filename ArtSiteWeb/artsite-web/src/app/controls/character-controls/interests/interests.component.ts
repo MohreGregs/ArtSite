@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { InterestsModel } from 'src/network/models/interestsModel';
 
 @Component({
   selector: 'app-interests',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./interests.component.scss']
 })
 export class InterestsComponent implements OnInit {
+
+  @Input()
+  interests! : InterestsModel;
 
   constructor() { }
 

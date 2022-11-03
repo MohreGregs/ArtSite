@@ -38,32 +38,12 @@ public static class ModelBuilderExtensions {
             Name = "Cat"
         };
 
-        var like = new Like {
-            Id = 1,
-            Name = "Gaming"
-        };
-        
-        var like2 = new Like {
-            Id = 2,
-            Name = "Reading"
-        };
-
         var generalInfo = new GeneralInfo {
             Id = 1,
             // Likes = { like, like2 },
             // Dislikes = {like, like2},
             Info = Encoding.UTF8.GetBytes("Hello!"),
             Trivia = Encoding.UTF8.GetBytes("Miau")
-        };
-        
-        var trait = new Trait {
-            Id = 1,
-            Name = "Helpful"
-        };
-
-        var flaw = new Flaw {
-            Id = 1,
-            Name = "Possessive"
         };
 
         var personality = new Personality {
@@ -132,21 +112,6 @@ public static class ModelBuilderExtensions {
             tag
         });
 
-        builder.Entity<Trait>().HasData(new List<Trait>
-        {
-            trait
-        });
-        
-        builder.Entity<Flaw>().HasData(new List<Flaw>
-        {
-            flaw
-        });
-        
-        builder.Entity<Like>().HasData(new List<Like>
-        {
-            like,like2
-        });
-        
         builder.Entity<Hobby>().HasData(new List<Hobby>
         {
             hobby

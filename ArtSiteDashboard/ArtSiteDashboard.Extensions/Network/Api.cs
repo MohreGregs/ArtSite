@@ -25,8 +25,8 @@ public static partial class Api {
                 var url = $"{Url}{controller}/{action}";
                 
                 var req = new HttpRequestMessage(HttpMethod.Post, url);
-                
-                req.Content = new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json");
+                var jsonstring = JsonConvert.SerializeObject(data);
+                req.Content = new StringContent(jsonstring, Encoding.UTF8, "application/json");
 
                 var result = await client.SendAsync(req);
                 
