@@ -2,6 +2,6 @@
 
 namespace ArtSite.Data.Models;
 
-public class BaseModel : ReactiveObject{
+public class BaseModel{
     public int? Id { get; set; }
 };
