@@ -12,6 +12,7 @@
             <Button Click="Button_OnAddArtwork"><TextBlock Text="Add Artwork"/></Button>
             <Button Click="Button_OnAddTag"><TextBlock Text="Add Tag"/></Button>
             <Button Click="Button_OnAddSpecies"><TextBlock Text="Add Species"/></Button>
+            <Button Click="Button_OnAddHobby"><TextBlock Text="Add Hobby"/></Button>
         </StackPanel>
     </Grid>
 </UserControl>

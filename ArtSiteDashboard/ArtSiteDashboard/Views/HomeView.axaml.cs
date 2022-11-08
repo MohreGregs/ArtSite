@@ -49,4 +49,10 @@ public partial class HomeView : ReactiveControl<HomeViewModel> {
 
         await speciesWindow.ShowDialog(ViewModel.MainWindow);
     }
+
+    private async void Button_OnAddHobby(object? sender, RoutedEventArgs e) {
+        var hobbyWindow = new AddHobbyWindow();
+
+        await hobbyWindow.ShowDialog(ViewModel.MainWindow);
+    }
 }

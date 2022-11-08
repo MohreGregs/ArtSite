@@ -31,7 +31,7 @@ public class MappingProfile : Profile{
         CreateMap<CharacterModel, Character>();
         CreateMap<ColorModel, Color>();
         CreateMap<GeneralInfoModel, GeneralInfo>();
-        CreateMap<BaseNameEntity, Hobby>();
+        CreateMap<BaseNameModel, Hobby>();
         CreateMap<InterestsModel, Interests>();
         CreateMap<PersonalityModel, Personality>();
         CreateMap<ReferenceModel, Reference>();

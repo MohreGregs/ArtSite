@@ -82,6 +82,12 @@
       <Compile Update="Windows\AddSpeciesViewModel.cs">
         <DependentUpon>AddSpeciesWindow.axaml</DependentUpon>
       </Compile>
+      <Compile Update="Windows\AddHobbyViewModel.cs">
+        <DependentUpon>AddHobbyWindow.axaml</DependentUpon>
+      </Compile>
+      <Compile Update="Windows\AddSongViewModel.cs">
+        <DependentUpon>AddSongWindow.axaml</DependentUpon>
+      </Compile>
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\ArtSiteDashboard.Extensions\ArtSiteDashboard.Extensions.csproj" />

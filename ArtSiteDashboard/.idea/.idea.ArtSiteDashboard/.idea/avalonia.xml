@@ -20,6 +20,7 @@
         <entry key="ArtSiteDashboard/Windows/AddArtistWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/Windows/AddArtworkWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/Windows/AddColorWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/Windows/AddHobbyWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/Windows/AddNewCharacterWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/Windows/AddSpecies.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/Windows/AddSpeciesWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
