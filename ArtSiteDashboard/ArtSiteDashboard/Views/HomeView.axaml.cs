@@ -55,4 +55,10 @@ public partial class HomeView : ReactiveControl<HomeViewModel> {
 
         await hobbyWindow.ShowDialog(ViewModel.MainWindow);
     }
+
+    private async void Button_OnAddSong(object? sender, RoutedEventArgs e) {
+        var hobbyWindow = new AddSongWindow();
+
+        await hobbyWindow.ShowDialog(ViewModel.MainWindow);
+    }
 }
