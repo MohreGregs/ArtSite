@@ -37,4 +37,10 @@ public partial class HomeView : ReactiveControl<HomeViewModel> {
 
         await artworkWindow.ShowDialog(ViewModel.MainWindow);
     }
+
+    private async void Button_OnAddTag(object? sender, RoutedEventArgs e) {
+        var tagWindow = new AddTagWindow();
+
+        await tagWindow.ShowDialog(ViewModel.MainWindow);
+    }
 }

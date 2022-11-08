@@ -90,7 +90,7 @@ public partial class CharactersView : ReactiveControl<CharactersViewModel> {
 
     private async void Delete_OnClick(object? sender, RoutedEventArgs e) {
 
-        if (ViewModel.CurrentCharacter.Id.Value == null) {
+        if (ViewModel.CurrentCharacter.Id == null) {
             return;
         }
         

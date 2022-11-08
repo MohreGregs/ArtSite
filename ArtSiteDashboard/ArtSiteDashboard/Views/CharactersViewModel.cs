@@ -1,7 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Reactive.Disposables;
-using System.Threading.Tasks;
 using ArtSite.Data.Models;
 using ArtSiteDashboard.Extensions.Network;
 using ArtSiteDashboard.Views.CharacterViews;

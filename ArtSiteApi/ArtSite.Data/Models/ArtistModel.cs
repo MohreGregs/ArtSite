@@ -6,4 +6,6 @@ public class ArtistModel : BaseNameModel{
     public string? ToyHouse { get; set; }
     public string? Twitter { get; set; }
     public string? Artfight { get; set; }
+
+    public override string ToString() => Name;
 }

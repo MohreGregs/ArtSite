@@ -10,6 +10,7 @@
             <Button Click="Button_OnAddArtist"><TextBlock Text="Add Artist"/></Button>
             <Button Click="Button_OnAddColor"><TextBlock Text="Add Color"/></Button>
             <Button Click="Button_OnAddArtwork"><TextBlock Text="Add Artwork"/></Button>
+            <Button Click="Button_OnAddTag"><TextBlock Text="Add Tag"/></Button>
         </StackPanel>
     </Grid>
 </UserControl>

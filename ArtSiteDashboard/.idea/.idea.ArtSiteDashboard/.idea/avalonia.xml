@@ -21,6 +21,7 @@
         <entry key="ArtSiteDashboard/Windows/AddArtworkWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/Windows/AddColorWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/Windows/AddNewCharacterWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/Windows/AddTagWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
       </map>
     </option>
   </component>

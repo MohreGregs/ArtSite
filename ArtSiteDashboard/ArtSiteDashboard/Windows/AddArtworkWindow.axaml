@@ -44,19 +44,26 @@
                         </ComboBox>
                     </Grid>
                 </StackPanel>
-                <Grid Grid.Row="1">
-                    <AutoCompleteBox FilterMode="Contains" SelectionChanged="AutoCompleteBox_OnSelectionChanged" Items="{Binding Artwork.Artists}">
-                    </AutoCompleteBox>
-                </Grid>
+                <StackPanel Grid.Row="2">
+                    <TextBlock Text="Characters:"/>
+                    <AutoCompleteBox Items="{Binding Characters}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Artist..." KeyUp="InputElement_OnKeyUp_Character"/>
+                    <ListBox Items="{Binding ArtworkCharacters}"></ListBox>
+                </StackPanel>
             </Grid>
-            <Grid Column="1" RowDefinitions="*,*">
-                <Button Grid.Row="0" Click="Button_OnOpenFileExplorer"><TextBlock Text="Choose File.."/></Button>
-                <Border Grid.Row="1" BorderThickness="5" BorderBrush="White" VerticalAlignment="Center"
-                        HorizontalAlignment="Left" CornerRadius="5" Height="240" Width="240" Margin="10">
-                    <Border.Background>
-                        <ImageBrush Source="{Binding Artwork.FileData, Converter={StaticResource BytesToImageConverter}}" RenderOptions.BitmapInterpolationMode="HighQuality"/>
-                    </Border.Background>
-                </Border>
+            <Grid Column="1" RowDefinitions="*,*,*" >
+                <StackPanel Grid.Row="0" >
+                    <TextBlock Text="Artist:"/>
+                    <AutoCompleteBox Items="{Binding Artists}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Artist..." KeyUp="InputElement_OnKeyUp_Artist"/>
+                    <ListBox Items="{Binding ArtworkArtists}"></ListBox>
+                </StackPanel>
+                <StackPanel Grid.Row="1">
+                    <Button Click="Button_OnOpenFileExplorer"><TextBlock Text="Choose File.."/></Button>
+                    <Border  BorderThickness="5" BorderBrush="White" CornerRadius="5" Height="240" Width="240" Margin="10">
+                        <Border.Background>
+                            <ImageBrush Source="{Binding Artwork.FileData, Converter={StaticResource BytesToImageConverter}}" RenderOptions.BitmapInterpolationMode="HighQuality"/>
+                        </Border.Background>
+                    </Border>
+                </StackPanel>
             </Grid>
         </Grid>
         <Grid Row="2" ColumnDefinitions="*,*" Margin="10" VerticalAlignment="Bottom">

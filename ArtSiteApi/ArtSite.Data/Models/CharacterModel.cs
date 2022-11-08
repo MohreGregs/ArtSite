@@ -16,4 +16,6 @@ public class CharacterModel : BaseNameModel {
     public PersonalityModel Personality { get; set; }
     public InterestsModel Interests { get; set; }
     public AppearanceModel Appearance { get; set; }
+    
+    public override string ToString() => Name;
 }

@@ -1,17 +1,44 @@
-﻿using ArtSite.Data.Models;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using ArtSite.Data.Models;
+using ArtSite.Data.Models.ReactiveModels;
 using ReactiveUI;
 
-namespace ArtSiteDashboard.Windows; 
+namespace ArtSiteDashboard.Windows;
 
 public class AddArtworkViewModel : BaseWindowViewModel {
-    private AddArtworkModel _artwork;
+    private List<ArtistModel> _artists = new();
+    private ReactiveAddArtworkModel _artwork;
+    private ObservableCollection<ArtistModel> _artworkArtists = new();
+    private List<CharacterModel> _characters;
+    private ObservableCollection<CharacterModel> _artworkCharacters = new();
 
-    public AddArtworkModel Artwork {
+    public AddArtworkViewModel() {
+        Artwork = new ReactiveAddArtworkModel();
+    }
+
+    public ReactiveAddArtworkModel Artwork {
         get => _artwork;
         set => this.RaiseAndSetIfChanged(ref _artwork, value);
     }
 
-    public AddArtworkViewModel() {
-        Artwork = new AddArtworkModel();
+    public ObservableCollection<ArtistModel> ArtworkArtists {
+        get => _artworkArtists;
+        set => this.RaiseAndSetIfChanged(ref _artworkArtists, value);
+    }
+
+    public List<ArtistModel> Artists {
+        get => _artists;
+        set => this.RaiseAndSetIfChanged(ref _artists, value);
+    }
+
+    public List<CharacterModel> Characters {
+        get => _characters;
+        set => _characters = value;
+    }
+
+    public ObservableCollection<CharacterModel> ArtworkCharacters {
+        get => _artworkCharacters;
+        set => this.RaiseAndSetIfChanged(ref _artworkCharacters, value);
     }
 }
