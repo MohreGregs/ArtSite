@@ -3,17 +3,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:windows="clr-namespace:ArtSiteDashboard.Windows"
-        xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         Width="250" Height="350"
-        x:Class="ArtSiteDashboard.Windows.AddTagWindow"
-        Title="Add Tag"
+        x:Class="ArtSiteDashboard.Windows.AddSpeciesWindow"
+        Title="Add Species"
         TransparencyLevelHint="AcrylicBlur"
         ExtendClientAreaToDecorationsHint="true"
         ExtendClientAreaChromeHints="PreferSystemChrome"
         WindowStartupLocation="CenterScreen">
     <Design.DataContext>
-        <windows:AddTagViewModel/>
+        <windows:AddSpeciesViewModel/>
     </Design.DataContext>
     <Grid RowDefinitions="30,*,*">
         <Panel Grid.Row="0" Grid.RowSpan="3">
@@ -27,16 +26,8 @@
                 </ExperimentalAcrylicBorder.Material>
             </ExperimentalAcrylicBorder>
         </Panel>
-        <TextBlock Grid.Row="0" Text="Add Tag" FontSize="15" Margin="10"/>
-        <StackPanel Grid.Row="1" Spacing="5" Margin="10">
-            <TextBox  Watermark="Name" Text="{Binding Tag.Name}"/>
-            <Grid ColumnDefinitions="*,*">
-                <AutoCompleteBox Grid.Column="0" Items="{Binding Colors}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Color..." SelectionChanged="AutoCompleteBox_OnSelectionChanged"/>
-                <Button Grid.Column="1" Click="Button_OnAddColor" x:Name="AddColorButton">
-                    <avalonia:MaterialIcon Kind="Add" Margin="0,0,5,0"/>
-                </Button>
-            </Grid>
-        </StackPanel>
+        <TextBlock Grid.Row="0" Text="Add Species" FontSize="15" Margin="10"/>
+        <TextBox Grid.Row="1" Watermark="Name" Text="{Binding Species.Name}"/>
         <Grid Row="2" ColumnDefinitions="*,50" Margin="10" VerticalAlignment="Bottom">
             <Button Grid.Column="0" Click="Button_OnCancel"> <TextBlock Text="Cancel"/></Button>
             <Button Grid.Column="1" HorizontalAlignment="Right" Click="Button_OnAdd"> <TextBlock Text="Add"/></Button>

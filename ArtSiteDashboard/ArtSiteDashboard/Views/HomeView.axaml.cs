@@ -43,4 +43,10 @@ public partial class HomeView : ReactiveControl<HomeViewModel> {
 
         await tagWindow.ShowDialog(ViewModel.MainWindow);
     }
+
+    private async void Button_OnAddSpecies(object? sender, RoutedEventArgs e) {
+        var speciesWindow = new AddSpeciesWindow();
+
+        await speciesWindow.ShowDialog(ViewModel.MainWindow);
+    }
 }

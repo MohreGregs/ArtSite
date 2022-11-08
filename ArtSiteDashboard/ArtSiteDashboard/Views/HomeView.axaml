@@ -11,6 +11,7 @@
             <Button Click="Button_OnAddColor"><TextBlock Text="Add Color"/></Button>
             <Button Click="Button_OnAddArtwork"><TextBlock Text="Add Artwork"/></Button>
             <Button Click="Button_OnAddTag"><TextBlock Text="Add Tag"/></Button>
+            <Button Click="Button_OnAddSpecies"><TextBlock Text="Add Species"/></Button>
         </StackPanel>
     </Grid>
 </UserControl>

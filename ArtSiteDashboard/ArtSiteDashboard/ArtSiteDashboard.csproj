@@ -79,6 +79,9 @@
       <Compile Update="Windows\AddTagViewModel.cs">
         <DependentUpon>AddTagWindow.axaml</DependentUpon>
       </Compile>
+      <Compile Update="Windows\AddSpeciesViewModel.cs">
+        <DependentUpon>AddSpeciesWindow.axaml</DependentUpon>
+      </Compile>
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\ArtSiteDashboard.Extensions\ArtSiteDashboard.Extensions.csproj" />

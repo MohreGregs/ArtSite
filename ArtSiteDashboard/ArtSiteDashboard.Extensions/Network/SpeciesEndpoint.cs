@@ -11,7 +11,7 @@ public static partial class Api {
         return await GetRequest<SpeciesModel>("species", $"getById?id={id}");
     }
 
-    public static async Task<SpeciesModel?> AddSpecies(SpeciesModel species) {
-        return await PostRequest<SpeciesModel>("artist", "add", species);
+    public static async Task<SpeciesModel?> AddSpecies(object species) {
+        return await PostRequest<SpeciesModel>("species", "add", species);
     }
 }

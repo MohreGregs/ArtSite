@@ -23,6 +23,7 @@ public class MappingProfile : Profile{
         CreateMap<AddCharacterModel, Character>();
         CreateMap<AddCharacterModel, Character>();
         CreateMap<AddArtworkModel, Artwork>();
+        CreateMap<BaseNameModel, Species>();
         CreateMap<EditArtworkModel, Artwork>();
         CreateMap<AppearanceModel, Appearance>();
         CreateMap<ArtistModel, Artist>();

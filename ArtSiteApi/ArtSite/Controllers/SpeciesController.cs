@@ -5,7 +5,7 @@ using AutoMapper;
 
 namespace ArtSite.Controllers; 
 
-public class SpeciesController : BaseEntityController<SpeciesController, Species, SpeciesModel, SpeciesModel> {
+public class SpeciesController : BaseEntityController<SpeciesController, Species, SpeciesModel, BaseNameModel> {
     public SpeciesController(ILogger<SpeciesController> logger, IMapper mapper, DatabaseContext context) : base(logger, mapper, context) {
     }
 }
