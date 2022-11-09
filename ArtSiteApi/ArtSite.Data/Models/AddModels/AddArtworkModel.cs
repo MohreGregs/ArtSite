@@ -4,11 +4,12 @@ using ReactiveUI;
 namespace ArtSite.Data.Models; 
 
 public class AddArtworkModel : BaseModel{
-    private byte[] FileData { get; set; }
+    public byte[] FileData { get; set; }
     public byte[] Description { get; set; }
     public string FileExtension { get; set; }
 
     public Rating Rating { get; set; }
 
-    public List<ArtistModel> Artists { get; set; } = new List<ArtistModel>();
+    public List<int> ArtistIds { get; set; } = new List<int>();
+    public List<int> CharacterIds { get; set; } = new List<int>();
 }

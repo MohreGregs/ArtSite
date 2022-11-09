@@ -34,10 +34,10 @@
         <Grid Row="1" ColumnDefinitions="*,*">
             <Grid Column="0" RowDefinitions="*,*" Margin="10">
                 <StackPanel Grid.Row="0">
-                    <TextBox Watermark="Description" Text="{Binding Artwork.Description}" AcceptsReturn="True"/>
+                    <TextBox Watermark="Description" Text="{Binding ArtworkDescription}" AcceptsReturn="True"/>
                     <Grid ColumnDefinitions="*,*">
                         <TextBlock Text="Rating: " Grid.Column="0"/>
-                        <ComboBox SelectedIndex="0" Grid.Column="1">
+                        <ComboBox SelectedIndex="0" Grid.Column="1" SelectionChanged="SelectingItemsControl_OnSelectionChanged">
                             <ComboBoxItem>General</ComboBoxItem>
                             <ComboBoxItem>Mature</ComboBoxItem>
                             <ComboBoxItem>Adult</ComboBoxItem>

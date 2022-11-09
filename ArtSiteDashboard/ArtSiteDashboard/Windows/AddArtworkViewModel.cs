@@ -12,9 +12,15 @@ public class AddArtworkViewModel : BaseWindowViewModel {
     private ObservableCollection<ArtistModel> _artworkArtists = new();
     private List<CharacterModel> _characters;
     private ObservableCollection<CharacterModel> _artworkCharacters = new();
+    private string _artworkDescription;
 
     public AddArtworkViewModel() {
         Artwork = new ReactiveAddArtworkModel();
+    }
+
+    public string ArtworkDescription {
+        get => _artworkDescription;
+        set => this.RaiseAndSetIfChanged(ref _artworkDescription, value);
     }
 
     public ReactiveAddArtworkModel Artwork {
