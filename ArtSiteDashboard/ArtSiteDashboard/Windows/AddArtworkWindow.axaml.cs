@@ -96,7 +96,7 @@ public partial class AddArtworkWindow : ReactiveWindow<AddArtworkViewModel> {
 
         var x = sender as AutoCompleteBox;
 
-        if (x.SelectedItem == null && !ViewModel.ArtworkArtists.Contains(x.SelectedItem)) return;
+        if (x.SelectedItem == null || ViewModel.ArtworkArtists.Contains(x.SelectedItem)) return;
 
         var y = ViewModel.ArtworkArtists.ToList();
         y.Add((ArtistModel)x.SelectedItem);
@@ -109,13 +109,13 @@ public partial class AddArtworkWindow : ReactiveWindow<AddArtworkViewModel> {
     
             var x = sender as AutoCompleteBox;
     
-            if (x.SelectedItem == null && !ViewModel.ArtworkCharacters.Contains(x.SelectedItem)) return;
+            if (x.SelectedItem == null || ViewModel.ArtworkCharacters.Contains(x.SelectedItem)) return;
 
             var y = ViewModel.ArtworkCharacters.ToList();
             y.Add((CharacterModel)x.SelectedItem);
             ViewModel.ArtworkCharacters = new ObservableCollection<CharacterModel>(y);
             ViewModel.RaisePropertyChanged(nameof(ViewModel.ArtworkCharacters));
-        }
+    }
 
     private void SelectingItemsControl_OnSelectionChanged(object? sender, SelectionChangedEventArgs e) {
         if (ViewModel == null) return;
@@ -124,5 +124,37 @@ public partial class AddArtworkWindow : ReactiveWindow<AddArtworkViewModel> {
         if (x == null) return;
         
         ViewModel.Artwork.Rating = (Rating) x.SelectedIndex;
+    }
+
+    private async void Button_OnAddCharacter(object? sender, RoutedEventArgs e) {
+        var characterWindow = new AddNewCharacterWindow();
+
+        await characterWindow.ShowDialog(this);
+        ViewModel.Characters = (await Api.GetCharacters()) ?? new();
+    }
+
+    private async void Button_OnAddArtist(object? sender, RoutedEventArgs e) {
+        var artistWindow = new AddArtistWindow();
+
+        await artistWindow.ShowDialog(this);
+        ViewModel.Artists = (await Api.GetArtists()) ?? new();
+    }
+
+    private void Button_OnRemoveArtist(object? sender, RoutedEventArgs e) {
+        var x = sender as Button;
+        var artist = (ArtistModel) x.DataContext;
+        
+        if (artist == null) return;
+
+        ViewModel.ArtworkArtists.Remove(artist);
+    }
+
+    private void Button_OnRemoveCharacter(object? sender, RoutedEventArgs e) {
+        var x = sender as Button;
+        var character = (CharacterModel) x.DataContext;
+        
+        if (character == null) return;
+
+        ViewModel.ArtworkCharacters.Remove(character);
     }
 }

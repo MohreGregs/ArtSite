@@ -10,7 +10,7 @@ public class AddArtworkViewModel : BaseWindowViewModel {
     private List<ArtistModel> _artists = new();
     private ReactiveAddArtworkModel _artwork;
     private ObservableCollection<ArtistModel> _artworkArtists = new();
-    private List<CharacterModel> _characters;
+    private List<CharacterModel> _characters = new();
     private ObservableCollection<CharacterModel> _artworkCharacters = new();
     private string _artworkDescription;
 
@@ -40,7 +40,7 @@ public class AddArtworkViewModel : BaseWindowViewModel {
 
     public List<CharacterModel> Characters {
         get => _characters;
-        set => _characters = value;
+        set => this.RaiseAndSetIfChanged(ref _characters, value);
     }
 
     public ObservableCollection<CharacterModel> ArtworkCharacters {

@@ -53,6 +53,7 @@ public partial class AddTagWindow : ReactiveWindow<AddTagViewModel> {
         var colorWindow = new AddColorWindow();
 
         await colorWindow.ShowDialog(this);
+        ViewModel.Colors = (await Api.GetColors()) ?? new();
     }
 
     private void AutoCompleteBox_OnSelectionChanged(object? sender, SelectionChangedEventArgs e) {

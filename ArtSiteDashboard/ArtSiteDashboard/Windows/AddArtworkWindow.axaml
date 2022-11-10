@@ -4,8 +4,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:windows="clr-namespace:ArtSiteDashboard.Windows"
         xmlns:valueConverter="clr-namespace:ArtSiteDashboard.Views.ValueConverter"
+        xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
         mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="200"
-        Width="500" Height="500"
+        Width="550" Height="600"
         x:Class="ArtSiteDashboard.Windows.AddArtworkWindow"
         Title="AddArtworkWindow"
         TransparencyLevelHint="AcrylicBlur"
@@ -18,7 +19,7 @@
     <Window.Resources>
         <valueConverter:BytesToImageConverter x:Key="BytesToImageConverter"></valueConverter:BytesToImageConverter>
     </Window.Resources>
-    <Grid RowDefinitions="30,*,*">
+    <Grid RowDefinitions="30,*,50">
         <Panel Grid.Row="0" Grid.RowSpan="3">
             <ExperimentalAcrylicBorder IsHitTestVisible="False">
                 <ExperimentalAcrylicBorder.Material>
@@ -32,33 +33,72 @@
         </Panel>
         <TextBlock Grid.Row="0" Text="Add Artwork" FontSize="15" Margin="10"/>
         <Grid Row="1" ColumnDefinitions="*,*">
-            <Grid Column="0" RowDefinitions="*,*" Margin="10">
-                <StackPanel Grid.Row="0">
-                    <TextBox Watermark="Description" Text="{Binding ArtworkDescription}" AcceptsReturn="True"/>
-                    <Grid ColumnDefinitions="*,*">
-                        <TextBlock Text="Rating: " Grid.Column="0"/>
-                        <ComboBox SelectedIndex="0" Grid.Column="1" SelectionChanged="SelectingItemsControl_OnSelectionChanged">
-                            <ComboBoxItem>General</ComboBoxItem>
-                            <ComboBoxItem>Mature</ComboBoxItem>
-                            <ComboBoxItem>Adult</ComboBoxItem>
-                        </ComboBox>
-                    </Grid>
+            <Grid Column="0" RowDefinitions="*,*,30,*,*,30,*,*" Margin="10">
+                <TextBox Grid.Row="0" Watermark="Description" Text="{Binding ArtworkDescription}" AcceptsReturn="True"/>
+                
+                <StackPanel Grid.Row="1" Spacing="5">
+                    <TextBlock Text="Rating: " />
+                    <ComboBox SelectedIndex="0" SelectionChanged="SelectingItemsControl_OnSelectionChanged">
+                        <ComboBoxItem>General</ComboBoxItem>
+                        <ComboBoxItem>Mature</ComboBoxItem>
+                        <ComboBoxItem>Adult</ComboBoxItem>
+                    </ComboBox>
                 </StackPanel>
-                <StackPanel Grid.Row="2">
-                    <TextBlock Text="Characters:"/>
-                    <AutoCompleteBox Items="{Binding Characters}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Artist..." KeyUp="InputElement_OnKeyUp_Character"/>
-                    <ListBox Items="{Binding ArtworkCharacters}"></ListBox>
-                </StackPanel>
+                
+                <Grid Row="2" ColumnDefinitions="*,*">
+                    <TextBlock Text="Artists:" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    <Button Grid.Column="1" Click="Button_OnAddArtist" x:Name="AddArtistButton" HorizontalAlignment="Right">
+                        <avalonia:MaterialIcon Kind="Add" />
+                    </Button>
+                </Grid>
+                
+                <AutoCompleteBox Grid.Row="3" Items="{Binding Artists}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Artist..." KeyUp="InputElement_OnKeyUp_Artist"/>
+                
+                <ScrollViewer Grid.Row="4">
+                    <ItemsRepeater Items="{Binding ArtworkArtists}">
+                        <ItemsRepeater.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="*,*">
+                                    <TextBlock Grid.Column="0" Text="{Binding Name}"/>
+                                    <Button Grid.Column="1" Click="Button_OnRemoveArtist" x:Name="RemoveArtistButton" HorizontalAlignment="Right">
+                                        <avalonia:MaterialIcon Kind="Remove"/>
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsRepeater.ItemTemplate>
+                    </ItemsRepeater>
+                </ScrollViewer>
+                
+                <Grid Grid.Row="5" ColumnDefinitions="*,*">
+                    <TextBlock Text="Characters:" Grid.Column="0" VerticalAlignment="Center"/>
+                    <Button Grid.Column="1" Click="Button_OnAddCharacter" x:Name="AddCharacterButton" HorizontalAlignment="Right">
+                        <avalonia:MaterialIcon Kind="Add" />
+                    </Button>
+                </Grid>
+                
+                <AutoCompleteBox Grid.Row="6" Items="{Binding Characters}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Character..." KeyUp="InputElement_OnKeyUp_Character"/>
+                
+                <ScrollViewer Grid.Row="7">
+                    <ItemsRepeater Items="{Binding ArtworkCharacters}">
+                        <ItemsRepeater.ItemTemplate>
+                            <DataTemplate>
+                                <Grid ColumnDefinitions="*,*">
+                                    <TextBlock Grid.Column="0" Text="{Binding Name}" />
+                                    <Button Grid.Column="1" Click="Button_OnRemoveCharacter"
+                                            x:Name="RemoveCharacterButton" HorizontalAlignment="Right">
+                                        <avalonia:MaterialIcon Kind="Remove" />
+                                    </Button>
+                                </Grid>
+                            </DataTemplate>
+                        </ItemsRepeater.ItemTemplate>
+                    </ItemsRepeater>
+                </ScrollViewer>
+                
             </Grid>
-            <Grid Column="1" RowDefinitions="*,*,*" >
-                <StackPanel Grid.Row="0" >
-                    <TextBlock Text="Artist:"/>
-                    <AutoCompleteBox Items="{Binding Artists}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Artist..." KeyUp="InputElement_OnKeyUp_Artist"/>
-                    <ListBox Items="{Binding ArtworkArtists}"></ListBox>
-                </StackPanel>
-                <StackPanel Grid.Row="1">
+            <Grid Column="1" RowDefinitions="*,*" >
+                <StackPanel Grid.Row="0">
                     <Button Click="Button_OnOpenFileExplorer"><TextBlock Text="Choose File.."/></Button>
-                    <Border  BorderThickness="5" BorderBrush="White" CornerRadius="5" Height="240" Width="240" Margin="10">
+                    <Border  BorderThickness="5" BorderBrush="White" CornerRadius="5" Height="240" Width="240">
                         <Border.Background>
                             <ImageBrush Source="{Binding Artwork.FileData, Converter={StaticResource BytesToImageConverter}}" RenderOptions.BitmapInterpolationMode="HighQuality"/>
                         </Border.Background>
