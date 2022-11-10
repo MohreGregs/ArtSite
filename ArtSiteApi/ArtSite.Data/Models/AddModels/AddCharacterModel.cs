@@ -7,6 +7,6 @@ public class AddCharacterModel: BaseNameModel {
     public Sexuality Sexuality { get; set; }
     public Gender Gender { get; set; }
     public int OriginalDesignerId { get; set; }
-    public ISet<int> TagIds { get; set; }
+    public List<int> TagIds { get; set; }
     public int SpeciesId { get; set; }
 }

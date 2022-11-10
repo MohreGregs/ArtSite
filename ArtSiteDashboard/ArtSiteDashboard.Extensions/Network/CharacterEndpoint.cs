@@ -10,4 +10,8 @@ public static partial class Api {
     public static async Task<HttpResponseMessage> DeleteCharacter(int id) {
         return await DeleteRequest("character", id);
     }
+    
+    public static async Task<CharacterModel?> AddCharacter(object character) {
+        return await PostRequest<CharacterModel>("character", "add", character);
+    }
 }

@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using ArtSite.Data.Models;
 using ReactiveUI;
 
@@ -6,7 +7,12 @@ namespace ArtSiteDashboard.Views;
 
 public class AddNewCharacterViewModel : BaseWindowViewModel {
     private AddCharacterModel _character;
-    private Collection<SpeciesModel> _species;
+    private List<SpeciesModel> _species = new();
+    private SpeciesModel _characterSpecies;
+    private List<TagModel> _tags = new();
+    private ObservableCollection<TagModel> _characterTags = new();
+    private List<ArtistModel> _artists = new();
+    private ArtistModel _characterDesigner;
 
     public AddNewCharacterViewModel() {
         Character = new AddCharacterModel();
@@ -17,8 +23,33 @@ public class AddNewCharacterViewModel : BaseWindowViewModel {
         set => this.RaiseAndSetIfChanged(ref _character, value);
     }
 
-    public Collection<SpeciesModel> Species {
+    public List<SpeciesModel> Species {
         get => _species;
         set => this.RaiseAndSetIfChanged(ref _species, value);
+    }
+
+    public SpeciesModel CharacterSpecies {
+        get => _characterSpecies;
+        set => this.RaiseAndSetIfChanged(ref _characterSpecies, value);
+    }
+
+    public List<TagModel> Tags {
+        get => _tags;
+        set => this.RaiseAndSetIfChanged(ref _tags, value);
+    }
+
+    public ObservableCollection<TagModel> CharacterTags {
+        get => _characterTags;
+        set => this.RaiseAndSetIfChanged(ref _characterTags, value);
+    }
+
+    public List<ArtistModel> Artists {
+        get => _artists;
+        set => this.RaiseAndSetIfChanged(ref _artists, value);
+    }
+
+    public ArtistModel CharacterDesigner {
+        get => _characterDesigner;
+        set => this.RaiseAndSetIfChanged(ref _characterDesigner, value);
     }
 }

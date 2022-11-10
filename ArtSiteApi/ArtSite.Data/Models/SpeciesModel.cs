@@ -1,5 +1,7 @@
 ﻿namespace ArtSite.Data.Models; 
 
 public class SpeciesModel : BaseNameModel{
-    public CharacterModel Character { get; set; }
+    public HashSet<CharacterModel> Characters { get; set; }
+
+    public override string ToString() => Name;
 }
