@@ -55,5 +55,5 @@ public static partial class Api {
         }
     }
 
-    public static string Url => "https://localhost:7095/";
+    public static string Url => "http://localhost:5000/";
 }

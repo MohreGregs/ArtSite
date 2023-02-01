@@ -4,7 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:windows="clr-namespace:ArtSiteDashboard.Windows"
         mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="200"
-        Width="250" Height="350"
+        Width="400" Height="500"
         x:Class="ArtSiteDashboard.Windows.AddArtistWindow"
         Title="Add Artist"
         TransparencyLevelHint="AcrylicBlur"
@@ -27,14 +27,44 @@
             </ExperimentalAcrylicBorder>
         </Panel>
         <TextBlock Grid.Row="0" Text="Add Artist" FontSize="15" Margin="10"/>
-        <StackPanel Grid.Row="1" Spacing="5" Margin="10">
-            <TextBox  Watermark="Name" Text="{Binding Artist.Name}"/>
-            <TextBlock Text="Links:" />
-            <TextBox Watermark="Website" Text="{Binding Artist.Website}"/>
-            <TextBox Watermark="Furaffinity" Text="{Binding Artist.Furaffinity}"/>
-            <TextBox Watermark="ToyHouse" Text="{Binding Artist.ToyHouse}"/>
-            <TextBox Watermark="Twitter" Text="{Binding Artist.Twitter}"/>
-            <TextBox Watermark="ArtFight" Text="{Binding Artist.Artfight}"/>
+        <StackPanel Grid.Row="1" Spacing="10" Margin="10, 0">
+            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
+                <Grid ColumnDefinitions="*,*" Margin="10">
+                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Name"/>
+                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Watermark="Name" Text="{Binding Artist.Name}"/>
+                </Grid>
+            </Border>
+            <TextBlock Text="Links"/>
+            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
+                <Grid ColumnDefinitions="*,*" Margin="10">
+                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Website"/>
+                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Watermark="Website" Text="{Binding Artist.Website}"/>
+                </Grid>
+            </Border>
+            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
+                <Grid ColumnDefinitions="*,*" Margin="10">
+                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="FurAffinity"/>
+                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Watermark="FurAffinity" Text="{Binding Artist.Furaffinity}"/>
+                </Grid>
+            </Border>
+            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
+                <Grid ColumnDefinitions="*,*" Margin="10">
+                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="ToyHouse"/>
+                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Watermark="ToyHouse" Text="{Binding Artist.ToyHouse}"/>
+                </Grid>
+            </Border>
+            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
+                <Grid ColumnDefinitions="*,*" Margin="10">
+                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Twitter"/>
+                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Watermark="Twitter" Text="{Binding Artist.Twitter}"/>
+                </Grid>
+            </Border>
+            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
+                <Grid ColumnDefinitions="*,*" Margin="10">
+                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="ArtFight"/>
+                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Watermark="ArtFight" Text="{Binding Artist.Artfight}"/>
+                </Grid>
+            </Border>
         </StackPanel>
         <Grid Row="2" ColumnDefinitions="*,*" Margin="10" VerticalAlignment="Bottom">
             <Button Grid.Column="0" Click="Button_OnCancel"> <TextBlock Text="Cancel"/></Button>

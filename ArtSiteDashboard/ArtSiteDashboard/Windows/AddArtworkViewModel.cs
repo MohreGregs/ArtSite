@@ -12,6 +12,8 @@ public class AddArtworkViewModel : BaseWindowViewModel {
     private ObservableCollection<ArtistModel> _artworkArtists = new();
     private List<CharacterModel> _characters = new();
     private ObservableCollection<CharacterModel> _artworkCharacters = new();
+    private List<TagModel> _tags = new();
+    private ObservableCollection<TagModel> _artworkTags = new();
     private string _artworkDescription;
 
     public AddArtworkViewModel() {
@@ -32,6 +34,11 @@ public class AddArtworkViewModel : BaseWindowViewModel {
         get => _artworkArtists;
         set => this.RaiseAndSetIfChanged(ref _artworkArtists, value);
     }
+    
+    public ObservableCollection<TagModel> ArtworkTags {
+        get => _artworkTags;
+        set => this.RaiseAndSetIfChanged(ref _artworkTags, value);
+    }
 
     public List<ArtistModel> Artists {
         get => _artists;
@@ -41,6 +48,11 @@ public class AddArtworkViewModel : BaseWindowViewModel {
     public List<CharacterModel> Characters {
         get => _characters;
         set => this.RaiseAndSetIfChanged(ref _characters, value);
+    }
+
+    public List<TagModel> Tags {
+        get => _tags;
+        set => this.RaiseAndSetIfChanged(ref _tags, value);
     }
 
     public ObservableCollection<CharacterModel> ArtworkCharacters {

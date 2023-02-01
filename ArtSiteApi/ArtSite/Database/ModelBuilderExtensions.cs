@@ -58,11 +58,6 @@ public static class ModelBuilderExtensions {
             Thinking = 1
         };
 
-        var hobby = new Hobby {
-            Id = 1,
-            Name = "Gaming"
-        };
-
         var song = new Song {
             Id = 1,
             Name = "Meow",
@@ -112,11 +107,6 @@ public static class ModelBuilderExtensions {
             tag
         });
 
-        builder.Entity<Hobby>().HasData(new List<Hobby>
-        {
-            hobby
-        });
-        
         builder.Entity<Song>().HasData(new List<Song>
         {
             song

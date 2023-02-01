@@ -5,6 +5,7 @@
       <map>
         <entry key="ArtSiteDashboard/App.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/CharactersView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/Controls/InputRow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/MainWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/MessageBox.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/NoCharactersView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />

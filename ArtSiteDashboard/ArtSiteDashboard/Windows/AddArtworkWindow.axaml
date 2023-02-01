@@ -6,7 +6,7 @@
         xmlns:valueConverter="clr-namespace:ArtSiteDashboard.Views.ValueConverter"
         xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
         mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="200"
-        Width="550" Height="600"
+        Height="600" Width="400"
         x:Class="ArtSiteDashboard.Windows.AddArtworkWindow"
         Title="AddArtworkWindow"
         TransparencyLevelHint="AcrylicBlur"
@@ -32,80 +32,138 @@
             </ExperimentalAcrylicBorder>
         </Panel>
         <TextBlock Grid.Row="0" Text="Add Artwork" FontSize="15" Margin="10"/>
-        <Grid Row="1" ColumnDefinitions="*,*">
-            <Grid Column="0" RowDefinitions="*,*,30,*,*,30,*,*" Margin="10">
-                <TextBox Grid.Row="0" Watermark="Description" Text="{Binding ArtworkDescription}" AcceptsReturn="True"/>
-                
-                <StackPanel Grid.Row="1" Spacing="5">
-                    <TextBlock Text="Rating: " />
-                    <ComboBox SelectedIndex="0" SelectionChanged="SelectingItemsControl_OnSelectionChanged">
-                        <ComboBoxItem>General</ComboBoxItem>
-                        <ComboBoxItem>Mature</ComboBoxItem>
-                        <ComboBoxItem>Adult</ComboBoxItem>
-                    </ComboBox>
-                </StackPanel>
-                
-                <Grid Row="2" ColumnDefinitions="*,*">
-                    <TextBlock Text="Artists:" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                    <Button Grid.Column="1" Click="Button_OnAddArtist" x:Name="AddArtistButton" HorizontalAlignment="Right">
-                        <avalonia:MaterialIcon Kind="Add" />
-                    </Button>
-                </Grid>
-                
-                <AutoCompleteBox Grid.Row="3" Items="{Binding Artists}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Artist..." KeyUp="InputElement_OnKeyUp_Artist"/>
-                
-                <ScrollViewer Grid.Row="4">
-                    <ItemsRepeater Items="{Binding ArtworkArtists}">
-                        <ItemsRepeater.ItemTemplate>
-                            <DataTemplate>
-                                <Grid ColumnDefinitions="*,*">
-                                    <TextBlock Grid.Column="0" Text="{Binding Name}"/>
-                                    <Button Grid.Column="1" Click="Button_OnRemoveArtist" x:Name="RemoveArtistButton" HorizontalAlignment="Right">
-                                        <avalonia:MaterialIcon Kind="Remove"/>
-                                    </Button>
-                                </Grid>
-                            </DataTemplate>
-                        </ItemsRepeater.ItemTemplate>
-                    </ItemsRepeater>
-                </ScrollViewer>
-                
-                <Grid Grid.Row="5" ColumnDefinitions="*,*">
-                    <TextBlock Text="Characters:" Grid.Column="0" VerticalAlignment="Center"/>
-                    <Button Grid.Column="1" Click="Button_OnAddCharacter" x:Name="AddCharacterButton" HorizontalAlignment="Right">
-                        <avalonia:MaterialIcon Kind="Add" />
-                    </Button>
-                </Grid>
-                
-                <AutoCompleteBox Grid.Row="6" Items="{Binding Characters}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Character..." KeyUp="InputElement_OnKeyUp_Character"/>
-                
-                <ScrollViewer Grid.Row="7">
-                    <ItemsRepeater Items="{Binding ArtworkCharacters}">
-                        <ItemsRepeater.ItemTemplate>
-                            <DataTemplate>
-                                <Grid ColumnDefinitions="*,*">
-                                    <TextBlock Grid.Column="0" Text="{Binding Name}" />
-                                    <Button Grid.Column="1" Click="Button_OnRemoveCharacter"
-                                            x:Name="RemoveCharacterButton" HorizontalAlignment="Right">
-                                        <avalonia:MaterialIcon Kind="Remove" />
-                                    </Button>
-                                </Grid>
-                            </DataTemplate>
-                        </ItemsRepeater.ItemTemplate>
-                    </ItemsRepeater>
-                </ScrollViewer>
-                
-            </Grid>
-            <Grid Column="1" RowDefinitions="*,*" >
-                <StackPanel Grid.Row="0">
-                    <Button Click="Button_OnOpenFileExplorer"><TextBlock Text="Choose File.."/></Button>
-                    <Border  BorderThickness="5" BorderBrush="White" CornerRadius="5" Height="240" Width="240">
-                        <Border.Background>
-                            <ImageBrush Source="{Binding Artwork.FileData, Converter={StaticResource BytesToImageConverter}}" RenderOptions.BitmapInterpolationMode="HighQuality"/>
-                        </Border.Background>
-                    </Border>
-                </StackPanel>
-            </Grid>
-        </Grid>
+        <ScrollViewer Grid.Row="1" Padding="10,0">
+            <StackPanel Spacing="10">
+                <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
+                    <Grid RowDefinitions="*,*" Margin="10">
+                        <Grid Row="0" ColumnDefinitions="50*, 50*" >
+                            <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Image"/>
+                            <Button Grid.Column="1" Click="Button_OnOpenFileExplorer"><TextBlock Text="Choose File.."/></Button>
+                        </Grid>
+                        <Border Grid.Row="1" BorderThickness="5" BorderBrush="White" CornerRadius="5" Height="240" Width="240">
+                            <Border.Background>
+                                <ImageBrush Source="{Binding Artwork.FileData, Converter={StaticResource BytesToImageConverter}}" RenderOptions.BitmapInterpolationMode="HighQuality"/>
+                            </Border.Background>
+                        </Border>
+                    </Grid>
+                </Border>
+                <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
+                    <Grid ColumnDefinitions="*,*" Margin="10">
+                        <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Description"/>
+                        <TextBox Grid.Column="1" Watermark="Description" Text="{Binding ArtworkDescription}" AcceptsReturn="True"/>
+                    </Grid>
+                </Border>
+                <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
+                    <Grid RowDefinitions="*,*" Margin="10">
+                        <Grid Row="0" ColumnDefinitions="50*, 40*, 10*" >
+                            <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Artists"/>
+                            <AutoCompleteBox Grid.Column="1" Items="{Binding Artists}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Artist..." KeyUp="InputElement_OnKeyUp_Artist"/>
+                            <Button Grid.Column="2" Click="Button_OnAddArtist" x:Name="AddArtistButton" HorizontalAlignment="Right">
+                                <avalonia:MaterialIcon Kind="Add" />
+                            </Button>
+                        </Grid>
+                        <ItemsRepeater Grid.Row="1" Items="{Binding ArtworkArtists}">
+                            <ItemsRepeater.Layout>
+                                <StackLayout Spacing="5"
+                                             Orientation="Horizontal" />
+                            </ItemsRepeater.Layout>
+                            <ItemsRepeater.ItemTemplate>
+                                <DataTemplate>
+                                    <Border CornerRadius="10" BorderBrush="DarkGray" BorderThickness="2">
+                                        <Grid ColumnDefinitions="*,*" Margin="5">
+                                            <TextBlock Grid.Column="0" Margin="0,0,5,0" Text="{Binding Name}" VerticalAlignment="Center"/>
+                                            <Button Grid.Column="1" Click="Button_OnRemoveArtist" x:Name="RemoveArtistButton" Background="Transparent" Padding="0">
+                                                <avalonia:MaterialIcon Kind="Remove"/>
+                                            </Button>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsRepeater.ItemTemplate>
+                        </ItemsRepeater>
+                    </Grid>
+                </Border>
+                <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
+                    <Grid RowDefinitions="*,*" Margin="10">
+                        <Grid Row="0" ColumnDefinitions="50*, 40*, 10*" >
+                            <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Characters"/>
+                            <AutoCompleteBox Grid.Column="1" Items="{Binding Characters}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Character..." KeyUp="InputElement_OnKeyUp_Character"/>
+                            <Button Grid.Column="2" Click="Button_OnAddCharacter" x:Name="AddCharacterButton" HorizontalAlignment="Right">
+                                <avalonia:MaterialIcon Kind="Add" />
+                            </Button>
+                        </Grid>
+                        <ItemsRepeater Grid.Row="1" Items="{Binding ArtworkCharacters}">
+                            <ItemsRepeater.Layout>
+                                <StackLayout Spacing="5"
+                                             Orientation="Horizontal" />
+                            </ItemsRepeater.Layout>
+                            <ItemsRepeater.ItemTemplate>
+                                <DataTemplate>
+                                    <Border CornerRadius="10" BorderBrush="DarkGray" BorderThickness="2">
+                                        <Grid ColumnDefinitions="*,*" Margin="5">
+                                            <TextBlock Grid.Column="0" Margin="0,0,5,0" Text="{Binding Name}" VerticalAlignment="Center"/>
+                                            <Button Grid.Column="1" Click="Button_OnRemoveCharacter" x:Name="RemoveCharacterButton" Background="Transparent" Padding="0">
+                                                <avalonia:MaterialIcon Kind="Remove"/>
+                                            </Button>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsRepeater.ItemTemplate>
+                        </ItemsRepeater>
+                    </Grid>
+                </Border>
+                <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
+                    <Grid RowDefinitions="*,*" Margin="10">
+                        <Grid Row="0" ColumnDefinitions="50*, 40*, 10*" >
+                            <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Tags"/>
+                            <AutoCompleteBox Grid.Column="1" Items="{Binding Tags}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Tags..." KeyUp="InputElement_OnKeyUp_Tag"/>
+                            <Button Grid.Column="2" Click="Button_OnAddTag" x:Name="AddTagButton" HorizontalAlignment="Right">
+                                <avalonia:MaterialIcon Kind="Add" />
+                            </Button>
+                        </Grid>
+                        <ItemsRepeater Grid.Row="1" Items="{Binding ArtworkTags}">
+                            <ItemsRepeater.Layout>
+                                <StackLayout Spacing="5"
+                                             Orientation="Horizontal" />
+                            </ItemsRepeater.Layout>
+                            <ItemsRepeater.ItemTemplate>
+                                <DataTemplate>
+                                    <Border CornerRadius="10" BorderBrush="DarkGray" BorderThickness="2">
+                                        <Grid ColumnDefinitions="*,*" Margin="5">
+                                            <TextBlock Grid.Column="0" Margin="0,0,5,0" Text="{Binding Name}" VerticalAlignment="Center"/>
+                                            <Button Grid.Column="1" Click="Button_OnRemoveTag" x:Name="RemoveTagButton" Background="Transparent" Padding="0">
+                                                <avalonia:MaterialIcon Kind="Remove"/>
+                                            </Button>
+                                        </Grid>
+                                    </Border>
+                                </DataTemplate>
+                            </ItemsRepeater.ItemTemplate>
+                        </ItemsRepeater>
+                    </Grid>
+                </Border>
+                <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
+                    <Grid ColumnDefinitions="*,*" Margin="10">
+                        <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="NSFW Rating"/>
+                        <ComboBox Grid.Column="1" SelectedIndex="0" SelectionChanged="NSFWSelectingItemsControl_OnSelectionChanged" HorizontalAlignment="Stretch">
+                            <ComboBoxItem>None</ComboBoxItem>
+                            <ComboBoxItem>Suggestive</ComboBoxItem>
+                            <ComboBoxItem>Nudity</ComboBoxItem>
+                            <ComboBoxItem>Adult</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+                </Border>
+                <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
+                    <Grid ColumnDefinitions="*,*" Margin="10">
+                        <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Gore Rating"/>
+                        <ComboBox Grid.Column="1" SelectedIndex="0" SelectionChanged="GoreSelectingItemsControl_OnSelectionChanged" HorizontalAlignment="Stretch">
+                            <ComboBoxItem>None</ComboBoxItem>
+                            <ComboBoxItem>Mild Injury</ComboBoxItem>
+                            <ComboBoxItem>Heavy Injury</ComboBoxItem>
+                            <ComboBoxItem>Gore</ComboBoxItem>
+                        </ComboBox>
+                    </Grid>
+                </Border>
+            </StackPanel>
+        </ScrollViewer>
         <Grid Row="2" ColumnDefinitions="*,*" Margin="10" VerticalAlignment="Bottom">
             <Button Grid.Column="0" Click="Button_OnCancel"> <TextBlock Text="Cancel"/></Button>
             <Button Grid.Column="1" HorizontalAlignment="Right" Click="Button_OnAdd"> <TextBlock Text="Add"/></Button>

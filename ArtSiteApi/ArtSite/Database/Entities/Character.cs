@@ -7,6 +7,7 @@ public class Character : BaseNameEntity {
     public Gender Gender { get; set; }
     public Sexuality Sexuality { get; set; }
     public int? IconId { get; set; }
+    public byte[]? WantedArtwork { get; set; }
     
     public virtual ISet<Tag>? Tags { get; set; } = new HashSet<Tag>();
     public virtual Species? Species { get; set; }

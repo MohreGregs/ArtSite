@@ -12,7 +12,6 @@ public class MappingProfile : Profile{
         CreateMap<Artist, ArtistModel>();
         CreateMap<Artwork, ArtworkModel>();
         CreateMap<Color, ColorModel>();
-        CreateMap<Hobby, BaseNameModel>();
         CreateMap<Interests, InterestsModel>();
         CreateMap<Personality, PersonalityModel>();
         CreateMap<Reference, ReferenceModel>();
@@ -31,7 +30,6 @@ public class MappingProfile : Profile{
         CreateMap<CharacterModel, Character>();
         CreateMap<ColorModel, Color>();
         CreateMap<GeneralInfoModel, GeneralInfo>();
-        CreateMap<BaseNameModel, Hobby>();
         CreateMap<InterestsModel, Interests>();
         CreateMap<PersonalityModel, Personality>();
         CreateMap<ReferenceModel, Reference>();

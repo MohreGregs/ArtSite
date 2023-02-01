@@ -2,6 +2,7 @@
 using ArtSite.Database;
 using ArtSite.Database.Entities;
 using AutoMapper;
+using Castle.Core.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,6 +26,51 @@ public class CharacterController : BaseEntityController<CharacterController, Cha
     }
 
     [HttpPost]
+    [Route("search")]
+    public async Task<ActionResult> GetSearchedCharacters(SearchObject searchObject) {
+        var filteredCharacters = _context.Characters.ToList();
+        
+        if (searchObject.Gender != null) {
+            filteredCharacters = filteredCharacters.Where(x => x.Gender == searchObject.Gender).ToList();
+        }
+
+        if (searchObject.Sexuality != null) {
+            filteredCharacters = filteredCharacters.Where(x => x.Sexuality == searchObject.Sexuality).ToList();
+        }
+
+        if (searchObject.MinAge != null) {
+            if (searchObject.MaxAge != null) {
+                filteredCharacters = filteredCharacters
+                    .Where(x => x.Age >= searchObject.MinAge && x.Age <= searchObject.MaxAge).ToList();
+            }
+            else {
+                filteredCharacters = filteredCharacters
+                    .Where(x => x.Age >= searchObject.MinAge).ToList();
+            }
+        }
+        else if (searchObject.MaxAge != null) {
+            filteredCharacters = filteredCharacters
+                    .Where(x => x.Age <= searchObject.MaxAge).ToList();
+        }
+
+        if (searchObject.Species != null) {
+            filteredCharacters = filteredCharacters.Where(x => x.Species.Id == searchObject.Species).ToList();
+        }
+
+        if (searchObject.Tags != null) {
+            foreach (var (key, value) in searchObject.Tags) {
+                filteredCharacters = filteredCharacters.Where(x => x.Tags.Any(y => y.Id == key)).ToList();
+            }
+        }
+
+        if (!searchObject.NameString.IsNullOrEmpty()) {
+            filteredCharacters = filteredCharacters.Where(x => x.Name.Contains(searchObject.NameString)).ToList();
+        }
+
+        return Ok(_mapper.Map<List<CharacterModel>>(filteredCharacters));
+    }
+
+    [HttpPost]
     [Route("add")]
     public override async Task<ActionResult> Add([FromBody] AddCharacterModel? model) {
         if (model == null)
@@ -41,6 +87,7 @@ public class CharacterController : BaseEntityController<CharacterController, Cha
             Gender = model.Gender,
             Species = species,
             OriginalDesigner = originalDesigner,
+            WantedArtwork = model.WantedArtwork,
             Appearance = new Appearance(),
             GeneralInfo = new GeneralInfo(),
             Personality = new Personality(),
@@ -88,6 +135,7 @@ public class CharacterController : BaseEntityController<CharacterController, Cha
         character.Age = model.Age;
         character.Gender = model.Gender;
         character.Sexuality = model.Sexuality;
+        character.WantedArtwork = model.WantedArtwork;
         if (species != default)
             character.OriginalDesigner = originalDesigner;
         if (species != default) 

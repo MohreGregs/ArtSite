@@ -6,6 +6,7 @@ public class AddCharacterModel: BaseNameModel {
     public byte Age { get; set; }
     public Sexuality Sexuality { get; set; }
     public Gender Gender { get; set; }
+    public byte[]? WantedArtwork { get; set; }
     public int OriginalDesignerId { get; set; }
     public List<int> TagIds { get; set; }
     public int SpeciesId { get; set; }

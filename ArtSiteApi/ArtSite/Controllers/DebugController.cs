@@ -23,7 +23,6 @@ public class DebugController : BaseController<DebugController> {
             var reference = await _context.References.FirstOrDefaultAsync();
 
             var interests = await _context.InterestsSet.FirstOrDefaultAsync();
-            var hobby = await _context.Hobbies.FirstOrDefaultAsync();
             var song = await _context.Songs.FirstOrDefaultAsync();
         
             artwork.Artists.Add(artist);
@@ -36,7 +35,6 @@ public class DebugController : BaseController<DebugController> {
             species.Characters.Add(character);
             character.Tags.Add(tag);
 
-            interests.Hobbies.Add(hobby);
             interests.Music.Add(song);
             
             return await _context.SaveChangesAsync();

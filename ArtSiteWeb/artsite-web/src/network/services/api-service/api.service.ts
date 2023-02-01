@@ -7,7 +7,7 @@ import { Observable, throwError } from 'rxjs';
 })
 export class ApiService {
 
-  baseUrl = "https://localhost:7095/"
+  baseUrl = "http://localhost:5000/"
 
   constructor(private http: HttpClient) { }
 
@@ -15,5 +15,7 @@ export class ApiService {
     return this.http.get<T>(this.baseUrl + url);
   }
 
-
+  post<T>(url: String, body: object): Observable<T>{
+    return this.http.post<T>(this.baseUrl + url, body);
+  }
 }

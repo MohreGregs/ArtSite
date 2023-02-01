@@ -4,6 +4,7 @@ using System.IO;
 using System.Linq;
 using System.Reactive.Disposables;
 using System.Text;
+using System.Threading.Tasks;
 using ArtSite.Data.Enums;
 using ArtSite.Data.Models;
 using ArtSiteDashboard.Extensions.Network;
@@ -36,7 +37,8 @@ public partial class AddArtworkWindow : ReactiveWindow<AddArtworkViewModel> {
     private async void Block(CompositeDisposable obj) {
         ViewModel.Artists = (await Api.GetArtists()) ?? new();
         ViewModel.Characters = (await Api.GetCharacters()) ?? new();
-        ViewModel.Artwork.Rating = Rating.General;
+        ViewModel.Artwork.NsfwRating = NSFWRating.None;
+        ViewModel.Artwork.GoreRating = GoreRating.None;
     }
 
     private void Button_OnCancel(object? sender, RoutedEventArgs e) {
@@ -62,7 +64,8 @@ public partial class AddArtworkWindow : ReactiveWindow<AddArtworkViewModel> {
             Description = Encoding.UTF8.GetBytes(ViewModel.ArtworkDescription),
             ArtistIds = artistIds,
             CharacterIds = characterIds,
-            Rating = ViewModel.Artwork.Rating,
+            NsfwRating = ViewModel.Artwork.NsfwRating,
+            GoreRating = ViewModel.Artwork.GoreRating,
             FileData = ViewModel.Artwork.FileData,
             FileExtension = ViewModel.Artwork.FileExtension
         };
@@ -102,6 +105,7 @@ public partial class AddArtworkWindow : ReactiveWindow<AddArtworkViewModel> {
         y.Add((ArtistModel)x.SelectedItem);
         ViewModel.ArtworkArtists = new ObservableCollection<ArtistModel>(y);
         ViewModel.RaisePropertyChanged(nameof(ViewModel.ArtworkArtists));
+        x.Text = "";
     }
     
     private void InputElement_OnKeyUp_Character(object? sender, KeyEventArgs e) {
@@ -115,15 +119,16 @@ public partial class AddArtworkWindow : ReactiveWindow<AddArtworkViewModel> {
             y.Add((CharacterModel)x.SelectedItem);
             ViewModel.ArtworkCharacters = new ObservableCollection<CharacterModel>(y);
             ViewModel.RaisePropertyChanged(nameof(ViewModel.ArtworkCharacters));
+            x.Text = "";
     }
 
-    private void SelectingItemsControl_OnSelectionChanged(object? sender, SelectionChangedEventArgs e) {
+    private void NSFWSelectingItemsControl_OnSelectionChanged(object? sender, SelectionChangedEventArgs e) {
         if (ViewModel == null) return;
         var x = sender as ComboBox;
 
         if (x == null) return;
         
-        ViewModel.Artwork.Rating = (Rating) x.SelectedIndex;
+        ViewModel.Artwork.NsfwRating = (NSFWRating) x.SelectedIndex;
     }
 
     private async void Button_OnAddCharacter(object? sender, RoutedEventArgs e) {
@@ -156,5 +161,44 @@ public partial class AddArtworkWindow : ReactiveWindow<AddArtworkViewModel> {
         if (character == null) return;
 
         ViewModel.ArtworkCharacters.Remove(character);
+    }
+
+    private void GoreSelectingItemsControl_OnSelectionChanged(object? sender, SelectionChangedEventArgs e) {
+        if (ViewModel == null) return;
+        var x = sender as ComboBox;
+
+        if (x == null) return;
+        
+        ViewModel.Artwork.GoreRating = (GoreRating) x.SelectedIndex;
+    }
+
+    private void InputElement_OnKeyUp_Tag(object? sender, KeyEventArgs e) {
+        if (e.Key != Key.Enter) return;
+
+        var x = sender as AutoCompleteBox;
+
+        if (x.SelectedItem == null || ViewModel.ArtworkTags.Contains(x.SelectedItem)) return;
+
+        var y = ViewModel.ArtworkTags.ToList();
+        y.Add((TagModel)x.SelectedItem);
+        ViewModel.ArtworkTags = new ObservableCollection<TagModel>(y);
+        ViewModel.RaisePropertyChanged(nameof(ViewModel.ArtworkTags));
+        x.Text = "";
+    }
+
+    private async void Button_OnAddTag(object? sender, RoutedEventArgs e) {
+        var tagWindow = new AddTagWindow();
+
+        await tagWindow.ShowDialog(this);
+        ViewModel.Tags = (await Api.GetTags()) ?? new();
+    }
+
+    private void Button_OnRemoveTag(object? sender, RoutedEventArgs e) {
+        var x = sender as Button;
+        var tag = (TagModel) x.DataContext;
+        
+        if (tag == null) return;
+
+        ViewModel.ArtworkTags.Remove(tag);
     }
 }

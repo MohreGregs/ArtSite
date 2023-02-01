@@ -66,6 +66,7 @@ public partial class AddNewCharacterWindow : ReactiveWindow<AddNewCharacterViewM
         y.Add((TagModel)x.SelectedItem);
         ViewModel.CharacterTags = new ObservableCollection<TagModel>(y);
         ViewModel.RaisePropertyChanged(nameof(ViewModel.CharacterTags));
+        x.Text = "";
     }
 
     private void Button_OnRemoveTag(object? sender, RoutedEventArgs e) {

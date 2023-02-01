@@ -11,5 +11,6 @@ public class ArtworkConfiguration :IEntityTypeConfiguration<Artwork> {
         builder.HasMany(x => x.Artists).WithMany(x => x.Artworks);
         builder.HasMany(x => x.Characters).WithMany(x => x.Artworks);
         builder.HasOne(x => x.Reference).WithOne(x => x.Artwork).HasForeignKey<Reference>(x => x.ArtworkId);
+        builder.HasMany(x => x.Tags).WithMany(x => x.Artworks);
     }
 }

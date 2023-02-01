@@ -1,9 +1,18 @@
 <div class="searchbar-box">
-  <app-search-bar></app-search-bar>
+  <div class="search-bar">
+    <mat-form-field class="search-input">
+      <input matInput type="text" [(ngModel)]="value" >
+      <button *ngIf="value" matSuffix mat-icon-button aria-label="Clear" (click)="value=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <button mat-icon-button (click)="onSearch()"><mat-icon>search</mat-icon></button>
+    <button mat-icon-button (click)="onOpenFilterDialog()"><mat-icon>settings</mat-icon></button>
+  </div>
 </div>
 
 <div class="characters-list">
-  <div *ngFor="let char of chars" class="char-item" >
+  <div *ngFor="let char of filteredChars" class="char-item" >
     <app-character-list-item [character]="char"></app-character-list-item>
   </div>
 </div>

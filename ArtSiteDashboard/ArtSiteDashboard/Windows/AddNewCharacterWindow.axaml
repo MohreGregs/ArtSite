@@ -4,8 +4,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:views="clr-namespace:ArtSiteDashboard.Views"
         xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+        xmlns:valueConverter="clr-namespace:ArtSiteDashboard.Views.ValueConverter"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
-        Height="400" Width="400"
+        Height="600" Width="400"
         x:Class="ArtSiteDashboard.Windows.AddNewCharacterWindow"
         Title="AddNewCharacterWindow"
         TransparencyLevelHint="AcrylicBlur"
@@ -15,6 +16,9 @@
     <Design.DataContext>
         <views:AddNewCharacterViewModel/>
     </Design.DataContext>
+    <Window.Resources>
+        <valueConverter:ColorConverter x:Key="ColorConverter"/>
+    </Window.Resources>
     <Grid RowDefinitions="30,*,50">
         <Panel Grid.Row="0" Grid.RowSpan="3">
             <ExperimentalAcrylicBorder IsHitTestVisible="False">
@@ -28,68 +32,89 @@
             </ExperimentalAcrylicBorder>
         </Panel>
         <TextBlock Text="Add Character" Grid.Row="0" Margin="10"/>
-        <Grid Row="1" ColumnDefinitions="*,*" Margin="10">
-            <Grid Column="0" RowDefinitions="Auto,Auto,Auto,*,Auto,*" Margin="0,0,10,0">
-                <TextBox Grid.Row="0" Watermark="Name" Text="{Binding Character.Name}" Margin="0,0,0,10"/>
-                <TextBox Grid.Row="1" Watermark="Age" Text="{Binding Character.Age}" Margin="0,0,0,10"/>
-                <TextBlock Grid.Row="2" Text="Gender: " Margin="0,0,10,0"/>
-                <ComboBox Grid.Row="3" SelectedIndex="0" SelectionChanged="SelectingItemsControl_OnSelectionChanged_Gender" Margin="0,0,10,0">
-                    <ComboBoxItem>Unknown</ComboBoxItem>
-                    <ComboBoxItem>Male</ComboBoxItem>
-                    <ComboBoxItem>Female</ComboBoxItem>
-                </ComboBox>
-                <TextBlock Grid.Row="4" Text="Sexuality:" Margin="0,0,10,0"/>
-                <ComboBox Grid.Row="5" SelectedIndex="0" SelectionChanged="SelectingItemsControl_OnSelectionChanged_Sexuality" Margin="0,0,10,0">
-                    <ComboBoxItem>Unknown</ComboBoxItem>
-                    <ComboBoxItem>Heterosexual</ComboBoxItem>
-                    <ComboBoxItem>Homosexual</ComboBoxItem>
-                    <ComboBoxItem>Bisexual</ComboBoxItem>
-                    <ComboBoxItem>Asexual</ComboBoxItem>
-                </ComboBox>
-            </Grid>
-            <Grid Column="1" RowDefinitions="30,*,30,*,30,*,*" Margin="10,0, 0,0">
-                <Grid Grid.Row="0" ColumnDefinitions="*,*">
-                    <TextBlock Text="Species:" Grid.Column="0" VerticalAlignment="Center"/>
-                    <Button Grid.Column="1" Click="Button_OnAddSpecies" x:Name="AddSpeciesButton" HorizontalAlignment="Right">
+        <StackPanel Grid.Row="1" Spacing="10" Margin="10, 0">
+            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
+                <Grid ColumnDefinitions="*,*" Margin="10">
+                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Name"/>
+                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Watermark="Name" Text="{Binding Character.Name}"/>
+                </Grid>
+            </Border>
+            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
+                <Grid ColumnDefinitions="*,*" Margin="10">
+                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Age"/>
+                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Watermark="Age" Text="{Binding Character.Age}" />
+                </Grid>
+            </Border>
+            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
+                <Grid ColumnDefinitions="*,*" Margin="10">
+                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Gender"/>
+                    <ComboBox Grid.Column="1" SelectedIndex="0" SelectionChanged="SelectingItemsControl_OnSelectionChanged_Gender" HorizontalAlignment="Stretch">
+                        <ComboBoxItem>Unknown</ComboBoxItem>
+                        <ComboBoxItem>Male</ComboBoxItem>
+                        <ComboBoxItem>Female</ComboBoxItem>
+                    </ComboBox>
+                </Grid>
+            </Border>
+            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
+                <Grid ColumnDefinitions="*,*" Margin="10">
+                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Sexuality:"/>
+                    <ComboBox Grid.Column="1" SelectedIndex="0" SelectionChanged="SelectingItemsControl_OnSelectionChanged_Sexuality" HorizontalAlignment="Stretch">
+                        <ComboBoxItem>Unknown</ComboBoxItem>
+                        <ComboBoxItem>Heterosexual</ComboBoxItem>
+                        <ComboBoxItem>Homosexual</ComboBoxItem>
+                        <ComboBoxItem>Bisexual</ComboBoxItem>
+                        <ComboBoxItem>Asexual</ComboBoxItem>
+                    </ComboBox>
+                </Grid>
+            </Border>
+            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
+                <Grid ColumnDefinitions="50*,40*,10*" Margin="10">
+                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Species"/>
+                    <AutoCompleteBox Grid.Column="1" Items="{Binding Species}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Species..." SelectionChanged="AutoCompleteBox_OnSelectionChanged_Species" HorizontalAlignment="Stretch"/>
+                    <Button Grid.Column="2" Click="Button_OnAddSpecies" x:Name="AddSpeciesButton">
                         <avalonia:MaterialIcon Kind="Add" />
                     </Button>
                 </Grid>
-                <AutoCompleteBox Grid.Row="1" Items="{Binding Species}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Species..." SelectionChanged="AutoCompleteBox_OnSelectionChanged_Species"/>
-
-                <Grid Grid.Row="2" ColumnDefinitions="*,*">
-                    <TextBlock Text="Designer:" Grid.Column="0" VerticalAlignment="Center"/>
-                    <Button Grid.Column="1" Click="Button_OnAddDesigner" x:Name="AddDesignerButton" HorizontalAlignment="Right">
+            </Border>
+            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
+                <Grid ColumnDefinitions="50*,40*,10*" Margin="10">
+                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Original Designer"/>
+                    <AutoCompleteBox Grid.Column="1" Items="{Binding Artists}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Designer..." SelectionChanged="AutoCompleteBox_OnSelectionChanged_Designer" HorizontalAlignment="Stretch"/>
+                    <Button Grid.Column="2" Click="Button_OnAddDesigner" x:Name="AddDesignerButton" HorizontalAlignment="Right">
                         <avalonia:MaterialIcon Kind="Add" />
                     </Button>
                 </Grid>
-                <AutoCompleteBox Grid.Row="3" Items="{Binding Artists}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Designer..." SelectionChanged="AutoCompleteBox_OnSelectionChanged_Designer"/>
-
-                
-                <Grid Row="4" ColumnDefinitions="*,*">
-                    <TextBlock Text="Tags:" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                    <Button Grid.Column="1" Click="Button_OnAddTag" x:Name="AddTagButton" HorizontalAlignment="Right">
-                        <avalonia:MaterialIcon Kind="Add" />
-                    </Button>
-                </Grid>
-                
-                <AutoCompleteBox Grid.Row="5" Items="{Binding Tags}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Tag..." KeyUp="InputElement_OnKeyUp_Tag"/>
-                
-                <ScrollViewer Grid.Row="6">
-                    <ItemsRepeater Items="{Binding CharacterTags}">
+            </Border>
+            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
+                <Grid RowDefinitions="*,*" Margin="10">
+                    <Grid Row="0" ColumnDefinitions="50*,40*,10*" >
+                        <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Tags"/>
+                        <AutoCompleteBox Grid.Column="1" Items="{Binding Tags}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Tag..." KeyUp="InputElement_OnKeyUp_Tag" HorizontalAlignment="Stretch"/>
+                        <Button Grid.Column="2" Click="Button_OnAddTag" x:Name="AddTagButton" HorizontalAlignment="Right">
+                            <avalonia:MaterialIcon Kind="Add" />
+                        </Button>
+                    </Grid>
+                    <ItemsRepeater Grid.Row="1" Items="{Binding CharacterTags}">
+                        <ItemsRepeater.Layout>
+                            <StackLayout Spacing="5"
+                                         Orientation="Horizontal" />
+                        </ItemsRepeater.Layout>
                         <ItemsRepeater.ItemTemplate>
                             <DataTemplate>
-                                <Grid ColumnDefinitions="*,*">
-                                    <TextBlock Grid.Column="0" Text="{Binding Name}"/>
-                                    <Button Grid.Column="1" Click="Button_OnRemoveTag" x:Name="RemoveTagButton" HorizontalAlignment="Right">
-                                        <avalonia:MaterialIcon Kind="Remove"/>
-                                    </Button>
-                                </Grid>
+                                <Border CornerRadius="10" BorderBrush="{Binding ColorCode, Converter={StaticResource ColorConverter}}" BorderThickness="2">
+                                    <Grid ColumnDefinitions="*,*" Margin="5">
+                                        <TextBlock Grid.Column="0" Margin="0,0,5,0" Text="{Binding Name}" VerticalAlignment="Center"/>
+                                        <Button Grid.Column="1" Click="Button_OnRemoveTag" x:Name="RemoveTagButton" Background="Transparent" Padding="0">
+                                            <avalonia:MaterialIcon Kind="Remove"/>
+                                        </Button>
+                                    </Grid>
+                                </Border>
                             </DataTemplate>
                         </ItemsRepeater.ItemTemplate>
                     </ItemsRepeater>
-                </ScrollViewer>
-            </Grid>
-        </Grid>
+                </Grid>
+            </Border>
+        </StackPanel>
         <Grid Row="2" ColumnDefinitions="*,*,*" Margin="10" VerticalAlignment="Bottom">
             <Button Grid.Column="0" Click="Button_OnCancel"><TextBlock Text="Cancel"/></Button>
             <Button Grid.Column="1" Click="Button_OnAddCharacterPlus"><TextBlock Text="Add Character+"/></Button>

@@ -1,6 +1,24 @@
+@use '@angular/material' as mat;
+@import '../../../styles.scss';
+
 .searchbar-box{
   width: 100%;
   margin:0;
+
+  .search-bar{
+    margin-left: 0.5%;
+    margin-right: 0.5%;
+    margin-top: 0.5%;
+    width:99%;
+    background-color: mat.get-color-from-palette(mat.$gray-palette, 900);
+    border-radius: 50px;
+
+    .search-input{
+      width: 75%;
+      border-radius: 5px;
+      margin-left: 2rem;
+    }
+  }
 }
 
 .character-list{
@@ -12,3 +30,5 @@
 .char-item{
   display: inline-block;
 }
+
+

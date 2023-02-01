@@ -14,7 +14,9 @@ public class ReactiveAddArtworkModel: ReactiveObject{
         set =>  this.RaiseAndSetIfChanged(ref _fileData, value);
     }
 
-    public Rating Rating { get; set; }
+    public NSFWRating NsfwRating { get; set; }
+    public GoreRating GoreRating { get; set; }
 
     public List<ArtistModel> Artists { get; set; } = new List<ArtistModel>();
+    public List<TagModel> Tags { get; set; } = new List<TagModel>();
 }

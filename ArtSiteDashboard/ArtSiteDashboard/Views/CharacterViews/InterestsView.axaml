@@ -12,11 +12,12 @@
     </Design.DataContext>
     <UserControl.Resources>
         <valueConverter:ListValueConverter x:Key="ListValueConverter"/>
+        <valueConverter:BytesToTextConverter x:Key="BytesToTextConverter"/>
     </UserControl.Resources>
     <Grid ColumnDefinitions="50*, 50*" Margin="20">
         <StackPanel Grid.Column="0" Spacing="5">
             <TextBlock Text="Hobbies" FontSize="20"/>
-            <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Interests.Hobbies, Converter={StaticResource ListValueConverter}}"/>
+            <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Interests.Hobbies, Converter={StaticResource BytesToTextConverter}}"/>
         </StackPanel>
         <StackPanel Grid.Column="1" Spacing="5">
             <TextBlock Text="Music" FontSize="20"/>

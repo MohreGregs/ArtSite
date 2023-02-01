@@ -11,7 +11,6 @@ public class DatabaseContext : DbContext {
     public DbSet<Character> Characters { get; set; }
     public DbSet<Color> Colors { get; set; }
     public DbSet<GeneralInfo> GeneralInfos { get; set; }
-    public DbSet<Hobby> Hobbies { get; set; }
     public DbSet<Interests> InterestsSet { get; set; }
     public DbSet<Personality> Personalities { get; set; }
     public DbSet<Reference> References { get; set; }
@@ -41,7 +40,6 @@ public class DatabaseContext : DbContext {
         modelBuilder.ApplyConfiguration(new CharacterConfiguration());
         modelBuilder.ApplyConfiguration(new ColorConfiguration());
         modelBuilder.ApplyConfiguration(new GeneralInfoConfiguration());
-        modelBuilder.ApplyConfiguration(new HobbyConfiguration());
         modelBuilder.ApplyConfiguration(new InterestsConfiguration());
         modelBuilder.ApplyConfiguration(new PersonalityConfiguration());
         modelBuilder.ApplyConfiguration(new ReferenceConfiguration());

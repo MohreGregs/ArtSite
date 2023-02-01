@@ -23,7 +23,8 @@ public class ArtworkController : BaseEntityController<ArtworkController, Artwork
             Description = model.Description,
             File = model.FileData,
             Extension = model.FileExtension,
-            Rating = model.Rating,
+            NsfwRating = model.NsfwRating,
+            GoreRating = model.GoreRating
         };
 
         foreach (var artistId in model.ArtistIds) {
@@ -34,6 +35,11 @@ public class ArtworkController : BaseEntityController<ArtworkController, Artwork
         foreach (var characterId in model.CharacterIds) {
             var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == characterId);
             if (character != default) artwork.Characters.Add(character);
+        }
+        
+        foreach (var tagId in model.TagIds) {
+            var tag = await _context.Tags.FirstOrDefaultAsync(x => x.Id == tagId);
+            if (tag != default) artwork.Tags.Add(tag);
         }
 
         await _context.AddAsync(artwork);
