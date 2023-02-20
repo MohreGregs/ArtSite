@@ -13,4 +13,5 @@ public class Artwork : BaseEntity{
     public virtual ISet<Artist> Artists { get; set; } = new HashSet<Artist>();
     public virtual ISet<Character> Characters { get; set; } = new HashSet<Character>();
     public virtual Reference Reference { get; set; }
+    public virtual ISet<Character> IconCharacters { get; set; } = new HashSet<Character>();
 }

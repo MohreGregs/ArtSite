@@ -14,7 +14,7 @@ public class AddArtworkViewModel : BaseWindowViewModel {
     private ObservableCollection<CharacterModel> _artworkCharacters = new();
     private List<TagModel> _tags = new();
     private ObservableCollection<TagModel> _artworkTags = new();
-    private string _artworkDescription;
+    private string _artworkDescription = "";
 
     public AddArtworkViewModel() {
         Artwork = new ReactiveAddArtworkModel();

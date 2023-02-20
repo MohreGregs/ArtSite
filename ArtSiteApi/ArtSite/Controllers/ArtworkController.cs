@@ -12,7 +12,18 @@ public class ArtworkController : BaseEntityController<ArtworkController, Artwork
     public ArtworkController(ILogger<ArtworkController> logger, IMapper mapper, DatabaseContext context) : base(logger, mapper, context)
     {
     }
-    
+
+    [HttpGet]
+    [Route("GetByCharacterId")]
+    public async Task<ActionResult<List<ArtworkModel>?>> GetByCharacterId(int characterId) {
+        var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == characterId);
+        if (character == default) return NotFound();
+
+        var artworks =  _context.Artworks.Where(x => x.Characters.Contains(character)).ToList();
+
+        return Ok(_mapper.Map<List<ArtworkModel>>(artworks));
+    }
+
     [HttpPost]
     [Route("add")]
     public override async Task<ActionResult> Add([FromBody] AddArtworkModel? model) {

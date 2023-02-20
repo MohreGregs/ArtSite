@@ -146,7 +146,23 @@ public class CharacterController : BaseEntityController<CharacterController, Cha
 
         return Ok(character);
     }
-    
+
+    [HttpPost]
+    [Route("setIcon")]
+    public async Task<ActionResult<CharacterModel>> SetIcon([FromBody] SetIconModel? model) {
+        if (model == default) return BadRequest();
+
+        var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.CharacterId);
+
+        if (character == default) return BadRequest();
+
+        character.IconId = model.ArtworkId;
+        
+        await _context.SaveChangesAsync();
+
+        return Ok();
+    }
+
     [HttpDelete]
     [Route("delete")]
     public override async Task<ActionResult> Delete(int id = 0) {

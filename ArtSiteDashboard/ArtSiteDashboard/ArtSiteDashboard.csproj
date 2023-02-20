@@ -85,6 +85,9 @@
       <Compile Update="Windows\AddSongViewModel.cs">
         <DependentUpon>AddSongWindow.axaml</DependentUpon>
       </Compile>
+      <Compile Update="Windows\ChooseImageViewModel.cs">
+        <DependentUpon>ChooseImageWindow.axaml</DependentUpon>
+      </Compile>
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\ArtSiteDashboard.Extensions\ArtSiteDashboard.Extensions.csproj" />

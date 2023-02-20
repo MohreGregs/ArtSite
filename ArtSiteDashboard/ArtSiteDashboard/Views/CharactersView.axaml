@@ -51,7 +51,7 @@
                 </Panel>
 
                 <Border Grid.Column="0" BorderThickness="5" BorderBrush="White" VerticalAlignment="Center"
-                        HorizontalAlignment="Left" CornerRadius="1000" Height="240" Width="240" Margin="10">
+                        HorizontalAlignment="Left" CornerRadius="1000" Height="240" Width="240" Margin="10" ToolTip.Tip="Choose another image" DoubleTapped="Icon_OnDoubleTap">
                     <Border.Background>
                         <ImageBrush Source="{Binding Icon.File, Converter={StaticResource BytesToImageConverter}}" RenderOptions.BitmapInterpolationMode="HighQuality"/>
                     </Border.Background>

@@ -1,0 +1,56 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:windows="clr-namespace:ArtSiteDashboard.Windows"
+        xmlns:models="clr-namespace:ArtSite.Data.Models;assembly=ArtSite.Data"
+        xmlns:valueConverter="clr-namespace:ArtSiteDashboard.Views.ValueConverter"
+        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        Width="600" Height="400"
+        x:Class="ArtSiteDashboard.Windows.ChooseImageWindow"
+        Title="ChooseImageWindow"
+        TransparencyLevelHint="AcrylicBlur"
+        ExtendClientAreaToDecorationsHint="true"
+        ExtendClientAreaChromeHints="PreferSystemChrome"
+        WindowStartupLocation="CenterScreen">
+    <Design.DataContext>
+        <windows:ChooseImageViewModel/>
+    </Design.DataContext>
+    <Window.Resources>
+        <valueConverter:BytesToImageConverter x:Key="BytesToImageConverter"/>
+    </Window.Resources>
+    <Grid RowDefinitions="30, *, 50">
+        <Panel Grid.Row="0" Grid.RowSpan="3">
+            <ExperimentalAcrylicBorder IsHitTestVisible="False">
+                <ExperimentalAcrylicBorder.Material>
+                    <ExperimentalAcrylicMaterial
+                        BackgroundSource="Digger"
+                        TintColor="Black"
+                        TintOpacity="1"
+                        MaterialOpacity="0.25" />
+                </ExperimentalAcrylicBorder.Material>
+            </ExperimentalAcrylicBorder>
+        </Panel>
+        <TextBlock Grid.Row="0" Text="Choose Image" FontSize="15" Margin="10"/>
+        <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Stretch">
+            <ListBox Items="{Binding Artworks}" Margin="20" SelectionChanged="Artwork_SelectionChanged" SelectionMode="Single">
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate DataType="models:ArtworkModel">
+                        <Border>
+                            <Image MaxWidth="200" HorizontalAlignment="Center" Source="{Binding File, Converter={StaticResource BytesToImageConverter}}" RenderOptions.BitmapInterpolationMode="HighQuality" />
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </ScrollViewer>
+        <Grid Row="2" Margin="10" VerticalAlignment="Bottom">
+            <Button Click="Button_OnCancel"> <TextBlock Text="Cancel"/></Button>
+            <Button HorizontalAlignment="Right" Click="Button_OnChoose"> <TextBlock Text="Choose"/></Button>
+        </Grid>
+    </Grid>
+</Window>

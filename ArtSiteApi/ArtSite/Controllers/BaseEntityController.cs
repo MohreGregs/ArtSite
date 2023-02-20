@@ -30,7 +30,8 @@ public class BaseEntityController<TController, TEntity, TModel, TAddModel> : Bas
     public async Task<ActionResult<TEntity?>> GetById(int id = 0) {
         if (id == default) return BadRequest();
 
-        return await _context.Set<TEntity>().FirstOrDefaultAsync(x => x.Id == id);
+        var data = await _context.Set<TEntity>().FirstOrDefaultAsync(x => x.Id == id);
+        return Ok(_mapper.Map<TModel>(data));
     }
 
     [HttpPost]

@@ -5,6 +5,7 @@
         xmlns:views="clr-namespace:ArtSiteDashboard.Views"
         xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
         xmlns:valueConverter="clr-namespace:ArtSiteDashboard.Views.ValueConverter"
+        xmlns:models="clr-namespace:ArtSite.Data.Models;assembly=ArtSite.Data"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         Height="600" Width="400"
         x:Class="ArtSiteDashboard.Windows.AddNewCharacterWindow"
@@ -100,8 +101,8 @@
                                          Orientation="Horizontal" />
                         </ItemsRepeater.Layout>
                         <ItemsRepeater.ItemTemplate>
-                            <DataTemplate>
-                                <Border CornerRadius="10" BorderBrush="{Binding ColorCode, Converter={StaticResource ColorConverter}}" BorderThickness="2">
+                            <DataTemplate DataType="models:TagModel">
+                                <Border CornerRadius="10" BorderBrush="{Binding Color.ColorCode, Converter={StaticResource ColorConverter}}" BorderThickness="2">
                                     <Grid ColumnDefinitions="*,*" Margin="5">
                                         <TextBlock Grid.Column="0" Margin="0,0,5,0" Text="{Binding Name}" VerticalAlignment="Center"/>
                                         <Button Grid.Column="1" Click="Button_OnRemoveTag" x:Name="RemoveTagButton" Background="Transparent" Padding="0">

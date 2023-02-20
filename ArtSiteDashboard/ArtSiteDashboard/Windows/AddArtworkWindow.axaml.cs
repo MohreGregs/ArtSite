@@ -37,6 +37,7 @@ public partial class AddArtworkWindow : ReactiveWindow<AddArtworkViewModel> {
     private async void Block(CompositeDisposable obj) {
         ViewModel.Artists = (await Api.GetArtists()) ?? new();
         ViewModel.Characters = (await Api.GetCharacters()) ?? new();
+        ViewModel.Tags = await Api.GetTags() ?? new();
         ViewModel.Artwork.NsfwRating = NSFWRating.None;
         ViewModel.Artwork.GoreRating = GoreRating.None;
     }

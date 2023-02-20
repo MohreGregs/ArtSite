@@ -46,7 +46,5 @@ public class DatabaseContext : DbContext {
         modelBuilder.ApplyConfiguration(new SongConfiguration());
         modelBuilder.ApplyConfiguration(new SpeciesConfiguration());
         modelBuilder.ApplyConfiguration(new TagConfiguration());
-
-        modelBuilder.Seed();
     }
 }

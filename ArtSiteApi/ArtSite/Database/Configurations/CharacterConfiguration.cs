@@ -17,5 +17,6 @@ public class CharacterConfiguration : IEntityTypeConfiguration<Character> {
         builder.HasOne(x => x.Interests).WithOne(x => x.Character).OnDelete(DeleteBehavior.Cascade);
         builder.HasOne(x => x.Appearance).WithOne(x => x.Character).OnDelete(DeleteBehavior.Cascade);
         builder.HasMany(x => x.Artworks).WithMany(x => x.Characters);
+        builder.HasOne(x => x.Icon).WithMany(x => x.IconCharacters);
     }
 }

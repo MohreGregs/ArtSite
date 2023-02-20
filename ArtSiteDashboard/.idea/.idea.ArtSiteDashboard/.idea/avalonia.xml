@@ -27,6 +27,7 @@
         <entry key="ArtSiteDashboard/Windows/AddSpecies.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/Windows/AddSpeciesWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/Windows/AddTagWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/Windows/ChooseImageWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/Windows/MessageBox.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
       </map>
     </option>

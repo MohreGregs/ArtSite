@@ -9,6 +9,7 @@ public class Character : BaseNameEntity {
     public int? IconId { get; set; }
     public byte[]? WantedArtwork { get; set; }
     
+    public virtual Artwork? Icon { get; set; }
     public virtual ISet<Tag>? Tags { get; set; } = new HashSet<Tag>();
     public virtual Species? Species { get; set; }
     public virtual Artist? OriginalDesigner { get; set; }
