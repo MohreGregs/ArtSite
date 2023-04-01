@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Text;
+using Avalonia.Media.Imaging;
 using Newtonsoft.Json;
 
 namespace ArtSiteDashboard.Extensions.Network; 
@@ -18,7 +19,7 @@ public static partial class Api {
             return default;
         }
     }
-    
+
     public static async Task<T?> PostRequest<T>(string controller, string action, object? data) {
         try {
             using (var client = new HttpClient()) {

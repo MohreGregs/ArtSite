@@ -12,6 +12,18 @@ public class ArtworkController : BaseEntityController<ArtworkController, Artwork
     public ArtworkController(ILogger<ArtworkController> logger, IMapper mapper, DatabaseContext context) : base(logger, mapper, context)
     {
     }
+    
+    [HttpGet]
+    [Route("GetFileById")]
+    public async Task<ActionResult<byte[]>?> GetFileById(int id) {
+        var artwork = await _context.Artworks.FirstOrDefaultAsync(x => x.Id == id);
+
+        if (artwork == default) return NotFound();
+
+        var imageType = artwork.Extension.Substring(1);
+        
+        return File(artwork.File, $"image/{imageType}");
+    }
 
     [HttpGet]
     [Route("GetByCharacterId")]
@@ -22,6 +34,17 @@ public class ArtworkController : BaseEntityController<ArtworkController, Artwork
         var artworks =  _context.Artworks.Where(x => x.Characters.Contains(character)).ToList();
 
         return Ok(_mapper.Map<List<ArtworkModel>>(artworks));
+    }
+    
+    [HttpGet]
+    [Route("GetArtworkIdByCharacter")]
+    public async Task<ActionResult<List<int>?>> GetArtworkIdByCharacter(int characterId) {
+        var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == characterId);
+        if (character == default) return NotFound();
+
+        var artworks =  _context.Artworks.Where(x => x.Characters.Contains(character)).ToList();
+
+        return Ok(artworks.Select(x => x.Id));
     }
 
     [HttpPost]

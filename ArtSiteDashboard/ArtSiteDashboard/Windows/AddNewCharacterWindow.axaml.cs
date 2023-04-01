@@ -2,6 +2,7 @@
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Reactive.Disposables;
+using System.Threading.Tasks;
 using ArtSite.Data.Enums;
 using ArtSite.Data.Models;
 using ArtSiteDashboard.Extensions.Network;
@@ -109,12 +110,12 @@ public partial class AddNewCharacterWindow : ReactiveWindow<AddNewCharacterViewM
         //TODO: Open Character View
     }
 
-    private void Button_OnAddCharacter(object? sender, RoutedEventArgs e) {
-        AddCharacter();
+    private async void Button_OnAddCharacter(object? sender, RoutedEventArgs e) {
+        await AddCharacter();
         Close();
     }
 
-    private async void AddCharacter() {
+    private async Task AddCharacter() {
         if (string.IsNullOrWhiteSpace(ViewModel.Character.Name) || ViewModel.CharacterDesigner.Id == null) return;
 
         var tagIds = new List<int>();

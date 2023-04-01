@@ -11,9 +11,8 @@ namespace ArtSiteDashboard.Windows;
 
 public partial class ChooseImageWindow : ReactiveWindow<ChooseImageViewModel> {
     public ChooseImageWindow(int characterId) {
-        InitializeComponent();
-
         ViewModel = new ChooseImageViewModel(characterId);
+        InitializeComponent();
 #if DEBUG
         this.AttachDevTools();
 #endif
@@ -27,7 +26,12 @@ public partial class ChooseImageWindow : ReactiveWindow<ChooseImageViewModel> {
     }
     
     private async void Block(CompositeDisposable obj) {
-        ViewModel.Artworks = await Api.GetArtworksByCharacterId(ViewModel.CharacterId) ?? new();
+        var ids = await Api.GetArtworkIdByCharacter(ViewModel.CharacterId) ?? new();
+
+        foreach (var id in ids) {
+            var file = await Api.GetFileById(id);
+            ViewModel.Artworks.Add(new ArtworkFile(id, file));
+        }
     }
 
     private void Button_OnCancel(object? sender, RoutedEventArgs e) {
@@ -41,15 +45,11 @@ public partial class ChooseImageWindow : ReactiveWindow<ChooseImageViewModel> {
 
         var setIconModel = new SetIconModel(
              ViewModel.CharacterId, 
-             ViewModel.SelectedArtwork.Id.Value
+             ViewModel.SelectedArtwork.Id
         );
 
         await Api.SetIcon(setIconModel);
         Close();
     }
 
-    private void Artwork_SelectionChanged(object? sender, SelectionChangedEventArgs e) {
-        var x = sender as ListBox;
-        ViewModel.SelectedArtwork = x.SelectedItem as ArtworkModel;
-    }
 }

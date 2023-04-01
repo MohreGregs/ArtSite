@@ -3,6 +3,7 @@ using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Threading.Tasks;
 using ArtSite.Data.Models;
 using ArtSite.Data.Models.ReactiveModels;
 using ArtSiteDashboard.Extensions.Network;
@@ -11,6 +12,7 @@ using ArtSiteDashboard.Windows;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using Avalonia.Threading;
 using Avalonia.VisualTree;
 using DynamicData;
 using ReactiveUI;
@@ -38,7 +40,7 @@ public partial class CharactersView : ReactiveControl<CharactersViewModel> {
             ViewModel.CharacterView = ViewModel.GeneralInfoView;
         }
 
-        GetCharacters();
+        await GetCharacters();
     }
 
     private async void View_OnInitialize(object? sender, EventArgs e) {
@@ -111,10 +113,10 @@ public partial class CharactersView : ReactiveControl<CharactersViewModel> {
 
         if (!result.IsSuccessStatusCode) return;
 
-        GetCharacters();
+        await GetCharacters();
     }
 
-    private async void GetCharacters() {
+    private async Task GetCharacters() {
         var characters = await Api.GetCharacters() ?? new();
         if (characters.Count == 0) {
             ViewModel.MainWindowViewModel.MainView = ViewModel.MainWindowViewModel.NoCharactersView;
@@ -122,9 +124,9 @@ public partial class CharactersView : ReactiveControl<CharactersViewModel> {
         }
 
         ViewModel.Characters.Clear();
-        ViewModel.Characters.AddRange(characters);
+        ViewModel.Characters.AddRange(characters.Select(x => ReactiveCharacterModel.fromCharacterModel(x)));
         
-        ViewModel.CurrentCharacter = ReactiveCharacterModel.fromCharacterModel(ViewModel.Characters.FirstOrDefault());
+        ViewModel.CurrentCharacter = ViewModel.Characters.FirstOrDefault();
         
         if (ViewModel.CurrentCharacter == null) return;
         if (ViewModel.CharacterView.GetType() == typeof(GeneralInfoViewModel)) ViewModel.GeneralInfoView.CurrentCharacter = ViewModel.CurrentCharacter;
@@ -134,13 +136,13 @@ public partial class CharactersView : ReactiveControl<CharactersViewModel> {
         var iconWindow = new ChooseImageWindow(ViewModel.CurrentCharacter.Id.Value);
         
         await iconWindow.ShowDialog(ViewModel.MainWindow);
-        GetCharacters();
+        await GetCharacters();
     }
 
     private async void Edit_OnClick(object? sender, RoutedEventArgs e) {
         var editCharacterWindow = new AddNewCharacterWindow(ViewModel.CurrentCharacter.Id);
 
         await editCharacterWindow.ShowDialog(ViewModel.MainWindow);
-        GetCharacters();
+        await GetCharacters();
     }
 }

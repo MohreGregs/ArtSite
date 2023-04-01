@@ -33,16 +33,16 @@
         </Panel>
         <TextBlock Grid.Row="0" Text="Choose Image" FontSize="15" Margin="10"/>
         <ScrollViewer Grid.Row="1" HorizontalScrollBarVisibility="Disabled" HorizontalAlignment="Stretch">
-            <ListBox Items="{Binding Artworks}" Margin="20" SelectionChanged="Artwork_SelectionChanged" SelectionMode="Single">
+            <ListBox Items="{Binding Artworks}" Margin="20" SelectedItem="{Binding SelectedArtwork}" SelectionMode="Single">
                 <ListBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <WrapPanel Orientation="Horizontal"/>
                     </ItemsPanelTemplate>
                 </ListBox.ItemsPanel>
                 <ListBox.ItemTemplate>
-                    <DataTemplate DataType="models:ArtworkModel">
+                    <DataTemplate DataType="models:ArtworkFile">
                         <Border>
-                            <Image MaxWidth="200" HorizontalAlignment="Center" Source="{Binding File, Converter={StaticResource BytesToImageConverter}}" RenderOptions.BitmapInterpolationMode="HighQuality" />
+                            <Image MaxWidth="200" HorizontalAlignment="Center" Source="{Binding File}" RenderOptions.BitmapInterpolationMode="HighQuality" />
                         </Border>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

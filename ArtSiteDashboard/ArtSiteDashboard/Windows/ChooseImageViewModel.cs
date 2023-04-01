@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using ArtSite.Data.Models;
+using Avalonia.Media.Imaging;
 using ReactiveUI;
 
 namespace ArtSiteDashboard.Windows; 
 
 public class ChooseImageViewModel : BaseWindowViewModel {
-    private List<ArtworkModel>? _artworks;
-    private ArtworkModel? _selectedArtwork;
+    private ObservableCollection<ArtworkFile>? _artworks = new();
+    private ArtworkFile? _selectedArtwork;
     public int CharacterId;
 
     public ChooseImageViewModel(){}
@@ -15,12 +17,12 @@ public class ChooseImageViewModel : BaseWindowViewModel {
         CharacterId = characterId;
     }
 
-    public List<ArtworkModel>? Artworks {
+    public ObservableCollection<ArtworkFile>? Artworks {
         get => _artworks;
         set => this.RaiseAndSetIfChanged(ref _artworks, value);
     }
     
-    public ArtworkModel? SelectedArtwork {
+    public ArtworkFile? SelectedArtwork {
         get => _selectedArtwork;
         set => this.RaiseAndSetIfChanged(ref _selectedArtwork, value);
     }
