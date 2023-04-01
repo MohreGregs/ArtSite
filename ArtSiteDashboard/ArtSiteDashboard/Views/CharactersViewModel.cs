@@ -1,6 +1,7 @@
 ﻿using System.Collections.ObjectModel;
 using System.Reactive.Disposables;
 using ArtSite.Data.Models;
+using ArtSite.Data.Models.ReactiveModels;
 using ArtSiteDashboard.Extensions.Network;
 using ArtSiteDashboard.Views.CharacterViews;
 using Avalonia.Controls;
@@ -9,10 +10,23 @@ using ReactiveUI;
 namespace ArtSiteDashboard.Views;
 
 public class CharactersViewModel : BaseViewModel {
-    public CharactersViewModel(Window mainWindow, MainWindowViewModel mainWindowViewModel) {
+    public GeneralInfoViewModel GeneralInfoView { get; }
+    public PersonalityViewModel PersonalityView { get; }
+    public InterestsViewModel InterestsView { get; }
+    public AppearanceViewModel AppearanceView { get; }
+    public ReferenceViewModel ReferenceView { get; }
+    
+    private ObservableCollection<CharacterModel> _characters = new();
+    private BaseViewModel _characterView;
+
+    private ReactiveCharacterModel? _currentCharacter;
+    private ArtworkModel _icon;
+    private MainWindow _mainWindow;
+    private MainWindowViewModel _mainWindowViewModel;
+    
+    public CharactersViewModel(MainWindowViewModel mainWindowViewModel) {
         Activator = new ViewModelActivator();
         this.WhenActivated(Block);
-        MainWindow = mainWindow;
         MainWindowViewModel = mainWindowViewModel;
         GeneralInfoView = new GeneralInfoViewModel();
         PersonalityView = new PersonalityViewModel();
@@ -26,35 +40,20 @@ public class CharactersViewModel : BaseViewModel {
         set => this.RaiseAndSetIfChanged(ref _mainWindowViewModel, value);
     }
 
-    public Window MainWindow {
+    public MainWindow MainWindow {
         get => _mainWindow;
         set => this.RaiseAndSetIfChanged(ref _mainWindow, value);
     }
-
-    private BaseViewModel _characterView;
 
     public BaseViewModel CharacterView {
         get => _characterView;
         set => this.RaiseAndSetIfChanged(ref _characterView, value);
     }
 
-    public GeneralInfoViewModel GeneralInfoView { get; }
-    public PersonalityViewModel PersonalityView { get; }
-    public InterestsViewModel InterestsView { get; }
-    public AppearanceViewModel AppearanceView { get; }
-    public ReferenceViewModel ReferenceView { get; }
-    
     private async void Block(CompositeDisposable disposables) {
         Disposable.Create(() => { }).DisposeWith(disposables);
     }
-
-    private ObservableCollection<CharacterModel> _characters;
-
-    private CharacterModel _currentCharacter;
-    private ArtworkModel _icon;
-    private Window _mainWindow;
-    private MainWindowViewModel _mainWindowViewModel;
-
+    
     public ArtworkModel Icon {
         get => _icon;
         set => this.RaiseAndSetIfChanged(ref _icon, value);
@@ -67,7 +66,7 @@ public class CharactersViewModel : BaseViewModel {
         }
     }
 
-    public CharacterModel CurrentCharacter {
+    public ReactiveCharacterModel? CurrentCharacter {
         get => _currentCharacter;
         set {
             this.RaiseAndSetIfChanged(ref _currentCharacter, value);
@@ -77,7 +76,7 @@ public class CharactersViewModel : BaseViewModel {
 
     private async void GetIcon() {
         if (_currentCharacter == null) return;
-        var icon = await Api.GetArtworkById(_currentCharacter.IconId);
+        var icon = await Api.GetArtworkById(_currentCharacter.IconId.Value);
         if (icon == null) return;
         Icon = icon;
     }

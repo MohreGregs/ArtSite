@@ -5,15 +5,14 @@ using ReactiveUI;
 namespace ArtSiteDashboard.Views; 
 
 public class NoCharactersViewModel : BaseViewModel{
-    private Window _mainWindow;
+    private MainWindow _mainWindow;
 
-    public NoCharactersViewModel(Window parent) {
-        MainWindow = parent;
+    public NoCharactersViewModel() {
         Activator = new ViewModelActivator();
         this.WhenActivated(disposables => { Disposable.Create(() => { }).DisposeWith(disposables); });
     }
 
-    public Window MainWindow {
+    public MainWindow MainWindow {
         get => _mainWindow;
         set => this.RaiseAndSetIfChanged(ref _mainWindow, value);
     }

@@ -1,5 +1,6 @@
 ﻿using System.Reactive.Disposables;
 using ArtSite.Data.Models;
+using ArtSite.Data.Models.ReactiveModels;
 using ReactiveUI;
 
 namespace ArtSiteDashboard.Views.CharacterViews; 
@@ -12,8 +13,8 @@ public class AppearanceViewModel : BaseViewModel{
     private async void Block(CompositeDisposable disposables) {
         Disposable.Create(() => { }).DisposeWith(disposables);
     }
-    private CharacterModel _currentCharacter;
-    public CharacterModel CurrentCharacter {
+    private ReactiveCharacterModel _currentCharacter;
+    public ReactiveCharacterModel CurrentCharacter {
         get => _currentCharacter;
         set => this.RaiseAndSetIfChanged(ref _currentCharacter, value);
     }

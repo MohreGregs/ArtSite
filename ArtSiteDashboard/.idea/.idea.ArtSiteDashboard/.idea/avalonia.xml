@@ -3,32 +3,32 @@
   <component name="AvaloniaProject">
     <option name="projectPerEditor">
       <map>
-        <entry key="ArtSiteDashboard/App.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/App.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
         <entry key="ArtSiteDashboard/CharactersView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/Controls/InputRow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
-        <entry key="ArtSiteDashboard/MainWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/MainWindow.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
         <entry key="ArtSiteDashboard/MessageBox.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/NoCharactersView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/Views/AddNewCharacterView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/Views/CharacterViews/AppearanceView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/Views/CharacterViews/GeneralInfoView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
-        <entry key="ArtSiteDashboard/Views/CharacterViews/InterestsView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/Views/CharacterViews/InterestsView.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
         <entry key="ArtSiteDashboard/Views/CharacterViews/PersonalityView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/Views/CharacterViews/ReferenceView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
-        <entry key="ArtSiteDashboard/Views/CharactersView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
-        <entry key="ArtSiteDashboard/Views/HomeView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
-        <entry key="ArtSiteDashboard/Views/NoCharactersView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
-        <entry key="ArtSiteDashboard/Windows/AddArtistWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
-        <entry key="ArtSiteDashboard/Windows/AddArtworkWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
-        <entry key="ArtSiteDashboard/Windows/AddColorWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/Views/CharactersView.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
+        <entry key="ArtSiteDashboard/Views/HomeView.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
+        <entry key="ArtSiteDashboard/Views/NoCharactersView.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
+        <entry key="ArtSiteDashboard/Windows/AddArtistWindow.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
+        <entry key="ArtSiteDashboard/Windows/AddArtworkWindow.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
+        <entry key="ArtSiteDashboard/Windows/AddColorWindow.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
         <entry key="ArtSiteDashboard/Windows/AddHobbyWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
-        <entry key="ArtSiteDashboard/Windows/AddNewCharacterWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
-        <entry key="ArtSiteDashboard/Windows/AddSongWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/Windows/AddNewCharacterWindow.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
+        <entry key="ArtSiteDashboard/Windows/AddSongWindow.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
         <entry key="ArtSiteDashboard/Windows/AddSpecies.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
-        <entry key="ArtSiteDashboard/Windows/AddSpeciesWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
-        <entry key="ArtSiteDashboard/Windows/AddTagWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
-        <entry key="ArtSiteDashboard/Windows/ChooseImageWindow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
-        <entry key="ArtSiteDashboard/Windows/MessageBox.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/Windows/AddSpeciesWindow.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
+        <entry key="ArtSiteDashboard/Windows/AddTagWindow.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
+        <entry key="ArtSiteDashboard/Windows/ChooseImageWindow.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
+        <entry key="ArtSiteDashboard/Windows/MessageBox.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
       </map>
     </option>
   </component>

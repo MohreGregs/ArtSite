@@ -114,20 +114,20 @@ public class CharacterController : BaseEntityController<CharacterController, Cha
     }
     
     [HttpPut]
-    [Route("edit")]
-    public override async Task<ActionResult<CharacterModel>> Edit([FromBody] CharacterModel? model) {
+    [Route("editSimple")]
+    public async Task<ActionResult<CharacterModel>> Edit([FromBody] AddCharacterModel? model) {
         if (model?.Id == default) return BadRequest();
 
         var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.Id);
 
         if (character == default) return BadRequest();
 
-        var species = await _context.Species.FirstOrDefaultAsync(x => x.Id == model.Species.Id);
+        var species = await _context.Species.FirstOrDefaultAsync(x => x.Id == model.SpeciesId);
 
-        var originalDesigner = await _context.Artists.FirstOrDefaultAsync(x => x.Id == model.OriginalDesigner.Id);
+        var originalDesigner = await _context.Artists.FirstOrDefaultAsync(x => x.Id == model.OriginalDesignerId);
         
-        foreach (var tagModel in model.Tags) {
-            var tag = await _context.Tags.FirstOrDefaultAsync(x => x.Id == tagModel.Id);
+        foreach (var tagId in model.TagIds) {
+            var tag = await _context.Tags.FirstOrDefaultAsync(x => x.Id == tagId);
             if (tag != default) character.Tags.Add(tag);
         }
         
@@ -140,7 +140,6 @@ public class CharacterController : BaseEntityController<CharacterController, Cha
             character.OriginalDesigner = originalDesigner;
         if (species != default) 
             character.Species = species;
-        character.IconId = model.IconId;
 
         await _context.SaveChangesAsync();
 

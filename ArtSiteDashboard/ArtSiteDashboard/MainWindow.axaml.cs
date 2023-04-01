@@ -5,9 +5,12 @@ using ReactiveUI;
 namespace ArtSiteDashboard {
     public partial class MainWindow : ReactiveWindow<MainWindowViewModel> {
         public MainWindow() {
-            ViewModel = new MainWindowViewModel(this);
             InitializeComponent();
-            
+        }
+
+        public MainWindow(MainWindowViewModel viewModel) {
+            ViewModel = viewModel;
+            InitializeComponent();
         }
         
         private void InitializeComponent()

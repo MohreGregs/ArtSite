@@ -49,29 +49,19 @@
             <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
                 <Grid ColumnDefinitions="*,*" Margin="10">
                     <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Gender"/>
-                    <ComboBox Grid.Column="1" SelectedIndex="0" SelectionChanged="SelectingItemsControl_OnSelectionChanged_Gender" HorizontalAlignment="Stretch">
-                        <ComboBoxItem>Unknown</ComboBoxItem>
-                        <ComboBoxItem>Male</ComboBoxItem>
-                        <ComboBoxItem>Female</ComboBoxItem>
-                    </ComboBox>
+                    <ComboBox Grid.Column="1" SelectedItem="{Binding Character.Gender}" Items="{Binding GenderValues}" HorizontalAlignment="Stretch"/>
                 </Grid>
             </Border>
             <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
                 <Grid ColumnDefinitions="*,*" Margin="10">
                     <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Sexuality:"/>
-                    <ComboBox Grid.Column="1" SelectedIndex="0" SelectionChanged="SelectingItemsControl_OnSelectionChanged_Sexuality" HorizontalAlignment="Stretch">
-                        <ComboBoxItem>Unknown</ComboBoxItem>
-                        <ComboBoxItem>Heterosexual</ComboBoxItem>
-                        <ComboBoxItem>Homosexual</ComboBoxItem>
-                        <ComboBoxItem>Bisexual</ComboBoxItem>
-                        <ComboBoxItem>Asexual</ComboBoxItem>
-                    </ComboBox>
+                    <ComboBox Grid.Column="1" SelectedItem="{Binding Character.Sexuality}" Items="{Binding SexualityValues}" HorizontalAlignment="Stretch" />
                 </Grid>
             </Border>
             <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
                 <Grid ColumnDefinitions="50*,40*,10*" Margin="10">
                     <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Species"/>
-                    <AutoCompleteBox Grid.Column="1" Items="{Binding Species}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Species..." SelectionChanged="AutoCompleteBox_OnSelectionChanged_Species" HorizontalAlignment="Stretch"/>
+                    <AutoCompleteBox Grid.Column="1" Items="{Binding Species}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Species..." SelectedItem="{Binding CharacterSpecies}" HorizontalAlignment="Stretch"/>
                     <Button Grid.Column="2" Click="Button_OnAddSpecies" x:Name="AddSpeciesButton">
                         <avalonia:MaterialIcon Kind="Add" />
                     </Button>
@@ -80,7 +70,7 @@
             <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
                 <Grid ColumnDefinitions="50*,40*,10*" Margin="10">
                     <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Original Designer"/>
-                    <AutoCompleteBox Grid.Column="1" Items="{Binding Artists}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Designer..." SelectionChanged="AutoCompleteBox_OnSelectionChanged_Designer" HorizontalAlignment="Stretch"/>
+                    <AutoCompleteBox Grid.Column="1" Items="{Binding Artists}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Designer..." SelectedItem="{Binding CharacterDesigner}" HorizontalAlignment="Stretch"/>
                     <Button Grid.Column="2" Click="Button_OnAddDesigner" x:Name="AddDesignerButton" HorizontalAlignment="Right">
                         <avalonia:MaterialIcon Kind="Add" />
                     </Button>

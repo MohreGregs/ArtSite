@@ -8,11 +8,10 @@ public class HomeViewModel : BaseViewModel{
     private MainWindowViewModel _mainWindowViewModel;
     private Window _mainWindow;
 
-    public HomeViewModel(MainWindowViewModel mainWindowViewModel, Window parent) {
+    public HomeViewModel(MainWindowViewModel mainWindowViewModel) {
         Activator = new ViewModelActivator();
         this.WhenActivated(disposables => { Disposable.Create(() => { }).DisposeWith(disposables); });
 
-        MainWindow = parent;
         MainWindowViewModel = mainWindowViewModel;
     }
     

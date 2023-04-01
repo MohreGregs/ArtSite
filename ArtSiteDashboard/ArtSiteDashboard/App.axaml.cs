@@ -1,6 +1,8 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using Nein.Extensions;
+using Splat;
 
 namespace ArtSiteDashboard {
     public partial class App : Application {
@@ -10,7 +12,7 @@ namespace ArtSiteDashboard {
 
         public override void OnFrameworkInitializationCompleted() {
             if (ApplicationLifetime is IClassicDesktopStyleApplicationLifetime desktop) {
-                desktop.MainWindow = new MainWindow();
+                desktop.MainWindow = Locator.Current.GetRequiredService<MainWindow>();
             }
 
             base.OnFrameworkInitializationCompleted();

@@ -7,10 +7,10 @@ using ReactiveUI;
 namespace ArtSiteDashboard;
 
 public class MainWindowViewModel : BaseWindowViewModel {
-    public MainWindowViewModel(Window parent) {
-        HomeView = new HomeViewModel(this, parent);
-        CharactersView = new CharactersViewModel(parent, this);
-        NoCharactersView = new NoCharactersViewModel(parent);
+    public MainWindowViewModel() {
+        HomeView = new HomeViewModel(this);
+        CharactersView = new CharactersViewModel(this);
+        NoCharactersView = new NoCharactersViewModel();
     }
     
     private BaseViewModel _mainView;
@@ -25,4 +25,5 @@ public class MainWindowViewModel : BaseWindowViewModel {
     public NoCharactersViewModel NoCharactersView { get; }
 
     public List<string> MenuItems => new List<string> { "Home", "Characters", "Artworks" };
+    
 }

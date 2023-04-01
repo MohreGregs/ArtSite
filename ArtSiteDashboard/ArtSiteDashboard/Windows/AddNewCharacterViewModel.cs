@@ -1,11 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using ArtSite.Data.Enums;
 using ArtSite.Data.Models;
 using ReactiveUI;
 
 namespace ArtSiteDashboard.Views; 
 
 public class AddNewCharacterViewModel : BaseWindowViewModel {
+    public int? CharacterId; 
+    
     private AddCharacterModel _character;
     private List<SpeciesModel> _species = new();
     private SpeciesModel _characterSpecies;
@@ -14,8 +18,8 @@ public class AddNewCharacterViewModel : BaseWindowViewModel {
     private List<ArtistModel> _artists = new();
     private ArtistModel _characterDesigner;
 
-    public AddNewCharacterViewModel() {
-        Character = new AddCharacterModel();
+    public AddNewCharacterViewModel(int? characterId) {
+        CharacterId = characterId;
     }
 
     public AddCharacterModel Character {
@@ -52,4 +56,9 @@ public class AddNewCharacterViewModel : BaseWindowViewModel {
         get => _characterDesigner;
         set => this.RaiseAndSetIfChanged(ref _characterDesigner, value);
     }
+
+    public IEnumerable<Gender> GenderValues => Enum.GetValues<Gender>();
+
+    public IEnumerable<Sexuality> SexualityValues => Enum.GetValues<Sexuality>();
+    
 }

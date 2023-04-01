@@ -11,26 +11,52 @@ using Avalonia.Controls;
 using Avalonia.Input;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using DynamicData;
 using ReactiveUI;
 
 namespace ArtSiteDashboard.Windows; 
 
 public partial class AddNewCharacterWindow : ReactiveWindow<AddNewCharacterViewModel> {
-    public AddNewCharacterWindow() {
-        ViewModel = new AddNewCharacterViewModel();
-        InitializeComponent();
+   public AddNewCharacterWindow(int? characterId) {
+        
+        InitializeComponent(characterId);
 #if DEBUG
         this.AttachDevTools();
 #endif
     }
+    
+    public AddNewCharacterWindow(){InitializeComponent(null);}
 
-    private void InitializeComponent() {
+    private void InitializeComponent(int? characterId) {
+        ViewModel = new AddNewCharacterViewModel(characterId);
         AvaloniaXamlLoader.Load(this);
 
         this.WhenActivated(Block);
     }
 
     private async void Block(CompositeDisposable obj) {
+        var character = new AddCharacterModel();
+        
+        if (ViewModel.CharacterId != null) {
+            var characterModel = await Api.GetCharacterById(ViewModel.CharacterId.Value);
+            
+            if (characterModel != null) {
+                character.Name = characterModel.Name;
+                character.Age = characterModel.Age;
+                character.Sexuality = characterModel.Sexuality;
+                character.Gender = characterModel.Gender;
+                character.WantedArtwork = characterModel.WantedArtwork;
+                character.OriginalDesignerId = characterModel.OriginalDesigner.Id.Value;
+                character.TagIds = characterModel.Tags.Select(x => x.Id.Value).ToList();
+                character.SpeciesId = characterModel.Species.Id.Value;
+                
+                ViewModel.CharacterTags.Add(characterModel.Tags);
+                ViewModel.CharacterDesigner = characterModel.OriginalDesigner;
+                ViewModel.CharacterSpecies = characterModel.Species;
+            }
+        }
+
+        ViewModel.Character = character;
         ViewModel.Species = (await Api.GetSpecies()) ?? new();
         ViewModel.Artists = (await Api.GetArtists()) ?? new();
         ViewModel.Tags = (await Api.GetTags()) ?? new();
@@ -41,11 +67,6 @@ public partial class AddNewCharacterWindow : ReactiveWindow<AddNewCharacterViewM
 
         await speciesWindow.ShowDialog(this);
         ViewModel.Species = (await Api.GetSpecies()) ?? new();
-    }
-
-    private void AutoCompleteBox_OnSelectionChanged_Species(object? sender, SelectionChangedEventArgs e) {
-        var x = sender as AutoCompleteBox;
-        ViewModel.CharacterSpecies = (SpeciesModel)x.SelectedItem;
     }
 
     private async void Button_OnAddTag(object? sender, RoutedEventArgs e) {
@@ -78,24 +99,6 @@ public partial class AddNewCharacterWindow : ReactiveWindow<AddNewCharacterViewM
         ViewModel.CharacterTags.Remove(tag);
     }
 
-    private void SelectingItemsControl_OnSelectionChanged_Gender(object? sender, SelectionChangedEventArgs e) {
-        if (ViewModel == null) return;
-        var x = sender as ComboBox;
-
-        if (x == null) return;
-        
-        ViewModel.Character.Gender = (Gender) x.SelectedIndex;
-    }
-
-    private void SelectingItemsControl_OnSelectionChanged_Sexuality(object? sender, SelectionChangedEventArgs e) {
-        if (ViewModel == null) return;
-        var x = sender as ComboBox;
-
-        if (x == null) return;
-        
-        ViewModel.Character.Sexuality = (Sexuality) x.SelectedIndex;
-    }
-
     private void Button_OnCancel(object? sender, RoutedEventArgs e) {
         Close();
     }
@@ -103,7 +106,7 @@ public partial class AddNewCharacterWindow : ReactiveWindow<AddNewCharacterViewM
     private void Button_OnAddCharacterPlus(object? sender, RoutedEventArgs e) {
         AddCharacter();
         
-        //TODO: Open Edit Character View
+        //TODO: Open Character View
     }
 
     private void Button_OnAddCharacter(object? sender, RoutedEventArgs e) {
@@ -120,6 +123,7 @@ public partial class AddNewCharacterWindow : ReactiveWindow<AddNewCharacterViewM
         }
 
         var characterToAdd = new AddCharacterModel {
+            Id = ViewModel.CharacterId ?? -1,
             Name = ViewModel.Character.Name,
             Age = ViewModel.Character.Age,
             Gender = ViewModel.Character.Gender,
@@ -129,12 +133,12 @@ public partial class AddNewCharacterWindow : ReactiveWindow<AddNewCharacterViewM
             TagIds = tagIds
         };
 
-        await Api.AddCharacter(characterToAdd);
-    }
-
-    private void AutoCompleteBox_OnSelectionChanged_Designer(object? sender, SelectionChangedEventArgs e) {
-        var x = sender as AutoCompleteBox;
-        ViewModel.CharacterDesigner = (ArtistModel)x.SelectedItem;
+        if (characterToAdd.Id == -1) {
+            await Api.AddCharacter(characterToAdd);
+        }
+        else {
+            await Api.EditCharacter(characterToAdd);
+        }
     }
 
     private async void Button_OnAddDesigner(object? sender, RoutedEventArgs e) {

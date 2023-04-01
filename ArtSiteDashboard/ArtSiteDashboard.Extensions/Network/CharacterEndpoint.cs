@@ -7,12 +7,20 @@ public static partial class Api {
         return await GetRequest<List<CharacterModel>>("character");
     }
 
+    public static async Task<CharacterModel?> GetCharacterById(int id) {
+        return await GetRequest<CharacterModel?>("character", $"getById?id={id}");
+    }
+
     public static async Task<HttpResponseMessage> DeleteCharacter(int id) {
         return await DeleteRequest("character", id);
     }
     
     public static async Task<CharacterModel?> AddCharacter(object character) {
         return await PostRequest<CharacterModel>("character", "add", character);
+    }
+
+    public static async Task<CharacterModel?> EditCharacter(object character) {
+        return await PutRequest<CharacterModel>("character", "editSimple", character);
     }
 
     public static async Task<HttpRequestMessage?> SetIcon(SetIconModel model) {

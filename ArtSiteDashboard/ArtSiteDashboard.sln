@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtSiteDashboard", "ArtSiteDashboard\ArtSiteDashboard.csproj", "{143D3A07-7B51-4BEC-A0C3-C1975181CAD2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtSite.Dashboard", "ArtSiteDashboard\ArtSite.Dashboard.csproj", "{143D3A07-7B51-4BEC-A0C3-C1975181CAD2}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ArtSiteDashboard.Extensions", "ArtSiteDashboard.Extensions\ArtSiteDashboard.Extensions.csproj", "{05F49217-3B76-489F-8FEA-EF8E90FACB7B}"
 EndProject

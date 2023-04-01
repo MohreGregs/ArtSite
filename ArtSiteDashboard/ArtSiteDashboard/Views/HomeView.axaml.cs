@@ -3,6 +3,8 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
+using Avalonia.VisualTree;
+using ReactiveUI;
 
 namespace ArtSiteDashboard.Views; 
 
@@ -12,6 +14,12 @@ public partial class HomeView : ReactiveControl<HomeViewModel> {
     }
 
     private void InitializeComponent() {
+        this.WhenActivated(_ => {
+            if (this.GetVisualRoot() is MainWindow mainWindow) {
+                ViewModel.MainWindow = mainWindow;
+            }
+        });
+        
         AvaloniaXamlLoader.Load(this);
     }
 
