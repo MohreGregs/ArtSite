@@ -4,6 +4,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:windows="clr-namespace:ArtSiteDashboard.Windows"
         xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
+        xmlns:customControls="clr-namespace:ArtSite.Dashboard.CustomControls"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         Width="400" Height="350"
         x:Class="ArtSiteDashboard.Windows.AddTagWindow"
@@ -29,21 +30,21 @@
         </Panel>
         <TextBlock Grid.Row="0" Text="Add Tag" FontSize="15" Margin="10"/>
         <StackPanel Grid.Row="1" Spacing="10" Margin="10,0">
-            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
-                <Grid ColumnDefinitions="*,*" Margin="10">
-                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Name"/>
-                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Watermark="Name" Text="{Binding Tag.Name}"/>
-                </Grid>
-            </Border>
-            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
-                <Grid ColumnDefinitions="50*,40*, 10*" Margin="10">
-                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Color"/>
-                    <AutoCompleteBox Grid.Column="0" Items="{Binding Colors}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Color..." SelectedItem="{Binding Color}"/>
-                    <Button Grid.Column="1" Click="Button_OnAddColor" x:Name="AddColorButton">
-                        <avalonia:MaterialIcon Kind="Add" Margin="0,0,5,0"/>
-                    </Button>
-                </Grid>
-            </Border>
+            <customControls:InputRow Title="Name">
+                <customControls:InputRow.InputControl>
+                    <TextBox Watermark="Name" Text="{Binding Tag.Name}"/>
+                </customControls:InputRow.InputControl>
+            </customControls:InputRow>
+            <customControls:InputRow Title="Color">
+                <customControls:InputRow.InputControl>
+                    <Grid ColumnDefinitions="80*, 20*">
+                        <AutoCompleteBox Grid.Column="0" Items="{Binding Colors}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Color..." SelectedItem="{Binding Color}"/>
+                        <Button Grid.Column="1" Click="Button_OnAddColor" x:Name="AddColorButton">
+                            <avalonia:MaterialIcon Kind="Add" Margin="0,0,5,0"/>
+                        </Button>
+                    </Grid>
+                </customControls:InputRow.InputControl>
+            </customControls:InputRow>
         </StackPanel>
         <Grid Row="2" ColumnDefinitions="*,50" Margin="10" VerticalAlignment="Bottom">
             <Button Grid.Column="0" Click="Button_OnCancel"> <TextBlock Text="Cancel"/></Button>

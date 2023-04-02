@@ -3,6 +3,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:windows="clr-namespace:ArtSiteDashboard.Windows"
+        xmlns:customControls="clr-namespace:ArtSite.Dashboard.CustomControls"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         Width="400" Height="350"
         x:Class="ArtSiteDashboard.Windows.AddSpeciesWindow"
@@ -28,12 +29,11 @@
         </Panel>
         <TextBlock Grid.Row="0" Text="Add Species" FontSize="15" Margin="10"/>
         <StackPanel Grid.Row="1" Spacing="10" Margin="10, 0">
-            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
-                <Grid ColumnDefinitions="*,*" Margin="10">
-                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Name"/>
-                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Watermark="Name" Text="{Binding Species.Name}"/>
-                </Grid>
-            </Border>
+            <customControls:InputRow Title="Name">
+                <customControls:InputRow.InputControl>
+                    <TextBox Watermark="Name" Text="{Binding Species.Name}"/>
+                </customControls:InputRow.InputControl>
+            </customControls:InputRow>
         </StackPanel>
         <Grid Row="2" ColumnDefinitions="*,50" Margin="10" VerticalAlignment="Bottom">
             <Button Grid.Column="0" Click="Button_OnCancel"> <TextBlock Text="Cancel"/></Button>

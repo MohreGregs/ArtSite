@@ -123,15 +123,6 @@ public partial class AddArtworkWindow : ReactiveWindow<AddArtworkViewModel> {
             x.Text = "";
     }
 
-    private void NSFWSelectingItemsControl_OnSelectionChanged(object? sender, SelectionChangedEventArgs e) {
-        if (ViewModel == null) return;
-        var x = sender as ComboBox;
-
-        if (x == null) return;
-        
-        ViewModel.Artwork.NsfwRating = (NSFWRating) x.SelectedIndex;
-    }
-
     private async void Button_OnAddCharacter(object? sender, RoutedEventArgs e) {
         var characterWindow = new AddNewCharacterWindow();
 
@@ -162,15 +153,6 @@ public partial class AddArtworkWindow : ReactiveWindow<AddArtworkViewModel> {
         if (character == null) return;
 
         ViewModel.ArtworkCharacters.Remove(character);
-    }
-
-    private void GoreSelectingItemsControl_OnSelectionChanged(object? sender, SelectionChangedEventArgs e) {
-        if (ViewModel == null) return;
-        var x = sender as ComboBox;
-
-        if (x == null) return;
-        
-        ViewModel.Artwork.GoreRating = (GoreRating) x.SelectedIndex;
     }
 
     private void InputElement_OnKeyUp_Tag(object? sender, KeyEventArgs e) {

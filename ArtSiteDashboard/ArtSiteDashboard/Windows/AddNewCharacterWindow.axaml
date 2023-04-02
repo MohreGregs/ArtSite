@@ -6,6 +6,7 @@
         xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
         xmlns:valueConverter="clr-namespace:ArtSiteDashboard.Views.ValueConverter"
         xmlns:models="clr-namespace:ArtSite.Data.Models;assembly=ArtSite.Data"
+        xmlns:customControls="clr-namespace:ArtSite.Dashboard.CustomControls"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         Height="600" Width="400"
         x:Class="ArtSiteDashboard.Windows.AddNewCharacterWindow"
@@ -34,58 +35,57 @@
         </Panel>
         <TextBlock Text="Add Character" Grid.Row="0" Margin="10"/>
         <StackPanel Grid.Row="1" Spacing="10" Margin="10, 0">
-            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
-                <Grid ColumnDefinitions="*,*" Margin="10">
-                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Name"/>
-                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Watermark="Name" Text="{Binding Character.Name}"/>
-                </Grid>
-            </Border>
-            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
-                <Grid ColumnDefinitions="*,*" Margin="10">
-                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Age"/>
-                    <TextBox Grid.Column="1" HorizontalAlignment="Stretch" Watermark="Age" Text="{Binding Character.Age}" />
-                </Grid>
-            </Border>
-            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
-                <Grid ColumnDefinitions="*,*" Margin="10">
-                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Gender"/>
-                    <ComboBox Grid.Column="1" SelectedItem="{Binding Character.Gender}" Items="{Binding GenderValues}" HorizontalAlignment="Stretch"/>
-                </Grid>
-            </Border>
-            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
-                <Grid ColumnDefinitions="*,*" Margin="10">
-                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Sexuality:"/>
-                    <ComboBox Grid.Column="1" SelectedItem="{Binding Character.Sexuality}" Items="{Binding SexualityValues}" HorizontalAlignment="Stretch" />
-                </Grid>
-            </Border>
-            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
-                <Grid ColumnDefinitions="50*,40*,10*" Margin="10">
-                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Species"/>
-                    <AutoCompleteBox Grid.Column="1" Items="{Binding Species}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Species..." SelectedItem="{Binding CharacterSpecies}" HorizontalAlignment="Stretch"/>
-                    <Button Grid.Column="2" Click="Button_OnAddSpecies" x:Name="AddSpeciesButton">
-                        <avalonia:MaterialIcon Kind="Add" />
-                    </Button>
-                </Grid>
-            </Border>
-            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
-                <Grid ColumnDefinitions="50*,40*,10*" Margin="10">
-                    <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Original Designer"/>
-                    <AutoCompleteBox Grid.Column="1" Items="{Binding Artists}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Designer..." SelectedItem="{Binding CharacterDesigner}" HorizontalAlignment="Stretch"/>
-                    <Button Grid.Column="2" Click="Button_OnAddDesigner" x:Name="AddDesignerButton" HorizontalAlignment="Right">
-                        <avalonia:MaterialIcon Kind="Add" />
-                    </Button>
-                </Grid>
-            </Border>
-            <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
-                <Grid RowDefinitions="*,*" Margin="10">
-                    <Grid Row="0" ColumnDefinitions="50*,40*,10*" >
-                        <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Tags"/>
-                        <AutoCompleteBox Grid.Column="1" Items="{Binding Tags}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Tag..." KeyUp="InputElement_OnKeyUp_Tag" HorizontalAlignment="Stretch"/>
-                        <Button Grid.Column="2" Click="Button_OnAddTag" x:Name="AddTagButton" HorizontalAlignment="Right">
+            <customControls:InputRow Title="Name">
+                <customControls:InputRow.InputControl>
+                    <TextBox Watermark="Name" Text="{Binding Character.Name}"/>
+                </customControls:InputRow.InputControl>
+            </customControls:InputRow>
+            <customControls:InputRow Title="Age">
+                <customControls:InputRow.InputControl>
+                    <TextBox Watermark="Age" Text="{Binding Character.Age}"/>
+                </customControls:InputRow.InputControl>
+            </customControls:InputRow>
+            <customControls:InputRow Title="Gender">
+                <customControls:InputRow.InputControl>
+                    <ComboBox SelectedItem="{Binding Character.Gender}" Items="{Binding GenderValues}" HorizontalAlignment="Stretch"/>
+                </customControls:InputRow.InputControl>
+            </customControls:InputRow>
+            <customControls:InputRow Title="Sexuality">
+                <customControls:InputRow.InputControl>
+                    <ComboBox SelectedItem="{Binding Character.Sexuality}" Items="{Binding SexualityValues}" HorizontalAlignment="Stretch" />
+                </customControls:InputRow.InputControl>
+            </customControls:InputRow>
+            <customControls:InputRow Title="Species">
+                <customControls:InputRow.InputControl>
+                    <Grid ColumnDefinitions="80*,20*">
+                        <AutoCompleteBox Grid.Column="0" Items="{Binding Species}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Species..." SelectedItem="{Binding CharacterSpecies}" HorizontalAlignment="Stretch"/>
+                        <Button Grid.Column="1" Click="Button_OnAddSpecies" x:Name="AddSpeciesButton">
                             <avalonia:MaterialIcon Kind="Add" />
                         </Button>
-                    </Grid>
-                    <ItemsRepeater Grid.Row="1" Items="{Binding CharacterTags}">
+                    </Grid>                
+                </customControls:InputRow.InputControl>
+            </customControls:InputRow>
+            <customControls:InputRow Title="Original Designer">
+                <customControls:InputRow.InputControl>
+                    <Grid ColumnDefinitions="80*, 20*">
+                        <AutoCompleteBox Grid.Column="0" Items="{Binding Artists}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Designer..." SelectedItem="{Binding CharacterDesigner}" HorizontalAlignment="Stretch"/>
+                        <Button Grid.Column="1" Click="Button_OnAddDesigner" x:Name="AddDesignerButton" HorizontalAlignment="Right">
+                            <avalonia:MaterialIcon Kind="Add" />
+                        </Button>
+                    </Grid>              
+                </customControls:InputRow.InputControl>
+            </customControls:InputRow>
+            <customControls:InputRow Title="Tags">
+                <customControls:InputRow.InputControl>
+                    <Grid ColumnDefinitions="80*,20*">
+                        <AutoCompleteBox Grid.Column="0" Items="{Binding Tags}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Tag..." KeyUp="InputElement_OnKeyUp_Tag" HorizontalAlignment="Stretch"/>
+                        <Button Grid.Column="1" Click="Button_OnAddTag" x:Name="AddTagButton" HorizontalAlignment="Right">
+                            <avalonia:MaterialIcon Kind="Add" />
+                        </Button>
+                    </Grid>                
+                </customControls:InputRow.InputControl>
+                <customControls:InputRow.ExtraControl>
+                    <ItemsRepeater Items="{Binding CharacterTags}" Margin="10" >
                         <ItemsRepeater.Layout>
                             <StackLayout Spacing="5"
                                          Orientation="Horizontal" />
@@ -103,8 +103,8 @@
                             </DataTemplate>
                         </ItemsRepeater.ItemTemplate>
                     </ItemsRepeater>
-                </Grid>
-            </Border>
+                </customControls:InputRow.ExtraControl>
+            </customControls:InputRow>
         </StackPanel>
         <Grid Row="2" ColumnDefinitions="*,*,*" Margin="10" VerticalAlignment="Bottom">
             <Button Grid.Column="0" Click="Button_OnCancel"><TextBlock Text="Cancel"/></Button>

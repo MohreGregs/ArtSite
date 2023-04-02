@@ -6,6 +6,7 @@
         xmlns:valueConverter="clr-namespace:ArtSiteDashboard.Views.ValueConverter"
         xmlns:avalonia="clr-namespace:Material.Icons.Avalonia;assembly=Material.Icons.Avalonia"
         xmlns:models="clr-namespace:ArtSite.Data.Models;assembly=ArtSite.Data"
+        xmlns:customControls="clr-namespace:ArtSite.Dashboard.CustomControls"
         mc:Ignorable="d" d:DesignWidth="200" d:DesignHeight="200"
         Height="600" Width="400"
         x:Class="ArtSiteDashboard.Windows.AddArtworkWindow"
@@ -36,35 +37,34 @@
         <TextBlock Grid.Row="0" Text="Add Artwork" FontSize="15" Margin="10"/>
         <ScrollViewer Grid.Row="1" Padding="10,0">
             <StackPanel Spacing="10">
-                <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
-                    <Grid RowDefinitions="*,*" Margin="10">
-                        <Grid Row="0" ColumnDefinitions="50*, 50*" >
-                            <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Image"/>
-                            <Button Grid.Column="1" Click="Button_OnOpenFileExplorer"><TextBlock Text="Choose File.."/></Button>
-                        </Grid>
-                        <Border Grid.Row="1" BorderThickness="5" BorderBrush="White" CornerRadius="5" Height="240" Width="240">
+                <customControls:InputRow Title="Image">
+                    <customControls:InputRow.InputControl>
+                        <Button Click="Button_OnOpenFileExplorer"><TextBlock Text="Choose File.."/></Button>
+                    </customControls:InputRow.InputControl>
+                    <customControls:InputRow.ExtraControl>
+                        <Border BorderThickness="5" BorderBrush="White" CornerRadius="5" Height="240" Width="240" Margin="10" >
                             <Border.Background>
                                 <ImageBrush Source="{Binding Artwork.FileData, Converter={StaticResource BytesToImageConverter}}" RenderOptions.BitmapInterpolationMode="HighQuality"/>
                             </Border.Background>
                         </Border>
-                    </Grid>
-                </Border>
-                <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
-                    <Grid ColumnDefinitions="*,*" Margin="10">
-                        <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Description"/>
-                        <TextBox Grid.Column="1" Watermark="Description" Text="{Binding ArtworkDescription}" AcceptsReturn="True"/>
-                    </Grid>
-                </Border>
-                <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
-                    <Grid RowDefinitions="*,*" Margin="10">
-                        <Grid Row="0" ColumnDefinitions="50*, 40*, 10*" >
-                            <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Artists"/>
-                            <AutoCompleteBox Grid.Column="1" Items="{Binding Artists}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Artist..." KeyUp="InputElement_OnKeyUp_Artist"/>
-                            <Button Grid.Column="2" Click="Button_OnAddArtist" x:Name="AddArtistButton" HorizontalAlignment="Right">
+                    </customControls:InputRow.ExtraControl>
+                </customControls:InputRow>
+                <customControls:InputRow Title="Description">
+                    <customControls:InputRow.InputControl>
+                        <TextBox Watermark="Description" Text="{Binding ArtworkDescription}" AcceptsReturn="True"/>
+                    </customControls:InputRow.InputControl>
+                </customControls:InputRow>
+                <customControls:InputRow Title="Artists">
+                    <customControls:InputRow.InputControl>
+                        <Grid ColumnDefinitions="80*, 20*" >
+                            <AutoCompleteBox Grid.Column="0" Items="{Binding Artists}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Artist..." KeyUp="InputElement_OnKeyUp_Artist"/>
+                            <Button Grid.Column="1" Click="Button_OnAddArtist" x:Name="AddArtistButton" HorizontalAlignment="Right">
                                 <avalonia:MaterialIcon Kind="Add" />
                             </Button>
                         </Grid>
-                        <ItemsRepeater Grid.Row="1" Items="{Binding ArtworkArtists}">
+                    </customControls:InputRow.InputControl>
+                    <customControls:InputRow.ExtraControl>
+                        <ItemsRepeater Items="{Binding ArtworkArtists}" Margin="10" >
                             <ItemsRepeater.Layout>
                                 <StackLayout Spacing="5"
                                              Orientation="Horizontal" />
@@ -82,18 +82,19 @@
                                 </DataTemplate>
                             </ItemsRepeater.ItemTemplate>
                         </ItemsRepeater>
-                    </Grid>
-                </Border>
-                <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
-                    <Grid RowDefinitions="*,*" Margin="10">
-                        <Grid Row="0" ColumnDefinitions="50*, 40*, 10*" >
-                            <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Characters"/>
-                            <AutoCompleteBox Grid.Column="1" Items="{Binding Characters}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Character..." KeyUp="InputElement_OnKeyUp_Character"/>
-                            <Button Grid.Column="2" Click="Button_OnAddCharacter" x:Name="AddCharacterButton" HorizontalAlignment="Right">
+                    </customControls:InputRow.ExtraControl>
+                </customControls:InputRow>
+                <customControls:InputRow Title="Characters">
+                    <customControls:InputRow.InputControl>
+                        <Grid ColumnDefinitions="80*, 20*" >
+                            <AutoCompleteBox Grid.Column="0" Items="{Binding Characters}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Character..." KeyUp="InputElement_OnKeyUp_Character"/>
+                            <Button Grid.Column="1" Click="Button_OnAddCharacter" x:Name="AddCharacterButton" HorizontalAlignment="Right">
                                 <avalonia:MaterialIcon Kind="Add" />
                             </Button>
                         </Grid>
-                        <ItemsRepeater Grid.Row="1" Items="{Binding ArtworkCharacters}">
+                    </customControls:InputRow.InputControl>
+                    <customControls:InputRow.ExtraControl>
+                        <ItemsRepeater Items="{Binding ArtworkCharacters}" Margin="10" >
                             <ItemsRepeater.Layout>
                                 <StackLayout Spacing="5"
                                              Orientation="Horizontal" />
@@ -111,18 +112,19 @@
                                 </DataTemplate>
                             </ItemsRepeater.ItemTemplate>
                         </ItemsRepeater>
-                    </Grid>
-                </Border>
-                <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
-                    <Grid RowDefinitions="*,*" Margin="10">
-                        <Grid Row="0" ColumnDefinitions="50*, 40*, 10*" >
-                            <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Tags"/>
-                            <AutoCompleteBox Grid.Column="1" Items="{Binding Tags}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Tags..." KeyUp="InputElement_OnKeyUp_Tag"/>
-                            <Button Grid.Column="2" Click="Button_OnAddTag" x:Name="AddTagButton" HorizontalAlignment="Right">
+                    </customControls:InputRow.ExtraControl>
+                </customControls:InputRow>
+                <customControls:InputRow Title="Tags">
+                    <customControls:InputRow.InputControl>
+                        <Grid ColumnDefinitions="80*, 20*" >
+                            <AutoCompleteBox Grid.Column="0" Items="{Binding Tags}" MinimumPrefixLength="0" FilterMode="ContainsOrdinal" Watermark="Tags..." KeyUp="InputElement_OnKeyUp_Tag"/>
+                            <Button Grid.Column="1" Click="Button_OnAddTag" x:Name="AddTagButton" HorizontalAlignment="Right">
                                 <avalonia:MaterialIcon Kind="Add" />
                             </Button>
                         </Grid>
-                        <ItemsRepeater Grid.Row="1" Items="{Binding ArtworkTags}">
+                    </customControls:InputRow.InputControl>
+                    <customControls:InputRow.ExtraControl>
+                        <ItemsRepeater Items="{Binding ArtworkTags}" Margin="10" >
                             <ItemsRepeater.Layout>
                                 <StackLayout Spacing="5"
                                              Orientation="Horizontal" />
@@ -140,30 +142,18 @@
                                 </DataTemplate>
                             </ItemsRepeater.ItemTemplate>
                         </ItemsRepeater>
-                    </Grid>
-                </Border>
-                <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
-                    <Grid ColumnDefinitions="*,*" Margin="10">
-                        <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="NSFW Rating"/>
-                        <ComboBox Grid.Column="1" SelectedIndex="0" SelectionChanged="NSFWSelectingItemsControl_OnSelectionChanged" HorizontalAlignment="Stretch">
-                            <ComboBoxItem>None</ComboBoxItem>
-                            <ComboBoxItem>Suggestive</ComboBoxItem>
-                            <ComboBoxItem>Nudity</ComboBoxItem>
-                            <ComboBoxItem>Adult</ComboBoxItem>
-                        </ComboBox>
-                    </Grid>
-                </Border>
-                <Border CornerRadius="10" HorizontalAlignment="Stretch" Background="Gray" >
-                    <Grid ColumnDefinitions="*,*" Margin="10">
-                        <TextBlock Grid.Column="0" VerticalAlignment="Center" Text="Gore Rating"/>
-                        <ComboBox Grid.Column="1" SelectedIndex="0" SelectionChanged="GoreSelectingItemsControl_OnSelectionChanged" HorizontalAlignment="Stretch">
-                            <ComboBoxItem>None</ComboBoxItem>
-                            <ComboBoxItem>Mild Injury</ComboBoxItem>
-                            <ComboBoxItem>Heavy Injury</ComboBoxItem>
-                            <ComboBoxItem>Gore</ComboBoxItem>
-                        </ComboBox>
-                    </Grid>
-                </Border>
+                    </customControls:InputRow.ExtraControl>
+                </customControls:InputRow>
+                <customControls:InputRow Title="NSFW Rating">
+                    <customControls:InputRow.InputControl>
+                        <ComboBox Items="{Binding NsfwRatingValues}" SelectedItem="{Binding Artwork.NsfwRating}" HorizontalAlignment="Stretch"/>
+                    </customControls:InputRow.InputControl>
+                </customControls:InputRow>
+                <customControls:InputRow Title="Gore Rating">
+                    <customControls:InputRow.InputControl>
+                        <ComboBox Items="{Binding GoreRatingValues}" SelectedItem="{Binding Artwork.GoreRating}" HorizontalAlignment="Stretch"/>
+                    </customControls:InputRow.InputControl>
+                </customControls:InputRow>
             </StackPanel>
         </ScrollViewer>
         <Grid Row="2" ColumnDefinitions="*,*" Margin="10" VerticalAlignment="Bottom">

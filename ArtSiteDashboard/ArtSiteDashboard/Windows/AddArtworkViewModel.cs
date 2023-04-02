@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using ArtSite.Data.Enums;
 using ArtSite.Data.Models;
 using ArtSite.Data.Models.ReactiveModels;
 using ReactiveUI;
@@ -59,4 +61,7 @@ public class AddArtworkViewModel : BaseWindowViewModel {
         get => _artworkCharacters;
         set => this.RaiseAndSetIfChanged(ref _artworkCharacters, value);
     }
+    
+    public IEnumerable<NSFWRating> NsfwRatingValues => Enum.GetValues<NSFWRating>();
+    public IEnumerable<GoreRating> GoreRatingValues => Enum.GetValues<GoreRating>();
 }

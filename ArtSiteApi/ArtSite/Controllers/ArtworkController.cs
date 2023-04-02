@@ -4,6 +4,7 @@ using ArtSite.Database.Entities;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using SkiaSharp;
 
 namespace ArtSite.Controllers;
 
@@ -21,8 +22,20 @@ public class ArtworkController : BaseEntityController<ArtworkController, Artwork
         if (artwork == default) return NotFound();
 
         var imageType = artwork.Extension.Substring(1);
+
+        using var bitmap = SKBitmap.Decode(artwork.File);
+        if (bitmap == null) return BadRequest();
+
+        var ratio = Math.Max(bitmap.Width / 500d, bitmap.Height / 500d);
+
+        ratio = Math.Max(ratio, 1d);
+
+        using var scaledBitmap =
+            bitmap.Resize(new SKImageInfo((int)(bitmap.Width / ratio), (int)(bitmap.Height / ratio)), SKFilterQuality.High);
+
+        using var data = scaledBitmap.Encode(SKEncodedImageFormat.Png, 75);
         
-        return File(artwork.File, $"image/{imageType}");
+        return File(data.ToArray(), $"image/png");
     }
 
     [HttpGet]
