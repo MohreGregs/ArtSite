@@ -5,7 +5,7 @@ using Avalonia.Markup.Xaml;
 
 namespace ArtSiteDashboard.Views.CharacterViews; 
 
-public partial class InterestsView : UserControl {
+public partial class InterestsView : ReactiveControl<InterestsViewModel> {
     public InterestsView() {
         InitializeComponent();
     }

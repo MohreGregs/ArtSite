@@ -6,7 +6,7 @@ namespace ArtSite.Data.Models.ReactiveModels;
 public class ReactiveAddArtworkModel: ReactiveObject{
     public int? Id { get; set; }
     private byte[] _fileData;
-    public byte[] Description { get; set; }
+    public string Description { get; set; }
     public string FileExtension { get; set; }
 
     public byte[] FileData {

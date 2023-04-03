@@ -1,9 +1,9 @@
 ﻿namespace ArtSite.Data.Models; 
 
 public class PersonalityModel: BaseModel {
-    public byte[]? PersonalityInfo { get; set; }
-    public byte[]? Traits { get; set; }
-    public byte[]? Flaws { get; set; }
+    public string PersonalityInfo { get; set; }
+    public string Traits { get; set; }
+    public string Flaws { get; set; }
     public byte Introverted { get; set; }
     public byte Intuitive { get; set; }
     public byte Thinking { get; set; }

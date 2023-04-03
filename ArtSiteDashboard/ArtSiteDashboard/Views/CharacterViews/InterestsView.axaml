@@ -13,13 +13,12 @@
     </Design.DataContext>
     <UserControl.Resources>
         <valueConverter:ListValueConverter x:Key="ListValueConverter"/>
-        <valueConverter:BytesToTextConverter x:Key="BytesToTextConverter"/>
     </UserControl.Resources>
     <Grid ColumnDefinitions="*, *" Margin="20">
         <DockPanel Grid.Column="0">
             <TextBlock  DockPanel.Dock="Top" Text="Hobbies" FontSize="20" Margin="0,0,0, 5"/>
             <ScrollViewer>
-                <customControls:MarkUpViewer RawMarkUp="{Binding CurrentCharacter.Interests.Hobbies, Converter={StaticResource BytesToTextConverter}}" Text="MarkUpViewer_OnText"/>
+                <customControls:MarkUpViewer RawMarkUp="{Binding CurrentCharacter.Interests.Hobbies}" Text="MarkUpViewer_OnText"/>
             </ScrollViewer>
         </DockPanel>
         <DockPanel Grid.Column="1">

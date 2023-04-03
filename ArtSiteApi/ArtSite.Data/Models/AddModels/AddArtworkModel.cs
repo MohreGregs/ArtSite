@@ -5,7 +5,7 @@ namespace ArtSite.Data.Models;
 
 public class AddArtworkModel : BaseModel{
     public byte[] FileData { get; set; }
-    public byte[] Description { get; set; }
+    public string Description { get; set; }
     public string FileExtension { get; set; }
 
     public NSFWRating NsfwRating { get; set; }

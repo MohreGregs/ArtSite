@@ -10,28 +10,25 @@
     <Design.DataContext>
         <characterViews:PersonalityViewModel/>
     </Design.DataContext>
-    <UserControl.Resources>
-        <valueConverter:BytesToTextConverter x:Key="BytesToTextConverter"/>
-    </UserControl.Resources>
     <Grid ColumnDefinitions="80*, 20*" Margin="20">
         <Grid Column="0" RowDefinitions="*, *">
             <DockPanel Grid.Row="0" Margin="0, 0, 0, 10">
                 <TextBlock DockPanel.Dock="Top" Text="Personality" FontSize="20" Margin="0,0,0, 5"/>
                 <ScrollViewer>
-                    <customControls:MarkUpViewer RawMarkUp="{Binding CurrentCharacter.Personality.PersonalityInfo, Converter={StaticResource BytesToTextConverter}}" Text="PersonalityTrait_OnValueChange"/>
+                    <customControls:MarkUpViewer RawMarkUp="{Binding CurrentCharacter.Personality.PersonalityInfo}" Text="PersonalityTrait_OnValueChange"/>
                 </ScrollViewer>
             </DockPanel>
             <Grid Row="1" ColumnDefinitions="*, *">
                 <DockPanel Grid.Column="0" Margin="0, 0, 0, 10">
                     <TextBlock DockPanel.Dock="Top" Text="Traits" FontSize="20" Margin="0,0,0, 5"/>
                     <ScrollViewer>
-                        <customControls:MarkUpViewer RawMarkUp="{Binding CurrentCharacter.Personality.Traits, Converter={StaticResource BytesToTextConverter}}" Text="PersonalityTrait_OnValueChange"/>
+                        <customControls:MarkUpViewer RawMarkUp="{Binding CurrentCharacter.Personality.Traits}" Text="PersonalityTrait_OnValueChange"/>
                     </ScrollViewer>
                 </DockPanel>
                 <DockPanel Grid.Column="1" Margin="0, 0, 0, 10">
                     <TextBlock DockPanel.Dock="Top" Text="Flaws" FontSize="20" Margin="0,0,0, 5"/>
                     <ScrollViewer>
-                        <customControls:MarkUpViewer RawMarkUp="{Binding CurrentCharacter.Personality.Flaws, Converter={StaticResource BytesToTextConverter}}" Text="PersonalityTrait_OnValueChange"/>
+                        <customControls:MarkUpViewer RawMarkUp="{Binding CurrentCharacter.Personality.Flaws}" Text="PersonalityTrait_OnValueChange"/>
                     </ScrollViewer>
                 </DockPanel>
             </Grid>

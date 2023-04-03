@@ -1,8 +1,8 @@
 ﻿namespace ArtSite.Data.Models; 
 
 public class GeneralInfoModel : BaseModel {
-    public byte[]? Info { get; set; }
-    public byte[]? Trivia { get; set; }
-    public byte[]? Likes { get; set; }
-    public byte[]? Dislikes { get; set; }
+    public string Info { get; set; }
+    public string Trivia { get; set; }
+    public string Likes { get; set; }
+    public string Dislikes { get; set; }
 }

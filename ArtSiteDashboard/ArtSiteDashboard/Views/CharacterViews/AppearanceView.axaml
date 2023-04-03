@@ -12,7 +12,6 @@
         <characterViews:AppearanceViewModel/>
     </Design.DataContext>
     <UserControl.Resources>
-        <valueConverter:BytesToTextConverter x:Key="BytesToTextConverter"/>
         <valueConverter:ColorConverter x:Key="ColorConverter"/>
     </UserControl.Resources>
     <Grid ColumnDefinitions="70*, 30*" Margin="20">
@@ -20,13 +19,13 @@
             <DockPanel Grid.Row="0">
                 <TextBlock  DockPanel.Dock="Top" Text="Info" FontSize="20" Margin="0,0,0, 5"/>
                 <ScrollViewer>
-                    <customControls:MarkUpViewer RawMarkUp="{Binding CurrentCharacter.Appearance.AppearanceInfo, Converter={StaticResource BytesToTextConverter}}" Text="MarkUpViewer_OnText"/>
+                    <customControls:MarkUpViewer RawMarkUp="{Binding CurrentCharacter.Appearance.AppearanceInfo}" Text="MarkUpViewer_OnText"/>
                 </ScrollViewer>
             </DockPanel>
             <DockPanel Grid.Row="1">
                 <TextBlock  DockPanel.Dock="Top" Text="Design Notes" FontSize="20" Margin="0,0,0, 5"/>
                 <ScrollViewer>
-                    <customControls:MarkUpViewer RawMarkUp="{Binding CurrentCharacter.Appearance.DesignNotes, Converter={StaticResource BytesToTextConverter}}" Text="MarkUpViewer_OnText"/>
+                    <customControls:MarkUpViewer RawMarkUp="{Binding CurrentCharacter.Appearance.DesignNotes}" Text="MarkUpViewer_OnText"/>
                 </ScrollViewer>
             </DockPanel>
         </Grid>

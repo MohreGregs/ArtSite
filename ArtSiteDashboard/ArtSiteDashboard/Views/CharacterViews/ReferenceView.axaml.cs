@@ -8,7 +8,7 @@ using Avalonia.Markup.Xaml;
 
 namespace ArtSiteDashboard.Views.CharacterViews; 
 
-public partial class ReferenceView : UserControl {
+public partial class ReferenceView : ReactiveControl<ReferenceViewModel> {
     public ReferenceView() {
         InitializeComponent();
     }

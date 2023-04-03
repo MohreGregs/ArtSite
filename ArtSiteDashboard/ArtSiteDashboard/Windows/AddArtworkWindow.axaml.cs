@@ -62,7 +62,7 @@ public partial class AddArtworkWindow : ReactiveWindow<AddArtworkViewModel> {
         }
 
         var artworkToAdd = new AddArtworkModel{
-            Description = Encoding.UTF8.GetBytes(ViewModel.ArtworkDescription),
+            Description = ViewModel.ArtworkDescription,
             ArtistIds = artistIds,
             CharacterIds = characterIds,
             NsfwRating = ViewModel.Artwork.NsfwRating,

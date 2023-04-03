@@ -5,7 +5,7 @@ using Avalonia.Markup.Xaml;
 
 namespace ArtSiteDashboard.Views.CharacterViews; 
 
-public partial class AppearanceView : UserControl {
+public partial class AppearanceView : ReactiveControl<AppearanceViewModel> {
     public AppearanceView() {
         InitializeComponent();
     }
