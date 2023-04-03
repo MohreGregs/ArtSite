@@ -21,8 +21,8 @@ public class BaseEntityController<TController, TEntity, TModel, TAddModel> : Bas
     [HttpGet]
     public async Task<ActionResult<List<TEntity>?>> Get() {
         var data = await _context.Set<TEntity>().ToListAsync();
-
-        return Ok(_mapper.Map<List<TModel>>(data));
+        var x = _mapper.Map<List<TModel>>(data);
+        return Ok(x);
     }
 
     [HttpGet]

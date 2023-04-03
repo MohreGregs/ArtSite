@@ -5,6 +5,7 @@
              xmlns:valueConverter="clr-namespace:ArtSiteDashboard.Views.ValueConverter"
              xmlns:characterViews="clr-namespace:ArtSiteDashboard.Views.CharacterViews"
              xmlns:avalonia="clr-namespace:Markdown.Avalonia;assembly=Markdown.Avalonia"
+             xmlns:customControls="clr-namespace:ArtSite.Dashboard.CustomControls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ArtSiteDashboard.Views.CharacterViews.InterestsView">
     <Design.DataContext>
@@ -14,14 +15,18 @@
         <valueConverter:ListValueConverter x:Key="ListValueConverter"/>
         <valueConverter:BytesToTextConverter x:Key="BytesToTextConverter"/>
     </UserControl.Resources>
-    <Grid ColumnDefinitions="50*, 50*" Margin="20">
-        <StackPanel Grid.Column="0" Spacing="5">
-            <TextBlock Text="Hobbies" FontSize="20"/>
-            <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Interests.Hobbies, Converter={StaticResource BytesToTextConverter}}"/>
-        </StackPanel>
-        <StackPanel Grid.Column="1" Spacing="5">
-            <TextBlock Text="Music" FontSize="20"/>
-            <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Interests.Music, Converter={StaticResource ListValueConverter}}"/>
-        </StackPanel>
+    <Grid ColumnDefinitions="*, *" Margin="20">
+        <DockPanel Grid.Column="0">
+            <TextBlock  DockPanel.Dock="Top" Text="Hobbies" FontSize="20" Margin="0,0,0, 5"/>
+            <ScrollViewer>
+                <customControls:MarkUpViewer RawMarkUp="{Binding CurrentCharacter.Interests.Hobbies, Converter={StaticResource BytesToTextConverter}}" Text="MarkUpViewer_OnText"/>
+            </ScrollViewer>
+        </DockPanel>
+        <DockPanel Grid.Column="1">
+            <TextBlock DockPanel.Dock="Top" Text="Music" FontSize="20" Margin="0,0,0, 5"/>
+            <ScrollViewer>
+                <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Interests.Music, Converter={StaticResource ListValueConverter}}"/>
+            </ScrollViewer>
+        </DockPanel>
     </Grid>
 </UserControl>

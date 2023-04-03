@@ -18,4 +18,5 @@ public class GeneralInfoViewModel : BaseViewModel{
         get => _currentCharacter;
         set => this.RaiseAndSetIfChanged(ref _currentCharacter, value);
     }
+    
 }

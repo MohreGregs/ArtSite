@@ -2,10 +2,9 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             xmlns:views="clr-namespace:ArtSiteDashboard.Views"
              xmlns:characterViews="clr-namespace:ArtSiteDashboard.Views.CharacterViews"
              xmlns:valueConverter="clr-namespace:ArtSiteDashboard.Views.ValueConverter"
-             xmlns:avalonia="clr-namespace:Markdown.Avalonia;assembly=Markdown.Avalonia"
+             xmlns:customControls="clr-namespace:ArtSite.Dashboard.CustomControls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ArtSiteDashboard.Views.CharacterViews.GeneralInfoView">
     <Design.DataContext>
@@ -14,26 +13,34 @@
     <UserControl.Resources>
         <valueConverter:BytesToTextConverter x:Key="BytesToTextConverter"/>
     </UserControl.Resources>
-    <Grid ColumnDefinitions="*,300" Margin="20">
-        <Grid Column="0" RowDefinitions="Auto, Auto">
-            <StackPanel Grid.Row="0" Spacing="10" Margin="0, 0, 0, 10">
-                <TextBlock Text="General" FontSize="20"/>
-                <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.GeneralInfo.Info, Converter={StaticResource BytesToTextConverter}}"/>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Spacing="5">
-                <TextBlock Text="Trivia" FontSize="20"/>
-                <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.GeneralInfo.Trivia, Converter={StaticResource BytesToTextConverter}}"/>
-            </StackPanel>
+    <Grid ColumnDefinitions="*,*" Margin="20">
+        <Grid Column="0" RowDefinitions="*, *">
+            <DockPanel Grid.Row="0" Margin="0, 0, 0, 10">
+                <TextBlock DockPanel.Dock="Top" Text="General" FontSize="20" Margin="0,0,0, 5"/>
+                <ScrollViewer>
+                    <customControls:MarkUpViewer RawMarkUp="{Binding CurrentCharacter.GeneralInfo.Info, Converter={StaticResource BytesToTextConverter}}" Text="Miau"/>
+                </ScrollViewer>
+            </DockPanel>
+            <DockPanel Grid.Row="1">
+                <TextBlock  DockPanel.Dock="Top" Text="Trivia" FontSize="20" Margin="0,0,0, 5"/>
+                <ScrollViewer>
+                    <customControls:MarkUpViewer RawMarkUp="{Binding CurrentCharacter.GeneralInfo.Trivia, Converter={StaticResource BytesToTextConverter}}" />
+                </ScrollViewer>
+            </DockPanel>
         </Grid>
-        <Grid Column="1" RowDefinitions="Auto, Auto">
-            <StackPanel Grid.Row="0" Spacing="5">
-                <TextBlock Text="Likes" FontSize="20"/>
-                <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.GeneralInfo.Likes, Converter={StaticResource BytesToTextConverter}}"/>
-            </StackPanel>
-            <StackPanel Grid.Row="1" Spacing="5">
-                <TextBlock Text="Dislikes" FontSize="20"/>
-                <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.GeneralInfo.Dislikes, Converter={StaticResource BytesToTextConverter}}"/>
-            </StackPanel>
+        <Grid Column="1" RowDefinitions="*, *">
+            <DockPanel Grid.Row="0">
+                <TextBlock  DockPanel.Dock="Top" Text="Likes" FontSize="20" Margin="0,0,0, 5"/>
+                <ScrollViewer>
+                    <customControls:MarkUpViewer RawMarkUp="{Binding CurrentCharacter.GeneralInfo.Likes, Converter={StaticResource BytesToTextConverter}}" />
+                </ScrollViewer>
+            </DockPanel>
+            <DockPanel Grid.Row="1">
+                <TextBlock  DockPanel.Dock="Top" Text="Dislikes" FontSize="20" Margin="0,0,0, 5"/>
+                <ScrollViewer>
+                    <customControls:MarkUpViewer RawMarkUp="{Binding CurrentCharacter.GeneralInfo.Dislikes, Converter={StaticResource BytesToTextConverter}}" />
+                </ScrollViewer>
+            </DockPanel>
         </Grid>
     </Grid>
 </UserControl>

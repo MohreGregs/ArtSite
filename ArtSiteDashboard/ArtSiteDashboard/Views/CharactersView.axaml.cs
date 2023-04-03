@@ -145,4 +145,12 @@ public partial class CharactersView : ReactiveControl<CharactersViewModel> {
         await editCharacterWindow.ShowDialog(ViewModel.MainWindow);
         await GetCharacters();
     }
+
+    private void HasChanged() {
+        ViewModel.CharacterHasChanged = true;
+    }
+
+    private void Button_OnSave(object? sender, RoutedEventArgs e) {
+        throw new NotImplementedException();
+    }
 }

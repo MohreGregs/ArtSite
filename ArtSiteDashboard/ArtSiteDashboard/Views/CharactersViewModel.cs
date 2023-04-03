@@ -18,12 +18,22 @@ public class CharactersViewModel : BaseViewModel {
     
     private ObservableCollection<ReactiveCharacterModel> _characters = new();
     private BaseViewModel _characterView;
-
+    
     private ReactiveCharacterModel? _currentCharacter;
     private ArtworkModel _icon;
     private Bitmap _iconImage;
     private MainWindow _mainWindow;
     private MainWindowViewModel _mainWindowViewModel;
+
+    private bool _characterHasChanged;
+
+    public delegate void CharacterChangedDelegate();
+    public static CharacterChangedDelegate CharacterChangedEvent;
+
+    public bool CharacterHasChanged {
+        get => _characterHasChanged;
+        set => this.RaiseAndSetIfChanged(ref _characterHasChanged, value);
+    }   
     
     public CharactersViewModel(MainWindowViewModel mainWindowViewModel) {
         Activator = new ViewModelActivator();
@@ -34,6 +44,7 @@ public class CharactersViewModel : BaseViewModel {
         InterestsView = new InterestsViewModel();
         AppearanceView = new AppearanceViewModel();
         ReferenceView = new ReferenceViewModel();
+        CharacterChangedEvent = delegate { CharacterHasChanged = true;};
     }
 
     public MainWindowViewModel MainWindowViewModel {

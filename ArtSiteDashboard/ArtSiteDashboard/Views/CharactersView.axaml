@@ -130,10 +130,13 @@
                     </Button>
                 </StackPanel>
             </Grid>
+            <Panel Grid.Row="1">
+                <Grid >
+                    <ContentControl Content="{Binding CharacterView}"/>
+                </Grid>
+                <Button IsVisible="{Binding CharacterHasChanged}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20" Click="Button_OnSave"><avalonia:MaterialIcon Kind="ContentSave"/></Button>
+            </Panel>
             
-            <Grid Row="1">
-                <ContentControl Content="{Binding CharacterView}"/>
-            </Grid>
         </Grid>
     </Grid>
 </UserControl>

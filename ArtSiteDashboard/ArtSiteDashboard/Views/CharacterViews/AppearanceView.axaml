@@ -4,29 +4,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:characterViews="clr-namespace:ArtSiteDashboard.Views.CharacterViews"
              xmlns:valueConverter="clr-namespace:ArtSiteDashboard.Views.ValueConverter"
-             xmlns:avalonia="clr-namespace:Markdown.Avalonia;assembly=Markdown.Avalonia"
              xmlns:models="clr-namespace:ArtSite.Data.Models;assembly=ArtSite.Data"
+             xmlns:customControls="clr-namespace:ArtSite.Dashboard.CustomControls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ArtSiteDashboard.Views.CharacterViews.AppearanceView">
     <Design.DataContext>
         <characterViews:AppearanceViewModel/>
     </Design.DataContext>
     <UserControl.Resources>
-        <valueConverter:BytesToTextConverter x:Key="GeneralInfoValueConverter"/>
+        <valueConverter:BytesToTextConverter x:Key="BytesToTextConverter"/>
         <valueConverter:ColorConverter x:Key="ColorConverter"/>
     </UserControl.Resources>
-    <Grid ColumnDefinitions="*, Auto" Margin="20">
-        <Grid Column="0" RowDefinitions="Auto, Auto">
-            <StackPanel Grid.Row="0">
-                <TextBlock Text="Appearance" FontSize="20"/>
-                <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Appearance.AppearanceInfo, Converter={StaticResource GeneralInfoValueConverter}}"/>
-            </StackPanel>
-            <StackPanel Grid.Row="1">
-                <TextBlock Text="Design Notes" FontSize="20"/>
-                <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Appearance.DesignNotes, Converter={StaticResource GeneralInfoValueConverter}}"/>
-            </StackPanel>
+    <Grid ColumnDefinitions="70*, 30*" Margin="20">
+        <Grid Column="0" RowDefinitions="*, *">
+            <DockPanel Grid.Row="0">
+                <TextBlock  DockPanel.Dock="Top" Text="Info" FontSize="20" Margin="0,0,0, 5"/>
+                <ScrollViewer>
+                    <customControls:MarkUpViewer RawMarkUp="{Binding CurrentCharacter.Appearance.AppearanceInfo, Converter={StaticResource BytesToTextConverter}}" Text="MarkUpViewer_OnText"/>
+                </ScrollViewer>
+            </DockPanel>
+            <DockPanel Grid.Row="1">
+                <TextBlock  DockPanel.Dock="Top" Text="Design Notes" FontSize="20" Margin="0,0,0, 5"/>
+                <ScrollViewer>
+                    <customControls:MarkUpViewer RawMarkUp="{Binding CurrentCharacter.Appearance.DesignNotes, Converter={StaticResource BytesToTextConverter}}" Text="MarkUpViewer_OnText"/>
+                </ScrollViewer>
+            </DockPanel>
         </Grid>
-        <Grid Column="1" RowDefinitions="Auto, Auto">
+        <Grid Column="1" RowDefinitions="Auto, *">
             <TextBlock Text="Colors" FontSize="20" Grid.Row="0" Margin="0, 0 ,0 10"/>
             <ItemsRepeater Grid.Row="1" Items="{Binding CurrentCharacter.Appearance.Colors}">
                 <ItemsRepeater.ItemTemplate >

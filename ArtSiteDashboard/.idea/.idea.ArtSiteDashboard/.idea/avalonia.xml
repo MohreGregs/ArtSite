@@ -7,14 +7,17 @@
         <entry key="ArtSiteDashboard/CharactersView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/Controls/InputRow.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/CustomControls/InputRow.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
+        <entry key="ArtSiteDashboard/CustomControls/MarkUpViewer.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
+        <entry key="ArtSiteDashboard/CustomControls/PersonalityTrait.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
         <entry key="ArtSiteDashboard/MainWindow.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
         <entry key="ArtSiteDashboard/MessageBox.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/NoCharactersView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/Styles/SliderStyle.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
         <entry key="ArtSiteDashboard/Views/AddNewCharacterView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
-        <entry key="ArtSiteDashboard/Views/CharacterViews/AppearanceView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
-        <entry key="ArtSiteDashboard/Views/CharacterViews/GeneralInfoView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/Views/CharacterViews/AppearanceView.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
+        <entry key="ArtSiteDashboard/Views/CharacterViews/GeneralInfoView.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
         <entry key="ArtSiteDashboard/Views/CharacterViews/InterestsView.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
-        <entry key="ArtSiteDashboard/Views/CharacterViews/PersonalityView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
+        <entry key="ArtSiteDashboard/Views/CharacterViews/PersonalityView.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
         <entry key="ArtSiteDashboard/Views/CharacterViews/ReferenceView.axaml" value="ArtSiteDashboard/ArtSiteDashboard.csproj" />
         <entry key="ArtSiteDashboard/Views/CharactersView.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />
         <entry key="ArtSiteDashboard/Views/HomeView.axaml" value="ArtSiteDashboard/ArtSite.Dashboard.csproj" />

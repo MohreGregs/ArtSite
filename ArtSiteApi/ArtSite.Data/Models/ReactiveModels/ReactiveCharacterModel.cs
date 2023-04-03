@@ -32,8 +32,14 @@ public class ReactiveCharacterModel: ReactiveObject {
         model.Sexuality = character.Sexuality;
         model.IconId = character.IconId;
         model.WantedArtwork = character.WantedArtwork;
+        model.Tags = character.Tags;
         model.Species = character.Species;
         model.OriginalDesigner = character.OriginalDesigner;
+        model.References = character.References;
+        model.GeneralInfo = character.GeneralInfo;
+        model.Personality = character.Personality;
+        model.Interests = character.Interests;
+        model.Appearance = character.Appearance;
         return model;
     }
 }

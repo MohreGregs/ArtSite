@@ -1,3 +1,4 @@
+using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
 using ReactiveUI;
@@ -22,6 +23,7 @@ namespace ArtSiteDashboard {
             });
 
             AvaloniaXamlLoader.Load(this);
+            this.AttachDevTools();
         }
 
         private void Menu_OnItemChanged(object? sender, SelectionChangedEventArgs e) {

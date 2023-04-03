@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:characterViews="clr-namespace:ArtSiteDashboard.Views.CharacterViews"
              xmlns:valueConverter="clr-namespace:ArtSiteDashboard.Views.ValueConverter"
-             xmlns:avalonia="clr-namespace:Markdown.Avalonia;assembly=Markdown.Avalonia"
+             xmlns:customControls="clr-namespace:ArtSite.Dashboard.CustomControls"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="ArtSiteDashboard.Views.CharacterViews.PersonalityView">
     <Design.DataContext>
@@ -13,50 +13,36 @@
     <UserControl.Resources>
         <valueConverter:BytesToTextConverter x:Key="BytesToTextConverter"/>
     </UserControl.Resources>
-    <Grid ColumnDefinitions="*, Auto" Margin="20">
-        <Grid Column="0" RowDefinitions="Auto, Auto">
-            <StackPanel Grid.Row="0" Spacing="5" Margin="0, 0, 0, 10">
-                <TextBlock Text="Personality" FontSize="20"/>
-                <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Personality.PersonalityInfo, Converter={StaticResource BytesToTextConverter}}"/>
-            </StackPanel>
-            <Grid Row="1" ColumnDefinitions="50*, 50*">
-                <StackPanel Grid.Column="0" Spacing="5">
-                    <TextBlock Text="Traits" FontSize="20"/>
-                    <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Personality.Traits, Converter={StaticResource BytesToTextConverter}}"/>
-                </StackPanel>
-                <StackPanel Grid.Column="1" Spacing="5">
-                    <TextBlock Text="Flaws" FontSize="20" />
-                    <avalonia:MarkdownScrollViewer Markdown="{Binding CurrentCharacter.Personality.Flaws, Converter={StaticResource BytesToTextConverter}}"/>
-                </StackPanel>
+    <Grid ColumnDefinitions="80*, 20*" Margin="20">
+        <Grid Column="0" RowDefinitions="*, *">
+            <DockPanel Grid.Row="0" Margin="0, 0, 0, 10">
+                <TextBlock DockPanel.Dock="Top" Text="Personality" FontSize="20" Margin="0,0,0, 5"/>
+                <ScrollViewer>
+                    <customControls:MarkUpViewer RawMarkUp="{Binding CurrentCharacter.Personality.PersonalityInfo, Converter={StaticResource BytesToTextConverter}}" Text="PersonalityTrait_OnValueChange"/>
+                </ScrollViewer>
+            </DockPanel>
+            <Grid Row="1" ColumnDefinitions="*, *">
+                <DockPanel Grid.Column="0" Margin="0, 0, 0, 10">
+                    <TextBlock DockPanel.Dock="Top" Text="Traits" FontSize="20" Margin="0,0,0, 5"/>
+                    <ScrollViewer>
+                        <customControls:MarkUpViewer RawMarkUp="{Binding CurrentCharacter.Personality.Traits, Converter={StaticResource BytesToTextConverter}}" Text="PersonalityTrait_OnValueChange"/>
+                    </ScrollViewer>
+                </DockPanel>
+                <DockPanel Grid.Column="1" Margin="0, 0, 0, 10">
+                    <TextBlock DockPanel.Dock="Top" Text="Flaws" FontSize="20" Margin="0,0,0, 5"/>
+                    <ScrollViewer>
+                        <customControls:MarkUpViewer RawMarkUp="{Binding CurrentCharacter.Personality.Flaws, Converter={StaticResource BytesToTextConverter}}" Text="PersonalityTrait_OnValueChange"/>
+                    </ScrollViewer>
+                </DockPanel>
             </Grid>
         </Grid>
         <Grid Column="1">
             <StackPanel Spacing="5">
-                <Grid ColumnDefinitions="20, Auto, 20">
-                    <TextBlock Grid.Column="0" Text="I" TextAlignment="Center"/>
-                    <ProgressBar Grid.Column="1" Value="{Binding CurrentCharacter.Personality.Introverted}" MaxWidth="200" Height="10"/>
-                    <TextBlock Grid.Column="2" Text="E" TextAlignment="Center"/>
-                </Grid>
-                <Grid ColumnDefinitions="20, Auto, 20">
-                    <TextBlock Grid.Column="0" Text="I" TextAlignment="Center"/>
-                    <ProgressBar Grid.Column="1" Value="{Binding CurrentCharacter.Personality.Intuitive}" MaxWidth="200" Height="10"/>
-                    <TextBlock Grid.Column="2" Text="O" TextAlignment="Center"/>
-                </Grid>
-                <Grid ColumnDefinitions="20, Auto, 20">
-                    <TextBlock Grid.Column="0" Text="T" TextAlignment="Center"/>
-                    <ProgressBar Grid.Column="1" Value="{Binding CurrentCharacter.Personality.Thinking}" MaxWidth="200" Height="10"/>
-                    <TextBlock Grid.Column="2" Text="F" TextAlignment="Center"/>
-                </Grid>
-                <Grid ColumnDefinitions="20, Auto, 20">
-                    <TextBlock Grid.Column="0" Text="J" TextAlignment="Center"/>
-                    <ProgressBar Grid.Column="1" Value="{Binding CurrentCharacter.Personality.Judging}" MaxWidth="200" Height="10"/>
-                    <TextBlock Grid.Column="2" Text="P" TextAlignment="Center"/>
-                </Grid>
-                <Grid ColumnDefinitions="20, Auto, 20">
-                    <TextBlock Grid.Column="0" Text="A" TextAlignment="Center"/>
-                    <ProgressBar Grid.Column="1" Value="{Binding CurrentCharacter.Personality.Assertive}" MaxWidth="200" Height="10"/>
-                    <TextBlock Grid.Column="2" Text="T" TextAlignment="Center"/>
-                </Grid>
+                <customControls:PersonalityTrait TextLeft="I" TextRight="E" SliderValue="{Binding CurrentCharacter.Personality.Introverted}" ValueChange="PersonalityTrait_OnValueChange"/>
+                <customControls:PersonalityTrait TextLeft="I" TextRight="O" SliderValue="{Binding CurrentCharacter.Personality.Intuitive}" ValueChange="PersonalityTrait_OnValueChange"/>
+                <customControls:PersonalityTrait TextLeft="T" TextRight="F" SliderValue="{Binding CurrentCharacter.Personality.Thinking}" ValueChange="PersonalityTrait_OnValueChange"/>
+                <customControls:PersonalityTrait TextLeft="J" TextRight="P" SliderValue="{Binding CurrentCharacter.Personality.Judging}" ValueChange="PersonalityTrait_OnValueChange"/>
+                <customControls:PersonalityTrait TextLeft="A" TextRight="T" SliderValue="{Binding CurrentCharacter.Personality.Assertive}" ValueChange="PersonalityTrait_OnValueChange"/>
             </StackPanel>
         </Grid>
     </Grid>
