@@ -22,6 +22,10 @@ public static partial class Api {
     public static async Task<CharacterModel?> EditCharacter(object character) {
         return await PutRequest<CharacterModel>("character", "editSimple", character);
     }
+    
+    public static async Task<CharacterModel?> EditExtraCharacterInfo(object character) {
+        return await PutRequest<CharacterModel>("character", "editExtraInfo", character);
+    }
 
     public static async Task<HttpRequestMessage?> SetIcon(SetIconModel model) {
         return await PostRequest<HttpRequestMessage>("character", "setIcon", model);

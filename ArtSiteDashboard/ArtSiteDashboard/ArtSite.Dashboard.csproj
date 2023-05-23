@@ -29,6 +29,9 @@
         <PackageReference Include="Founntain.Nein" Version="2023.402.0" />
         <PackageReference Include="Markdown.Avalonia" Version="0.10.13" />
         <PackageReference Include="Material.Icons.Avalonia" Version="1.1.10" />
+        <PackageReference Include="Microsoft.Extensions.Hosting" Version="7.0.1" />
+        <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="7.0.0" />
+        <PackageReference Include="Splat.Microsoft.Extensions.DependencyInjection" Version="14.6.8" />
         <PackageReference Include="XamlNameReferenceGenerator" Version="1.6.1" />
     </ItemGroup>
     <ItemGroup>

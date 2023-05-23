@@ -26,7 +26,8 @@
     <Grid ColumnDefinitions="150, *">
         <ListBox Grid.Column="0"
                  Items="{Binding Characters}"
-                 SelectedItem="{Binding CurrentCharacter}"
+                 SelectedItem="{Binding CurrentCharacter, Mode=OneWay}"
+                 SelectionChanged="SelectingItemsControl_OnSelectionChanged"
                  VerticalAlignment="Stretch"
                  Background="#FF343434">
             <ListBox.ItemTemplate>
@@ -134,9 +135,11 @@
                 <Grid >
                     <ContentControl Content="{Binding CharacterView}"/>
                 </Grid>
-                <Button IsVisible="{Binding CharacterHasChanged}" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20" Click="Button_OnSave"><avalonia:MaterialIcon Kind="ContentSave"/></Button>
+                <Grid ColumnDefinitions="Auto, Auto" VerticalAlignment="Bottom" HorizontalAlignment="Right" Margin="20" IsVisible="{Binding CharacterHasChanged}">
+                    <Button Grid.Column="0" Click="Button_OnSave"><avalonia:MaterialIcon Kind="ContentSave"/></Button>
+                    <Button Grid.Column="1" Click="Button_OnRevert"><avalonia:MaterialIcon Kind="Undo"/></Button>
+                </Grid>
             </Panel>
-            
         </Grid>
     </Grid>
 </UserControl>

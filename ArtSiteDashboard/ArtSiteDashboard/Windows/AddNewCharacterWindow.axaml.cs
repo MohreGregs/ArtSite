@@ -18,7 +18,7 @@ using ReactiveUI;
 namespace ArtSiteDashboard.Windows; 
 
 public partial class AddNewCharacterWindow : ReactiveWindow<AddNewCharacterViewModel> {
-   public AddNewCharacterWindow(int? characterId) {
+   public AddNewCharacterWindow(int? characterId, IMessenger messenger) {
         
         InitializeComponent(characterId);
 #if DEBUG
@@ -29,10 +29,13 @@ public partial class AddNewCharacterWindow : ReactiveWindow<AddNewCharacterViewM
     public AddNewCharacterWindow(){InitializeComponent(null);}
 
     private void InitializeComponent(int? characterId) {
-        ViewModel = new AddNewCharacterViewModel(characterId);
         AvaloniaXamlLoader.Load(this);
 
         this.WhenActivated(Block);
+    }
+
+    public void SetCharacterId(int id) {
+        ViewModel = new AddNewCharacterViewModel(id);
     }
 
     private async void Block(CompositeDisposable obj) {

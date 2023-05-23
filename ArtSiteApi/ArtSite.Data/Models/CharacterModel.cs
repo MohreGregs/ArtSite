@@ -8,7 +8,7 @@ public class CharacterModel : BaseNameModel {
     public Gender Gender { get; set; }
     public Sexuality Sexuality { get; set; }
     public int? IconId { get; set; }
-    public string WantedArtwork { get; set; }
+    public string? WantedArtwork { get; set; }
     public ArtworkModel? Icon { get; set; }
     public HashSet<TagModel> Tags { get; set; }
     public SpeciesModel Species { get; set; }

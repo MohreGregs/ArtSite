@@ -145,6 +145,51 @@ public class CharacterController : BaseEntityController<CharacterController, Cha
 
         return Ok(character);
     }
+    
+    [HttpPut]
+    [Route("editExtraInfo")]
+    public async Task<ActionResult<CharacterModel>> EditExtraInfo([FromBody] EditCharacterModel? model) {
+        if (model?.Id == default) return BadRequest();
+
+        var character = await _context.Characters.FirstOrDefaultAsync(x => x.Id == model.Id);
+
+        if (character == default) return BadRequest();
+
+        var generalInfo = await _context.GeneralInfos.FirstOrDefaultAsync(x => x.Character.Id == character.Id);
+        if (generalInfo == default) return BadRequest();
+
+        generalInfo.Info = model.GeneralInfo.Info;
+        generalInfo.Trivia = model.GeneralInfo.Trivia;
+        generalInfo.Likes = model.GeneralInfo.Likes;
+        generalInfo.Dislikes = model.GeneralInfo.Dislikes;
+
+        var personality = await _context.Personalities.FirstOrDefaultAsync(x => x.Character.Id == character.Id);
+        if (personality == default) return BadRequest();
+
+        personality.PersonalityInfo = model.Personality.PersonalityInfo;
+        personality.Traits = model.Personality.Traits;
+        personality.Flaws = model.Personality.Flaws;
+        personality.Introverted = model.Personality.Introverted;
+        personality.Intuitiv = model.Personality.Intuitive;
+        personality.Judging = model.Personality.Judging;
+        personality.Thinking = model.Personality.Thinking;
+        personality.Assertive = model.Personality.Assertive;
+
+        var interests = await _context.InterestsSet.FirstOrDefaultAsync(x => x.Character.Id == character.Id);
+        if (interests == default) return BadRequest();
+
+        interests.Hobbies = model.Interests.Hobbies;
+
+        var appearance = await _context.Appearances.FirstOrDefaultAsync(x => x.Character.Id == character.Id);
+        if (appearance == default) return BadRequest();
+
+        appearance.AppearanceInfo = model.Appearance.AppearanceInfo;
+        appearance.DesignNotes = model.Appearance.DesignNotes;
+        
+        await _context.SaveChangesAsync();
+
+        return Ok(character);
+    }
 
     [HttpPost]
     [Route("setIcon")]

@@ -19,7 +19,7 @@ namespace ArtSiteDashboard {
             this.WhenActivated(disposables =>
             {
                 if (ViewModel != null)
-                    ViewModel.MainView = ViewModel.HomeView;
+                    ViewModel.MainView = ViewModel.HomeViewModel;
             });
 
             AvaloniaXamlLoader.Load(this);
@@ -28,17 +28,7 @@ namespace ArtSiteDashboard {
 
         private void Menu_OnItemChanged(object? sender, SelectionChangedEventArgs e) {
             var listBox = sender as ListBox;
-            switch (listBox.SelectedItem.ToString()) {
-                case "Home":
-                    ViewModel.MainView = ViewModel.HomeView;
-                    break;
-                case "Characters":
-                    ViewModel.MainView = ViewModel.CharactersView;
-                    break;
-                case "Artworks":
-                    ViewModel.MainView = ViewModel.HomeView;
-                    break;
-            }
+            ViewModel.ChangeView(listBox.SelectedItem.ToString());
         }
     }
 }

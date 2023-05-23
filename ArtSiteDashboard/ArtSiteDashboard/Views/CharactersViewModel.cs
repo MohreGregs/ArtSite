@@ -1,9 +1,11 @@
 ﻿using System.Collections.ObjectModel;
 using System.Reactive.Disposables;
+using System.Threading.Tasks;
 using ArtSite.Data.Models;
 using ArtSite.Data.Models.ReactiveModels;
 using ArtSiteDashboard.Extensions.Network;
 using ArtSiteDashboard.Views.CharacterViews;
+using ArtSiteDashboard.Windows;
 using Avalonia.Media.Imaging;
 using ReactiveUI;
 
@@ -23,7 +25,6 @@ public class CharactersViewModel : BaseViewModel {
     private ArtworkModel _icon;
     private Bitmap _iconImage;
     private MainWindow _mainWindow;
-    private MainWindowViewModel _mainWindowViewModel;
 
     private bool _characterHasChanged;
 
@@ -35,23 +36,33 @@ public class CharactersViewModel : BaseViewModel {
         set => this.RaiseAndSetIfChanged(ref _characterHasChanged, value);
     }   
     
-    public CharactersViewModel(MainWindowViewModel mainWindowViewModel) {
+    private readonly AddNewCharacterWindow _addNewCharacterWindow;
+    
+    public CharactersViewModel(
+        AddNewCharacterWindow addNewCharacterWindow,
+        GeneralInfoViewModel generalInfoViewModel,
+        PersonalityViewModel personalityViewModel,
+        InterestsViewModel interestsViewModel,
+        AppearanceViewModel appearanceViewModel,
+        ReferenceViewModel referenceViewModel
+        ) {
         Activator = new ViewModelActivator();
         this.WhenActivated(Block);
-        MainWindowViewModel = mainWindowViewModel;
-        GeneralInfoView = new GeneralInfoViewModel();
-        PersonalityView = new PersonalityViewModel();
-        InterestsView = new InterestsViewModel();
-        AppearanceView = new AppearanceViewModel();
-        ReferenceView = new ReferenceViewModel();
+        _addNewCharacterWindow = addNewCharacterWindow;
+        GeneralInfoView = generalInfoViewModel;
+        PersonalityView = personalityViewModel;
+        InterestsView = interestsViewModel;
+        AppearanceView = appearanceViewModel;
+        ReferenceView = referenceViewModel;
         CharacterChangedEvent = delegate { CharacterHasChanged = true;};
     }
 
-    public MainWindowViewModel MainWindowViewModel {
-        get => _mainWindowViewModel;
-        set => this.RaiseAndSetIfChanged(ref _mainWindowViewModel, value);
-    }
+    public async Task OpenEditCharacterWindow() {
+        _addNewCharacterWindow.SetCharacterId(CurrentCharacter.Id.Value);
 
+        await _addNewCharacterWindow.ShowDialog(MainWindow);
+    }
+    
     public MainWindow MainWindow {
         get => _mainWindow;
         set => this.RaiseAndSetIfChanged(ref _mainWindow, value);
@@ -87,8 +98,14 @@ public class CharactersViewModel : BaseViewModel {
         get => _currentCharacter;
         set {
             this.RaiseAndSetIfChanged(ref _currentCharacter, value);
-            GetIcon();
         }
+    }
+    
+    public void SelectCharacter(ReactiveCharacterModel? character) {
+        CurrentCharacter = character;
+        GetIcon();
+        CharacterView = GeneralInfoView;
+        GeneralInfoView.CurrentCharacter = character;
     }
 
     private async void GetIcon() {

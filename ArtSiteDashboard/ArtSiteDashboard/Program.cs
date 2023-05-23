@@ -16,7 +16,7 @@ namespace ArtSiteDashboard {
         public static void Main(string[] args) {
             var builder = BuildAvaloniaApp();
             
-            Register(Locator.CurrentMutable, Locator.Current, builder.RuntimePlatform);
+            //Register(Locator.CurrentMutable, Locator.Current, builder.RuntimePlatform);
             
             builder.StartWithClassicDesktopLifetime(args);
         }
@@ -33,10 +33,11 @@ namespace ArtSiteDashboard {
                     UseWindowsUIComposition = true
                 });
 
-        private static void Register(IMutableDependencyResolver services, IReadonlyDependencyResolver resolver,
-            IRuntimePlatform platform) {
-            services.Register(() => new MainWindowViewModel());
-            services.RegisterLazySingleton(() => new MainWindow(resolver.GetRequiredService<MainWindowViewModel>()));
-        }
+        // private static void Register(IMutableDependencyResolver services, IReadonlyDependencyResolver resolver,
+        //     IRuntimePlatform platform) {
+        //     services.Register<MainWindowViewModel>(() => new MainWindowViewModel());
+        //     services.RegisterLazySingleton(() => new MainWindow(resolver.GetRequiredService<MainWindowViewModel>()));
+        //     services.RegisterLazySingleton<IMessenger>(() => new Messenger());
+        // }
     }
 }

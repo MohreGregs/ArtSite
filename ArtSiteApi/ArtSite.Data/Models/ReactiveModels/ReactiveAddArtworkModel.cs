@@ -3,8 +3,7 @@ using ReactiveUI;
 
 namespace ArtSite.Data.Models.ReactiveModels; 
 
-public class ReactiveAddArtworkModel: ReactiveObject{
-    public int? Id { get; set; }
+public class ReactiveAddArtworkModel: ReactiveBaseModel{
     private byte[] _fileData;
     public string Description { get; set; }
     public string FileExtension { get; set; }

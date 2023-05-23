@@ -1,6 +1,7 @@
 ﻿using System;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Data;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 
@@ -24,7 +25,7 @@ public partial class PersonalityTrait : UserControl {
     }
     
     public static readonly StyledProperty<double> SliderValueProperty =
-        AvaloniaProperty.Register<InputRow, double>(nameof(SliderValue));
+        AvaloniaProperty.Register<InputRow, double>(nameof(SliderValue), defaultBindingMode: BindingMode.TwoWay);
     
     public double SliderValue {
         get => GetValue(SliderValueProperty);

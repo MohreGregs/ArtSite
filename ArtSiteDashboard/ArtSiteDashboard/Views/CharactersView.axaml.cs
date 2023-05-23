@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
@@ -20,9 +21,16 @@ using ReactiveUI;
 namespace ArtSiteDashboard.Views; 
 
 public partial class CharactersView : ReactiveControl<CharactersViewModel> {
+    private MainWindowViewModel _mainWindowViewModel;
+
     public CharactersView() {
         InitializeComponent();
-        
+
+    }
+    
+    public CharactersView(MainWindowViewModel mainWindowViewModel) {
+        InitializeComponent();
+        _mainWindowViewModel = mainWindowViewModel;
     }
 
     private void InitializeComponent() {
@@ -116,20 +124,29 @@ public partial class CharactersView : ReactiveControl<CharactersViewModel> {
         await GetCharacters();
     }
 
+    private List<CharacterModel>? characters;
+    
     private async Task GetCharacters() {
-        var characters = await Api.GetCharacters() ?? new();
+        if (characters == null) {
+            characters = await Api.GetCharacters() ?? new();
+        }
+        
         if (characters.Count == 0) {
-            ViewModel.MainWindowViewModel.MainView = ViewModel.MainWindowViewModel.NoCharactersView;
+            _mainWindowViewModel.MainView = _mainWindowViewModel.NoCharactersViewModel;
             return;
         }
 
-        ViewModel.Characters.Clear();
-        ViewModel.Characters.AddRange(characters.Select(x => ReactiveCharacterModel.fromCharacterModel(x)));
+        CreateReactiveChars();
         
-        ViewModel.CurrentCharacter = ViewModel.Characters.FirstOrDefault();
+        ViewModel.SelectCharacter(ViewModel.Characters.FirstOrDefault());
         
         if (ViewModel.CurrentCharacter == null) return;
         if (ViewModel.CharacterView.GetType() == typeof(GeneralInfoViewModel)) ViewModel.GeneralInfoView.CurrentCharacter = ViewModel.CurrentCharacter;
+    }
+
+    private void CreateReactiveChars() {
+        ViewModel.Characters.Clear();
+        ViewModel.Characters.AddRange(characters.Select(x => ReactiveCharacterModel.FromCharacterModel(x)));
     }
 
     private async void Icon_OnDoubleTap(object? sender, RoutedEventArgs e) {
@@ -140,17 +157,40 @@ public partial class CharactersView : ReactiveControl<CharactersViewModel> {
     }
 
     private async void Edit_OnClick(object? sender, RoutedEventArgs e) {
-        var editCharacterWindow = new AddNewCharacterWindow(ViewModel.CurrentCharacter.Id);
-
-        await editCharacterWindow.ShowDialog(ViewModel.MainWindow);
-        await GetCharacters();
+        await ViewModel.OpenEditCharacterWindow();
     }
 
     private void HasChanged() {
         ViewModel.CharacterHasChanged = true;
     }
 
-    private void Button_OnSave(object? sender, RoutedEventArgs e) {
-        throw new NotImplementedException();
+    private async void Button_OnSave(object? sender, RoutedEventArgs e) {
+        var characterToEdit = new EditCharacterModel();
+        characterToEdit.Id = ViewModel.CurrentCharacter.Id;
+        characterToEdit.GeneralInfo = ReactiveGeneralInfoModel.ToGeneralInfoModel(ViewModel.CurrentCharacter.GeneralInfo);
+        characterToEdit.Personality = ReactivePersonalityModel.ToPersonalityModel(ViewModel.CurrentCharacter.Personality);
+        characterToEdit.Appearance = ReactiveAppearanceModel.ToAppearanceModel(ViewModel.CurrentCharacter.Appearance);
+        characterToEdit.Interests = ReactiveInterestsModel.ToInterestModel(ViewModel.CurrentCharacter.Interests);
+
+        await Api.EditExtraCharacterInfo(characterToEdit);
+
+        ViewModel.CharacterHasChanged = false;
+    }
+
+    private void Button_OnRevert(object? sender, RoutedEventArgs e) {
+        var id = ViewModel.CurrentCharacter.Id;
+        CreateReactiveChars();
+
+        var character = ViewModel.Characters.FirstOrDefault(x => x.Id == id);
+        
+        ViewModel.SelectCharacter(character);
+        ViewModel.CharacterHasChanged = false;
+    }
+
+    private void SelectingItemsControl_OnSelectionChanged(object? sender, SelectionChangedEventArgs e) {
+        if (e.AddedItems.Count > 0) {
+            var x = e.AddedItems[0] as ReactiveCharacterModel;
+            ViewModel.SelectCharacter(x);
+        }
     }
 }

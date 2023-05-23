@@ -31,7 +31,8 @@ public static partial class Api {
 
                 var result = await client.SendAsync(req);
                 
-                return JsonConvert.DeserializeObject<T>(await result.Content.ReadAsStringAsync());
+                var x = await result.Content.ReadAsStringAsync();
+                return JsonConvert.DeserializeObject<T>(x);
             }
         }
         catch(Exception ex) {
