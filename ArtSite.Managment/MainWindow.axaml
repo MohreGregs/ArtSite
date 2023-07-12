@@ -2,8 +2,31 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:managment="clr-namespace:ArtSite.Managment"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="ArtSite.Managment.MainWindow"
-        Title="ArtSite.Managment">
-    Welcome to Avalonia!
+        Title="Management"
+        Width="1280" Height="720"
+        WindowStartupLocation="CenterScreen" CanResize="True"
+        Foreground="White"
+        
+        FontSize="16"
+        
+        Background="Transparent"
+        TransparencyLevelHint="Mica"
+        ExtendClientAreaToDecorationsHint="True"
+        ExtendClientAreaChromeHints="PreferSystemChrome">
+    <Design.DataContext>
+        <managment:MainWindowViewModel />
+    </Design.DataContext>
+    <Grid Background="#7F000000">
+        <Panel>
+            <ExperimentalAcrylicBorder IsHitTestVisible="False" Material="{Binding PanelMaterial}" />
+        </Panel>
+        <TransitioningContentControl Name="MainViewPanel" Content="{Binding MainView}">
+            <TransitioningContentControl.PageTransition>
+                <CrossFade Duration="0:00:00.150" />
+            </TransitioningContentControl.PageTransition>
+        </TransitioningContentControl>
+    </Grid>
 </Window>
